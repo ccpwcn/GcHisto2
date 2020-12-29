@@ -2,5 +2,5 @@
 一个用于分析GC日志的工具，发展起源于https://github.com/wengyingjian/gchisto.git，向原作者表示敬意。
 
 #####GcHisto2:
-用于分析gc日志的一款强大工具。。  
+用于分析gc日志的一款强大工具，基于JDK8。 
 
