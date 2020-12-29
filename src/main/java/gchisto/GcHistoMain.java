@@ -27,29 +27,28 @@ import gchisto.gui.MainFrame;
 import gchisto.utils.errorchecking.ErrorReporting;
 
 /**
- * The main class of the application. It parses the command line parameters and
- * launches the main window.
+ * 应用程序入口类
  *
  * @author Tony Printezis
  */
 public class GcHistoMain {
     
     /**
-     * Private constructor so that the class is not instantiated.
+     * 阻止此类被实例化
      */
     private GcHistoMain() {
     }
     
     /**
-     * The main method of the application. It parses the command line parameters 
-     * and launches the main window.
+     * 这是一个基于Java的GUI应用程序
      *
-     * @param args The command line parameters of the application.
+     * @param args 命令行参数
      */
     public static void main(String[] args) {
         ErrorReporting.setShowWarnings(true);
         MainFrame frame = new MainFrame();
         frame.setSize(1024, 768);
+        // 设置窗口位于屏幕中央
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.loadGCTraces(args);

@@ -25,7 +25,7 @@ package gchisto.gui.panels.gcdata;
 
 import gchisto.gcactivity.GCActivity;
 import gchisto.gcactivity.GCActivitySet;
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceCheckpoint;
 import gchisto.gctrace.RCWithGCTraceCheckpoint;
 import gchisto.gctrace.GCTraceListener;
@@ -42,7 +42,7 @@ import gchisto.utils.errorchecking.ArgumentChecking;
 public class DataPanel extends javax.swing.JPanel
         implements GCTraceListener, RCWithGCTraceCheckpointCallback {
 
-    final private GCTrace gcTrace;
+    final private GcTrace gcTrace;
     final private Refresher refresher;
     final private Locker locker = new Locker();
 
@@ -75,7 +75,7 @@ public class DataPanel extends javax.swing.JPanel
     }
 
     public void gcActivityAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCActivitySet gcActivitySet,
             GCActivity gcActivity) {
         assert gcTrace == this.gcTrace;
@@ -83,12 +83,12 @@ public class DataPanel extends javax.swing.JPanel
     }
 
     public void gcActivityNameAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             int id,
             String gcActivityName) {
     }
 
-    DataPanel(GCTrace gcTrace) {
+    DataPanel(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
 
         this.gcTrace = gcTrace;

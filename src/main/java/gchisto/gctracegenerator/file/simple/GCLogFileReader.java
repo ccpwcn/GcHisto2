@@ -23,7 +23,7 @@
  */
 package gchisto.gctracegenerator.file.simple;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctracegenerator.file.GCLogFileReaderThrottle;
 import gchisto.utils.Comparisons;
 import java.io.BufferedReader;
@@ -98,7 +98,7 @@ public class GCLogFileReader
         return builder.toString();
     }
 
-    private void ensureGCActivityAdded(GCTrace gcTrace, String name) {
+    private void ensureGCActivityAdded(GcTrace gcTrace, String name) {
         if (!gcActivityNames.contains(name)) {
             if (name.equals("Remark")) {
                 ensureGCActivityAdded(gcTrace, "InitialMark");
@@ -110,14 +110,14 @@ public class GCLogFileReader
         }
     }
 
-    public void setupGCActivityNames(GCTrace gcTrace) {
+    public void setupGCActivityNames(GcTrace gcTrace) {
         for (String name : SHARED_ACTIVITIES) {
             ensureGCActivityAdded(gcTrace, name);
         }
     }
 
     public void readFile(File file,
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCLogFileReaderThrottle throttle)
             throws IOException {
         FileReader reader = new FileReader(file);

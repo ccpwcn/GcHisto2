@@ -23,7 +23,7 @@
  */
 package gchisto.gctracegenerator;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 
 /**
  * TODO
@@ -38,7 +38,7 @@ public interface GCTraceGeneratorListener {
     /**
      * TODO
      */
-    public void finished(GCTrace gcTrace);
+    public void finished(GcTrace gcTrace);
     
     /**
      * TODO

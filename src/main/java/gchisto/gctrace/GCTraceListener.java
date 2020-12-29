@@ -32,12 +32,12 @@ public interface GCTraceListener {
      * TODO
      */
     public void gcActivityAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCActivitySet gcActivitySet,
             GCActivity gcActivity);
 
     public void gcActivityNameAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             int id,
             String gcActivityName);
 }

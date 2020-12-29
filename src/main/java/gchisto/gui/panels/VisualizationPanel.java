@@ -23,7 +23,7 @@
  */
 package gchisto.gui.panels;
 
-import gchisto.gctrace.GCTraceSet;
+import gchisto.gctrace.GcTraceSet;
 import gchisto.gctrace.GCTraceSetListener;
 import javax.swing.JPanel;
 
@@ -43,27 +43,27 @@ public interface VisualizationPanel {
      * @return The panel that will be added to the tabbed pane of
      * the main frame.
      */
-    public JPanel getPanel();
+    JPanel getPanel();
     
     /**
      * It returns the name of this panel.
      *
      * @return The name of this panel.
      */
-    public String getPanelName();
+    String getPanelName();
     
     /**
      * It returns the GC trace set listener associated with this panel.
      *
      * @return The GC trace set listener associated with this panel.
      */
-    public GCTraceSetListener getListener();
+    GCTraceSetListener getListener();
     
     /**
      * It installs the GC trace set of the application in the panel.
      *
      * @param gcTraceSet The GC trace set of the application.
      */
-    public void setGCTraceSet(GCTraceSet gcTraceSet);
+    void setGcTraceSet(GcTraceSet gcTraceSet);
     
 }

@@ -25,9 +25,9 @@ package gchisto.gui.panels.gcstats;
 
 import gchisto.gcactivity.GCActivity;
 import gchisto.gcactivity.GCActivitySet;
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceListener;
-import gchisto.gctrace.GCTraceSet;
+import gchisto.gctrace.GcTraceSet;
 import gchisto.gctrace.GCTraceSetListener;
 import gchisto.gui.panels.VisualizationPanel;
 import gchisto.jfreechart.extensions.ChangingCategoryDatasetWithTTG;
@@ -54,16 +54,13 @@ public class Panel extends javax.swing.JPanel
     /**
      * The GC trace set that will provide the data for this panel.
      */
-    private GCTraceSet gcTraceSet;
+    private GcTraceSet gcTraceSet;
     final private List<GCStatsChartPanel> panelsSingle =
-            new LinkedList<GCStatsChartPanel>();
+            new LinkedList<>();
     final private List<GCStatsChartPanel> panelsMulti =
-            new LinkedList<GCStatsChartPanel>();
+            new LinkedList<>();
     final private List<GCStatsChartPanel> panelsAll =
-            new LinkedList<GCStatsChartPanel>();
-    /**
-     * TODO
-     */
+            new LinkedList<>();
     private DatasetGenerator datasetGenerator;
     final private ChartLocker locker = new ChartLocker();
 
@@ -99,7 +96,7 @@ public class Panel extends javax.swing.JPanel
      * @param metric The metric that will be shown in the chart.
      * @param datasetGenerator The generator that will produce the datasetGenerator
      * for this chart.
-     * @param ignoreAggregate It determines whether to ignore the aggregate
+     * @param list It determines whether to ignore the aggregate
      * GC activity or not.
      */
     private void createMetricChartPanel(
@@ -116,7 +113,8 @@ public class Panel extends javax.swing.JPanel
         list.add(panel);
     }
 
-    synchronized public void gcTraceAdded(GCTrace gcTrace) {
+    @Override
+    synchronized public void gcTraceAdded(GcTrace gcTrace) {
         gcTrace.addListener(this);
 
         update();
@@ -149,11 +147,13 @@ public class Panel extends javax.swing.JPanel
         }
     }
 
-    synchronized public void gcTraceRenamed(GCTrace gcTrace) {
+    @Override
+    synchronized public void gcTraceRenamed(GcTrace gcTrace) {
         update();
     }
 
-    synchronized public void gcTraceRemoved(GCTrace gcTrace) {
+    @Override
+    synchronized public void gcTraceRemoved(GcTrace gcTrace) {
         update();
         int gcTraceNum = datasetGenerator.getGCTraceNum();
         if (gcTraceNum == 0) {
@@ -179,69 +179,67 @@ public class Panel extends javax.swing.JPanel
         }
     }
 
-    synchronized public void gcTraceMovedUp(GCTrace gcTrace) {
+    @Override
+    synchronized public void gcTraceMovedUp(GcTrace gcTrace) {
         update();
     }
 
-    synchronized public void gcTraceMovedDown(GCTrace gcTrace) {
+    @Override
+    synchronized public void gcTraceMovedDown(GcTrace gcTrace) {
         update();
     }
 
+    @Override
     public void gcActivityAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCActivitySet gcActivitySet,
             GCActivity gcActivity) {
         refresh();
     }
 
+    @Override
     public void gcActivityNameAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             int id,
             String gcActivityName) {
         update();
     }
 
     private void refresh() {
-        locker.doWhileLocked(new Runnable() {
-
-            public void run() {
-                int gcTraceNum = gcTraceSet.size();
-                assert gcTraceNum > 0;
-                if (gcTraceNum == 1) {
-                    for (GCStatsChartPanel panel : panelsSingle) {
-                        panel.refresh();
-                    }
-                } else {
-                    for (GCStatsChartPanel panel : panelsMulti) {
-                        panel.refresh();
-                    }
-                }
-                for (GCStatsChartPanel panel : panelsAll) {
+        locker.doWhileLocked(() -> {
+            int gcTraceNum = gcTraceSet.size();
+            assert gcTraceNum > 0;
+            if (gcTraceNum == 1) {
+                for (GCStatsChartPanel panel : panelsSingle) {
                     panel.refresh();
                 }
+            } else {
+                for (GCStatsChartPanel panel : panelsMulti) {
+                    panel.refresh();
+                }
+            }
+            for (GCStatsChartPanel panel : panelsAll) {
+                panel.refresh();
             }
         });
     }
 
     private void update() {
-        locker.doWhileLocked(new Runnable() {
+        locker.doWhileLocked(() -> {
+            datasetGenerator.update();
 
-            public void run() {
-                datasetGenerator.update();
-
-                int gcTraceNum = gcTraceSet.size();
-                if (gcTraceNum == 1) {
-                    for (GCStatsChartPanel panel : panelsSingle) {
-                        panel.update();
-                    }
-                } else {
-                    for (GCStatsChartPanel panel : panelsMulti) {
-                        panel.update();
-                    }
-                }
-                for (GCStatsChartPanel panel : panelsAll) {
+            int gcTraceNum = gcTraceSet.size();
+            if (gcTraceNum == 1) {
+                for (GCStatsChartPanel panel : panelsSingle) {
                     panel.update();
                 }
+            } else {
+                for (GCStatsChartPanel panel : panelsMulti) {
+                    panel.update();
+                }
+            }
+            for (GCStatsChartPanel panel : panelsAll) {
+                panel.update();
             }
         });
     }
@@ -265,19 +263,23 @@ public class Panel extends javax.swing.JPanel
         createMetricChartPanel(DatasetGenerator.METRIC_MAX, datasetGenerator, panelsAll);
     }
 
+    @Override
     public JPanel getPanel() {
         return this;
     }
 
+    @Override
     public String getPanelName() {
         return "GC Pause Stats";
     }
 
+    @Override
     public GCTraceSetListener getListener() {
         return this;
     }
 
-    public void setGCTraceSet(GCTraceSet gcTraceSet) {
+    @Override
+    public void setGcTraceSet(GcTraceSet gcTraceSet) {
         this.gcTraceSet = gcTraceSet;
         this.datasetGenerator = new DatasetGenerator(gcTraceSet);
         create();

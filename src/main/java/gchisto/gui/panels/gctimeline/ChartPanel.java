@@ -26,7 +26,7 @@ package gchisto.gui.panels.gctimeline;
 import gchisto.jfreechart.extensions.ChartLocker;
 import gchisto.gcactivity.GCActivity;
 import gchisto.gcactivity.GCActivitySet;
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceCheckpoint;
 import gchisto.gctrace.GCTraceListener;
 import gchisto.gctrace.RCWithGCTraceCheckpoint;
@@ -97,14 +97,14 @@ public class ChartPanel extends AbstractChartPanel
     }
 
     public void gcActivityAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCActivitySet gcActivitySet,
             GCActivity gcActivity) {
         possiblyRefresh();
     }
 
     public void gcActivityNameAdded(
-            final GCTrace gcTrace,
+            final GcTrace gcTrace,
             final int id,
             final String gcActivityName) {
         locker.doWhileLocked(new Runnable() {

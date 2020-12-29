@@ -23,7 +23,7 @@
  */
 package gchisto.gui.panels.gcdata;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gui.utils.TabbedPane;
 
 /**
@@ -32,16 +32,19 @@ import gchisto.gui.utils.TabbedPane;
  */
 public class Panel extends TabbedPane<DataPanel> {
 
-    protected DataPanel newPanel(GCTrace gcTrace) {
+    @Override
+    protected DataPanel newPanel(GcTrace gcTrace) {
         DataPanel panel = new DataPanel(gcTrace);
         gcTrace.addListener(panel);
         return panel;
     }
 
+    @Override
     protected void updatePanel(DataPanel panel) {
         panel.possiblyRefresh();
     }
 
+    @Override
     public String getPanelName() {
         return "GC Data";
     }

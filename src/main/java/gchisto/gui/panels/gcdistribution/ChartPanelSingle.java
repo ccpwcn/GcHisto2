@@ -25,7 +25,7 @@ package gchisto.gui.panels.gcdistribution;
 
 import gchisto.gcactivity.GCActivity;
 import gchisto.gcactivity.GCActivitySet;
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceCheckpoint;
 import gchisto.gctrace.GCTraceListener;
 import gchisto.gctrace.RCWithGCTraceCheckpoint;
@@ -98,14 +98,14 @@ public class ChartPanelSingle extends AbstractChartPanel
     }
 
     public void gcActivityAdded(
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCActivitySet gcActivitySet,
             GCActivity gcActivity) {
         possiblyRefresh();
     }
 
     public void gcActivityNameAdded(
-            final GCTrace gcTrace,
+            final GcTrace gcTrace,
             final int id,
             final String gcActivityName) {
         locker.doWhileLocked(new Runnable() {

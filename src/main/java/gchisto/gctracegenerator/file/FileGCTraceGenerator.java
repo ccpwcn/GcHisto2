@@ -67,12 +67,12 @@ abstract public class FileGCTraceGenerator implements GCTraceGeneratorForFiles {
         }
     }
     
-    abstract protected FileGCTrace newFileGCTrace(File file);
+    abstract protected FileGcTrace newFileGCTrace(File file);
     
     @Override
     public void createNewGCTrace(File file,
                                  GCTraceGeneratorListener listener) {
-        FileGCTrace gcTrace = newFileGCTrace(file);
+        FileGcTrace gcTrace = newFileGCTrace(file);
         gcTrace.init(listener);
         currDir = file;
     }

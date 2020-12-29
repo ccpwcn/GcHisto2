@@ -23,12 +23,12 @@
  */
 package gchisto.gui.panels.tracemanagement;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctracegenerator.GCTraceGenerator;
 import gchisto.gctracegenerator.GCTraceGeneratorForFiles;
 import gchisto.gctracegenerator.GCTraceGeneratorListener;
 import gchisto.gctracegenerator.GCTraceGeneratorSet;
-import gchisto.gctrace.GCTraceSet;
+import gchisto.gctrace.GcTraceSet;
 import gchisto.gctrace.GCTraceSetListener;
 import gchisto.gui.panels.TraceManagementPanel;
 import gchisto.gui.utils.GUIUtilities;
@@ -57,7 +57,7 @@ public class Panel extends javax.swing.JPanel
      *
      * @see Model
      */
-    static private String[] COLUMN_NAMES = {
+    static private final String[] COLUMN_NAMES = {
         "Name", "Time Added"
     };
     
@@ -66,7 +66,7 @@ public class Panel extends javax.swing.JPanel
      *
      * @see Model
      */
-    static private Class[] COLUMN_CLASSES = {
+    static private final Class[] COLUMN_CLASSES = {
         String.class, String.class
     };
     
@@ -75,14 +75,14 @@ public class Panel extends javax.swing.JPanel
      *
      * @see Model
      */
-    static private boolean[] COLUMN_EDITABLE = {
+    static private final boolean[] COLUMN_EDITABLE = {
         true, false
     };
     
     /**
      * The GC trace set that this panel will work on.
      */
-    private GCTraceSet gcTraceSet;
+    private GcTraceSet gcTraceSet;
     
     /**
      * The trace reader that will be used to read GC trace files. We should
@@ -106,22 +106,27 @@ public class Panel extends javax.swing.JPanel
      * The GC trace set listener for this panel.
      */
     private class SetListener implements GCTraceSetListener {
-        public void gcTraceAdded(GCTrace gcTrace)     {
+        @Override
+        public void gcTraceAdded(GcTrace gcTrace)     {
             callTableChanged();
             setSelectedTrace(gcTrace);
         }
-        public void gcTraceRenamed(GCTrace gcTrace)   {
+        @Override
+        public void gcTraceRenamed(GcTrace gcTrace)   {
             callTableChanged();
             setSelectedTrace(gcTrace);
         }
-        public void gcTraceRemoved(GCTrace gcTrace)   {
+        @Override
+        public void gcTraceRemoved(GcTrace gcTrace)   {
             callTableChanged();
         }
-        public void gcTraceMovedUp(GCTrace gcTrace)   {
+        @Override
+        public void gcTraceMovedUp(GcTrace gcTrace)   {
             callTableChanged();
             setSelectedTrace(gcTrace);
         }
-        public void gcTraceMovedDown(GCTrace gcTrace) {
+        @Override
+        public void gcTraceMovedDown(GcTrace gcTrace) {
             callTableChanged();
             setSelectedTrace(gcTrace);
         }
@@ -137,6 +142,7 @@ public class Panel extends javax.swing.JPanel
          * @param e The liste selection event associated with this
          * selection change.
          */
+        @Override
         public void valueChanged(ListSelectionEvent e) {
             selectionChanged();
         }
@@ -158,6 +164,7 @@ public class Panel extends javax.swing.JPanel
          *
          * @return The number of rows in the table.
          */
+        @Override
         public int getRowCount() {
             return gcTraceSet.size();
         }
@@ -167,6 +174,7 @@ public class Panel extends javax.swing.JPanel
          *
          * @return The number of columns in the table.
          */
+        @Override
         public int getColumnCount() {
             return COLUMN_NAMES.length;
         }
@@ -178,6 +186,7 @@ public class Panel extends javax.swing.JPanel
          * be returned.
          * @return The column name for the specified column.
          */
+        @Override
         public String getColumnName(int columnIndex) {
             return COLUMN_NAMES[columnIndex];
         }
@@ -189,6 +198,7 @@ public class Panel extends javax.swing.JPanel
          * will be returned.
          * @return The class of the table cells in the specified column.
          */
+        @Override
         public Class<?> getColumnClass(int columnIndex) {
             return COLUMN_CLASSES[columnIndex];
         }
@@ -200,6 +210,7 @@ public class Panel extends javax.swing.JPanel
          * @param columnIndex The column index of the specified table cell.
          * @return Whether the specified table cell is editable.
          */
+        @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return COLUMN_EDITABLE[columnIndex];
         }
@@ -211,8 +222,9 @@ public class Panel extends javax.swing.JPanel
          * @param columnIndex The column index of the specified table cell.
          * @return The value of the specified table cell.
          */
+        @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            GCTrace gcTrace = gcTraceSet.findGCTrace(rowIndex);
+            GcTrace gcTrace = gcTraceSet.findGCTrace(rowIndex);
             switch (columnIndex) {
                 case 0:
                     return gcTrace.getName();
@@ -230,10 +242,10 @@ public class Panel extends javax.swing.JPanel
          * @param rowIndex The row index of the specified table cell.
          * @param columnIndex The column index of the specified table cell.
          */
+        @Override
         public void setValueAt(Object value, int rowIndex, int columnIndex) {
-            assert columnIndex == 0;
-            assert COLUMN_EDITABLE[columnIndex];
-            assert value instanceof String;
+            assert columnIndex == 0 : "列号只能是正整数";
+            assert value instanceof String : "仅支持字符串";
             
             String newName = (String) value;
             renameTrace(rowIndex, newName);
@@ -275,7 +287,7 @@ public class Panel extends javax.swing.JPanel
      * @param gcTrace The GC trace whose corresponding row will
      * be selected.
      */
-    private void setSelectedTrace(GCTrace gcTrace) {
+    private void setSelectedTrace(GcTrace gcTrace) {
         int index = gcTraceSet.findGCTraceIndex(gcTrace.getName());
         assert 0 <= index && index < gcTraceSet.size();
         
@@ -290,7 +302,7 @@ public class Panel extends javax.swing.JPanel
         if (selectedRowIndex != -1) {
             assert 0 <= selectedRowIndex && selectedRowIndex < gcTraceSet.size();
             
-            GCTrace gcTrace = gcTraceSet.findGCTrace(selectedRowIndex);
+            GcTrace gcTrace = gcTraceSet.findGCTrace(selectedRowIndex);
             updateTraceInfo(gcTrace);
         } else {
             updateTraceInfo(null);
@@ -303,7 +315,7 @@ public class Panel extends javax.swing.JPanel
     private void forceSelectedTraceEdit() {
         int selectedRowIndex = getSelectedRow();
         if (selectedRowIndex > -1) {
-            assert 0 <= selectedRowIndex && selectedRowIndex < gcTraceSet.size();
+            assert selectedRowIndex < gcTraceSet.size();
             
             table.editCellAt(selectedRowIndex, 0);
         }
@@ -316,7 +328,7 @@ public class Panel extends javax.swing.JPanel
      * @param gcTrace The GC trace for which the trace information
      * text area will be updated.
      */
-    private void updateTraceInfo(GCTrace gcTrace) {
+    private void updateTraceInfo(GcTrace gcTrace) {
         String str;
         if (gcTrace != null) {
             str = gcTrace.getInfoString();
@@ -326,15 +338,18 @@ public class Panel extends javax.swing.JPanel
         traceInfoTextArea.setText(str);
     }
     
-    private class AddGCTraceListener implements GCTraceGeneratorListener {
+    private class AddGcTraceListener implements GCTraceGeneratorListener {
+        @Override
         public void started() {
         }
 
-        public void finished(GCTrace gcTrace) {
+        @Override
+        public void finished(GcTrace gcTrace) {
             assert gcTrace != null;
             gcTraceSet.addGCTrace(gcTrace);
         }
 
+        @Override
         public void failed() {
         }
     }
@@ -342,22 +357,24 @@ public class Panel extends javax.swing.JPanel
     /**
      * TODO
      */
+    @Override
     public void addGCTrace() {
         int index = generatorMenu.getSelectedIndex();
         assert 0 <= index && index < gcTraceGeneratorSet.size();
         GCTraceGenerator gcTraceGenerator = gcTraceGeneratorSet.get(index);
         
-        gcTraceGenerator.createNewGCTrace(this, new AddGCTraceListener());
+        gcTraceGenerator.createNewGCTrace(this, new AddGcTraceListener());
     }
     
     /**
      * TODO
      */
+    @Override
     public void addGCTrace(File file) {
         GCTraceGeneratorForFiles gcTraceGeneratorForFiles = 
                 gcTraceGeneratorSet.gcTraceGeneratorForFiles();
         
-        gcTraceGeneratorForFiles.createNewGCTrace(file, new AddGCTraceListener());
+        gcTraceGeneratorForFiles.createNewGCTrace(file, new AddGcTraceListener());
     }
     
     /**
@@ -380,9 +397,9 @@ public class Panel extends javax.swing.JPanel
     private void removeGCTrace() {
         int index = getSelectedRow();
         if (index > -1) {
-            assert 0 <= index && index < gcTraceSet.size();
+            assert index < gcTraceSet.size();
             
-            GCTrace gcTrace = gcTraceSet.findGCTrace(index);
+            GcTrace gcTrace = gcTraceSet.findGCTrace(index);
             gcTraceSet.remove(gcTrace.getName());
             if (gcTraceSet.size() > 0) {
                 if (index < gcTraceSet.size()) {
@@ -401,9 +418,9 @@ public class Panel extends javax.swing.JPanel
     private void moveUpTrace() {
         int index = getSelectedRow();
         if (index > -1) {
-            assert 0 <= index && index < gcTraceSet.size();
+            assert index < gcTraceSet.size();
             
-            GCTrace gcTrace = gcTraceSet.findGCTrace(index);
+            GcTrace gcTrace = gcTraceSet.findGCTrace(index);
             gcTraceSet.moveUp(gcTrace.getName());
         }
     }
@@ -414,9 +431,9 @@ public class Panel extends javax.swing.JPanel
     private void moveDownTrace() {
         int index = getSelectedRow();
         if (index > -1) {
-            assert 0 <= index && index < gcTraceSet.size();
+            assert index < gcTraceSet.size();
             
-            GCTrace gcTrace = gcTraceSet.findGCTrace(index);
+            GcTrace gcTrace = gcTraceSet.findGCTrace(index);
             gcTraceSet.moveDown(gcTrace.getName());
         }
     }
@@ -431,19 +448,23 @@ public class Panel extends javax.swing.JPanel
         table.setEnabled(enabled);
     }
     
+    @Override
     public JPanel getPanel() {
         return this;
     }
     
+    @Override
     public String getPanelName() {
         return "Trace Management";
     }
     
+    @Override
     public GCTraceSetListener getListener() {
         return setListener;
     }
     
-    public void setGCTraceSet(GCTraceSet gcTraceSet) {
+    @Override
+    public void setGcTraceSet(GcTraceSet gcTraceSet) {
         ArgumentChecking.notNull(gcTraceSet, "gcTraceSet");
         
         this.gcTraceSet = gcTraceSet;
@@ -577,6 +598,7 @@ public class Panel extends javax.swing.JPanel
 
         addButton.setText("Add...");
         addButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
@@ -584,6 +606,7 @@ public class Panel extends javax.swing.JPanel
 
         renameButton.setText("Rename");
         renameButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 renameButtonActionPerformed(evt);
             }
@@ -591,6 +614,7 @@ public class Panel extends javax.swing.JPanel
 
         removeButton.setText("Remove");
         removeButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeButtonActionPerformed(evt);
             }
@@ -598,6 +622,7 @@ public class Panel extends javax.swing.JPanel
 
         moveUpButton.setText("Move Up");
         moveUpButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moveUpButtonActionPerformed(evt);
             }
@@ -605,6 +630,7 @@ public class Panel extends javax.swing.JPanel
 
         moveDownButton.setText("Move Down");
         moveDownButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 moveDownButtonActionPerformed(evt);
             }
@@ -612,6 +638,7 @@ public class Panel extends javax.swing.JPanel
 
         forceGCButton.setText("Force GC");
         forceGCButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forceGCButtonActionPerformed(evt);
             }

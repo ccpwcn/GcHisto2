@@ -23,14 +23,14 @@
  */
 package gchisto.gctracegenerator;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 
 public class NopGCTraceGeneratorListener implements GCTraceGeneratorListener {
     
     public void started() {
     }
 
-    public void finished(GCTrace gcTrace) {
+    public void finished(GcTrace gcTrace) {
     }
 
     public void failed() {

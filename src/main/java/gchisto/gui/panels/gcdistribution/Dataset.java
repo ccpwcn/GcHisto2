@@ -25,14 +25,13 @@ package gchisto.gui.panels.gcdistribution;
 
 import gchisto.gcactivity.GCActivity;
 import gchisto.gcactivity.GCActivitySet;
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceCheckpoint;
 import gchisto.jfreechart.extensions.AbstractDatasetWithGroups;
 import gchisto.jfreechart.extensions.IntervalXYDatasetWithGroups;
 import gchisto.utils.Comparisons;
 import gchisto.utils.Conversions;
 import gchisto.utils.Formatting;
-import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 import org.jfree.chart.labels.XYToolTipGenerator;
@@ -64,7 +63,7 @@ public class Dataset extends AbstractDatasetWithGroups
      */
     final private List<Integer> maxIndex = new ArrayList<Integer>();
     private int maxMaxIndex;
-    final private GCTrace gcTrace;
+    final private GcTrace gcTrace;
     final private GCTraceCheckpoint checkpoint;
 
     /**
@@ -582,7 +581,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @param gcTrace The GC trace that will provide data for the
      * new dataset generator.
      */
-    public Dataset(GCTrace gcTrace, GCTraceCheckpoint checkpoint) {
+    public Dataset(GcTrace gcTrace, GCTraceCheckpoint checkpoint) {
         super();
 
         this.gcTrace = gcTrace;

@@ -23,7 +23,7 @@
  */
 package gchisto.gui.panels.gcdistribution;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceCheckpoint;
 import gchisto.gui.utils.TabbedPane;
 
@@ -33,7 +33,8 @@ import gchisto.gui.utils.TabbedPane;
  */
 public class Panel extends TabbedPane<ChartPanelSingle> {
 
-    protected ChartPanelSingle newPanel(GCTrace gcTrace) {
+    @Override
+    protected ChartPanelSingle newPanel(GcTrace gcTrace) {
         GCTraceCheckpoint checkpoint = new GCTraceCheckpoint(gcTrace);
         checkpoint.checkpoint();
         
@@ -49,10 +50,12 @@ public class Panel extends TabbedPane<ChartPanelSingle> {
         return panel;
     }
 
+    @Override
     protected void updatePanel(ChartPanelSingle panel) {
         panel.possiblyRefresh();
     }
 
+    @Override
     public String getPanelName() {
         return "GC Pause Distribution";
     }

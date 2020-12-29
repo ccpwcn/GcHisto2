@@ -23,7 +23,6 @@
  */
 package gchisto.gctracegenerator;
 
-import gchisto.gctrace.GCTrace;
 import java.io.File;
 
 /**

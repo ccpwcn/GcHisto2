@@ -42,9 +42,9 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
      * @param gcTrace The GC trace that has just been added to the GC
      * trace set.
      * 
-     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceAdded(GCTrace)
+     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceAdded(GcTrace)
      */
-    public void callGCTraceAdded(GCTrace gcTrace) {
+    public void callGCTraceAdded(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
         for (GCTraceSetListener listener : listeners()) {
@@ -59,9 +59,9 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
      * @param gcTrace The GC trace that has just been renamed in the GC
      * trace set.
      * 
-     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceRenamed(GCTrace)
+     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceRenamed(GcTrace)
      */
-    public void callGCTraceRenamed(GCTrace gcTrace) {
+    public void callGCTraceRenamed(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
         for (GCTraceSetListener listener : listeners()) {
@@ -76,9 +76,9 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
      * @param gcTrace The GC trace that has just been removed from the GC
      * trace set.
      * 
-     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceRemoved(GCTrace)
+     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceRemoved(GcTrace)
      */
-    public void callGCTraceRemoved(GCTrace gcTrace) {
+    public void callGCTraceRemoved(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
         for (GCTraceSetListener listener : listeners()) {
@@ -93,9 +93,9 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
      * @param gcTrace The GC trace that has just been moved up in the GC
      * trace set.
      * 
-     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceMovedUp(GCTrace)
+     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceMovedUp(GcTrace)
      */
-    public void callGCTraceMovedUp(GCTrace gcTrace) {
+    public void callGCTraceMovedUp(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
         for (GCTraceSetListener listener : listeners()) {
@@ -110,9 +110,9 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
      * @param gcTrace The GC trace that has just been moved down in the GC
      * trace set.
      * 
-     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceMovedDown(GCTrace)
+     * @see gchisto.gctraceset.GCTraceSetListener#gcTraceMovedDown(GcTrace)
      */
-    public void callGCTraceMovedDown(GCTrace gcTrace) {
+    public void callGCTraceMovedDown(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
         for (GCTraceSetListener listener : listeners()) {

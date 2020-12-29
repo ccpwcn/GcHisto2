@@ -47,7 +47,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
     private int eventNum;
     private double durationSec;
     
-    private DynamicFileGCTrace gcTrace;
+    private DynamicFileGcTrace gcTrace;
     
     private double validateTextField(JTextField textField,
             double def, double min, double max) {
@@ -208,7 +208,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
         super.dispose();
     }
     
-    public PlaybackFrame(DynamicFileGCTrace gcTrace) {
+    public PlaybackFrame(DynamicFileGcTrace gcTrace) {
         initComponents();
         
         this.gcTrace = gcTrace;

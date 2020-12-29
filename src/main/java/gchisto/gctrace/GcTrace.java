@@ -42,7 +42,7 @@ import java.util.Date;
  * @see    gchisto.gctraceset.GCActivityNames
  * @see    gchisto.gctraceset.GCTraceSet
  */
-public abstract class GCTrace extends ArrayList<GCActivitySet> {
+public abstract class GcTrace extends ArrayList<GCActivitySet> {
 
     /**
      * The name that is associated with this GC trace. This is unique across
@@ -85,8 +85,8 @@ public abstract class GCTrace extends ArrayList<GCActivitySet> {
     abstract public String getInfoString();
 
     public boolean equals(Object gcTrace) {
-        assert gcTrace instanceof GCTrace;
-        return ((GCTrace) gcTrace).hashCodeObject == hashCodeObject;
+        assert gcTrace instanceof GcTrace;
+        return ((GcTrace) gcTrace).hashCodeObject == hashCodeObject;
     }
 
     public int hashCode() {
@@ -310,6 +310,6 @@ public abstract class GCTrace extends ArrayList<GCActivitySet> {
      *
      * TODO
      */
-    public GCTrace() {
+    public GcTrace() {
     }
 }

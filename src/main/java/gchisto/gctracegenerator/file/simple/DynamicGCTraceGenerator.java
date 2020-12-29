@@ -23,8 +23,8 @@
  */
 package gchisto.gctracegenerator.file.simple;
 
-import gchisto.gctracegenerator.file.DynamicFileGCTrace;
-import gchisto.gctracegenerator.file.FileGCTrace;
+import gchisto.gctracegenerator.file.DynamicFileGcTrace;
+import gchisto.gctracegenerator.file.FileGcTrace;
 import gchisto.gctracegenerator.file.FileGCTraceGenerator;
 import java.io.File;
 
@@ -39,8 +39,8 @@ public class DynamicGCTraceGenerator extends FileGCTraceGenerator {
     }
     
     @Override
-    protected FileGCTrace newFileGCTrace(File file) {
-        return new DynamicFileGCTrace(file, new GCLogFileReader());
+    protected FileGcTrace newFileGCTrace(File file) {
+        return new DynamicFileGcTrace(file, new GCLogFileReader());
     }
     
     public DynamicGCTraceGenerator() {

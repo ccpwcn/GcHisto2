@@ -25,7 +25,7 @@ package gchisto.gui.panels.gctimeline;
 
 import gchisto.gcactivity.GCActivity;
 import gchisto.gcactivity.GCActivitySet;
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceCheckpoint;
 import gchisto.jfreechart.extensions.AbstractDatasetWithGroups;
 import gchisto.jfreechart.extensions.IntervalXYDatasetWithGroups;
@@ -62,7 +62,7 @@ public class Dataset extends AbstractDatasetWithGroups
     /**
      * The GC trace that will provide the data for the datasets.
      */
-    final private GCTrace gcTrace;
+    final private GcTrace gcTrace;
     final private GCTraceCheckpoint checkpoint;
     /**
      * The metric that an instance of this class has been specialized for.
@@ -466,7 +466,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @param gcTrace The GC trace that will provide data for the
      * new dataset generator.
      */
-    public Dataset(GCTrace gcTrace, GCTraceCheckpoint checkpoint, int metric) {
+    public Dataset(GcTrace gcTrace, GCTraceCheckpoint checkpoint, int metric) {
         super(gcTrace.getGCActivityNamesArray());
         
         this.gcTrace = gcTrace;

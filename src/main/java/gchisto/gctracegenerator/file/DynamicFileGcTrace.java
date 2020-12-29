@@ -23,7 +23,7 @@
  */
 package gchisto.gctracegenerator.file;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctracegenerator.GCTraceGeneratorListener;
 import gchisto.gctracegenerator.NopGCTraceGeneratorListener;
 import gchisto.utils.MessageReporter;
@@ -33,7 +33,7 @@ import java.io.File;
  *
  * @author tony
  */
-public class DynamicFileGCTrace extends FileGCTrace {
+public class DynamicFileGcTrace extends FileGcTrace {
 
     volatile private boolean playing = false;
     
@@ -95,7 +95,7 @@ public class DynamicFileGCTrace extends FileGCTrace {
         }
         
         public boolean shouldContinue() {
-            return DynamicFileGCTrace.this.shouldContinue();
+            return DynamicFileGcTrace.this.shouldContinue();
         }
         
         public void finished() {
@@ -157,8 +157,8 @@ public class DynamicFileGCTrace extends FileGCTrace {
     
     private class FinishListener extends NopGCTraceGeneratorListener {
 
-        public void finished(GCTrace gcTrace) {
-            DynamicFileGCTrace.this.finished();
+        public void finished(GcTrace gcTrace) {
+            DynamicFileGcTrace.this.finished();
         }
         
     }
@@ -296,7 +296,7 @@ public class DynamicFileGCTrace extends FileGCTrace {
         frame.dispose();
     }
 
-    public DynamicFileGCTrace(File file, GCLogFileReader reader) {
+    public DynamicFileGcTrace(File file, GCLogFileReader reader) {
         super(file, reader);
     }
 

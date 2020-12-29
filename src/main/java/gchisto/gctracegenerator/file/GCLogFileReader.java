@@ -23,7 +23,7 @@
  */
 package gchisto.gctracegenerator.file;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import java.io.File;
 import java.io.IOException;
 
@@ -33,10 +33,10 @@ import java.io.IOException;
  */
 public interface GCLogFileReader {
 
-    public void setupGCActivityNames(GCTrace gcTrace);
+    public void setupGCActivityNames(GcTrace gcTrace);
     
     public void readFile(File file,
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCLogFileReaderThrottle throttle)
             throws IOException;
     

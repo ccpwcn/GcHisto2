@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class GCTraceCheckpoint {
 
-    private GCTrace gcTrace;
+    private GcTrace gcTrace;
     private int gcTraceSize;
     private List<Integer> prevCheckpointedSizes = new ArrayList<Integer>();
     private List<Integer> checkpointedSizes = new ArrayList<Integer>();
@@ -111,7 +111,7 @@ public class GCTraceCheckpoint {
         assert gcTraceSize == newGCTraceSize;
     }
 
-    public GCTraceCheckpoint(GCTrace gcTrace) {
+    public GCTraceCheckpoint(GcTrace gcTrace) {
         this.gcTrace = gcTrace;
         this.gcTraceSize = 0;
         this.prevAllSize = 0;

@@ -23,7 +23,7 @@
  */
 package gchisto.gui.panels.gctimeline;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctrace.GCTraceCheckpoint;
 import gchisto.gui.utils.TabbedPane;
 
@@ -33,7 +33,8 @@ import gchisto.gui.utils.TabbedPane;
  */
 public class Panel extends TabbedPane<ChartPanel> {
 
-    protected ChartPanel newPanel(GCTrace gcTrace) {
+    @Override
+    protected ChartPanel newPanel(GcTrace gcTrace) {
         GCTraceCheckpoint checkpoint = new GCTraceCheckpoint(gcTrace);
         checkpoint.checkpoint();
 
@@ -47,10 +48,12 @@ public class Panel extends TabbedPane<ChartPanel> {
         return panel;
     }
 
+    @Override
     protected void updatePanel(ChartPanel panel) {
         panel.possiblyRefresh();
     }
 
+    @Override
     public String getPanelName() {
         return "GC Timeline";
     }

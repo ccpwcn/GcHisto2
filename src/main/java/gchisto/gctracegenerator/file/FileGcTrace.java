@@ -23,7 +23,7 @@
  */
 package gchisto.gctracegenerator.file;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctracegenerator.GCTraceGeneratorListener;
 import gchisto.utils.MessageReporter;
 import java.io.File;
@@ -34,7 +34,7 @@ import java.util.Date;
  *
  * @author tony
  */
-public class FileGCTrace extends GCTrace {
+public class FileGcTrace extends GcTrace {
 
     final protected File file;
     final protected Date lastModifiedDate;
@@ -50,7 +50,7 @@ public class FileGCTrace extends GCTrace {
             try {
                 readFile(throttle);
                 MessageReporter.showMessage("Finished reading file " + file.getAbsolutePath());
-                listener.finished(FileGCTrace.this);
+                listener.finished(FileGcTrace.this);
             } catch (IOException e) {
                 MessageReporter.showError("Error reading file " + file.getAbsolutePath());
                 listener.failed();
@@ -103,7 +103,7 @@ public class FileGCTrace extends GCTrace {
                 "Last Modified On : " + lastModifiedDate;
     }
     
-    public FileGCTrace(File file, GCLogFileReader reader) {
+    public FileGcTrace(File file, GCLogFileReader reader) {
         reader.setupGCActivityNames(this);
         
         this.file = file;

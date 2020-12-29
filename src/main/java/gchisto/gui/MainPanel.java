@@ -23,7 +23,7 @@
  */
 package gchisto.gui;
 
-import gchisto.gctrace.GCTraceSet;
+import gchisto.gctrace.GcTraceSet;
 import gchisto.gui.panels.TraceManagementPanel;
 import gchisto.gui.panels.VisualizationPanel;
 import gchisto.gui.utils.StatusLabelManager;
@@ -64,7 +64,7 @@ public class MainPanel extends javax.swing.JPanel {
     /**
      * The main GC trace set of the application.
      */
-    final private GCTraceSet gcTraceSet = new GCTraceSet();
+    final private GcTraceSet gcTraceSet = new GcTraceSet();
     /**
      * A linked list that contains the panels of the main frame.
      */
@@ -118,7 +118,7 @@ public class MainPanel extends javax.swing.JPanel {
                 Class c = Class.forName(className);
                 Object p = c.newInstance();
                 VisualizationPanel panel = (VisualizationPanel) p;
-                panel.setGCTraceSet(gcTraceSet);
+                panel.setGcTraceSet(gcTraceSet);
                 gcTraceSet.addListener(panel.getListener());
                 panels.add(panel);
                 tabbedPane.addTab(panel.getPanelName(), panel.getPanel());

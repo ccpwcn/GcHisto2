@@ -23,8 +23,8 @@
  */
 package gchisto.gui.utils;
 
-import gchisto.gctrace.GCTrace;
-import gchisto.gctrace.GCTraceSet;
+import gchisto.gctrace.GcTrace;
+import gchisto.gctrace.GcTraceSet;
 import gchisto.gctrace.GCTraceSetListener;
 import gchisto.gui.panels.VisualizationPanel;
 import gchisto.utils.errorchecking.ArgumentChecking;
@@ -40,15 +40,15 @@ abstract public class TabbedPane<T extends JPanel>
         extends javax.swing.JPanel
         implements VisualizationPanel, GCTraceSetListener {
 
-    final protected Map<GCTrace, T> map = new HashMap<GCTrace, T>();
+    final protected Map<GcTrace, T> map = new HashMap<GcTrace, T>();
     
-    protected GCTraceSet gcTraceSet;
+    protected GcTraceSet gcTraceSet;
 
-    abstract protected T newPanel(GCTrace gcTrace);
+    abstract protected T newPanel(GcTrace gcTrace);
     
     abstract protected void updatePanel(T panel);
     
-    synchronized public void gcTraceAdded(GCTrace gcTrace) {
+    synchronized public void gcTraceAdded(GcTrace gcTrace) {
         T panel = newPanel(gcTrace);
         String name = gcTrace.getName();
         map.put(gcTrace, panel);
@@ -56,7 +56,7 @@ abstract public class TabbedPane<T extends JPanel>
         updatePanel(panel);
     }
     
-    synchronized public void gcTraceRenamed(GCTrace gcTrace) {
+    synchronized public void gcTraceRenamed(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         assert panel != null;
         int index = tabbedPane.indexOfComponent(panel);
@@ -64,13 +64,13 @@ abstract public class TabbedPane<T extends JPanel>
         tabbedPane.setTitleAt(index, name);        
     }
     
-    synchronized public void gcTraceRemoved(GCTrace gcTrace) {
+    synchronized public void gcTraceRemoved(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         map.remove(gcTrace);
         tabbedPane.remove(panel);
     }
     
-    synchronized public void gcTraceMovedUp(GCTrace gcTrace) {
+    synchronized public void gcTraceMovedUp(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         assert panel != null;        assert panel != null;
 
@@ -81,7 +81,7 @@ abstract public class TabbedPane<T extends JPanel>
         tabbedPane.add(panel, name, index - 1);
     }
 
-    synchronized public void gcTraceMovedDown(GCTrace gcTrace) {
+    synchronized public void gcTraceMovedDown(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         assert panel != null;
         String name = gcTrace.getName();
@@ -90,17 +90,21 @@ abstract public class TabbedPane<T extends JPanel>
         tabbedPane.add(panel, name, index + 1);
     }
 
+    @Override
     public JPanel getPanel() {
         return this;
     }
 
+    @Override
     abstract public String getPanelName();
 
+    @Override
     public GCTraceSetListener getListener() {
         return this;
     }
 
-    public void setGCTraceSet(GCTraceSet gcTraceSet) {
+    @Override
+    public void setGcTraceSet(GcTraceSet gcTraceSet) {
         ArgumentChecking.notNull(gcTraceSet, "gcTraceSet");
 
         this.gcTraceSet = gcTraceSet;

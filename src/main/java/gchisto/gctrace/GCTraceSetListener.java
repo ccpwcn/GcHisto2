@@ -36,34 +36,34 @@ public interface GCTraceSetListener {
      *
      * @param gcTrace The GC trace added to the GC trace set.
      */
-    public void gcTraceAdded(GCTrace gcTrace);
+    public void gcTraceAdded(GcTrace gcTrace);
     
     /**
      * Called after a GC trace has been renamed in the GC trace set.
      *
      * @param gcTrace The GC trace renamed in the GC trace set.
      */
-    public void gcTraceRenamed(GCTrace gcTrace);
+    public void gcTraceRenamed(GcTrace gcTrace);
     
     /**
      * Called after a GC trace has been removed from the GC trace set.
      *
      * @param gcTrace The GC trace removed from the GC trace set.
      */
-    public void gcTraceRemoved(GCTrace gcTrace);
+    public void gcTraceRemoved(GcTrace gcTrace);
     
     /**
      * Called after a GC trace has been moved up in the GC trace set.
      *
      * @param gcTrace The GC trace moved up in the GC trace set.
      */
-    public void gcTraceMovedUp(GCTrace gcTrace);
+    public void gcTraceMovedUp(GcTrace gcTrace);
     
     /**
      * Called after a GC trace has been moved down in the GC trace set.
      *
      * @param gcTrace The GC trace moved down in the GC trace set.
      */
-    public void gcTraceMovedDown(GCTrace gcTrace);
+    public void gcTraceMovedDown(GcTrace gcTrace);
     
 }

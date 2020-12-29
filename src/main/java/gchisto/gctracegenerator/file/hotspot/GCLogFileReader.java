@@ -23,7 +23,7 @@
  */
 package gchisto.gctracegenerator.file.hotspot;
 
-import gchisto.gctrace.GCTrace;
+import gchisto.gctrace.GcTrace;
 import gchisto.gctracegenerator.file.GCLogFileReaderThrottle;
 import gcparser.GCDataStore;
 import gcparser.GCMetric;
@@ -137,7 +137,7 @@ public class GCLogFileReader
         return gcActivityNames.indexOf(name);
     }
 
-    private void ensureGCActivityAdded(GCTrace gcTrace, String name) {
+    private void ensureGCActivityAdded(GcTrace gcTrace, String name) {
         if (!gcActivityNames.contains(name)) {
             if (name.equals("Remark")) {
                 ensureGCActivityAdded(gcTrace, "Initial Mark");
@@ -148,7 +148,7 @@ public class GCLogFileReader
         }
     }
 
-    public void setupGCActivityNames(GCTrace gcTrace) {
+    public void setupGCActivityNames(GcTrace gcTrace) {
         for (String name : SHARED_ACTIVITIES) {
             ensureGCActivityAdded(gcTrace, name);
         }
@@ -156,7 +156,7 @@ public class GCLogFileReader
 
     public void readFile(
             File file,
-            GCTrace gcTrace,
+            GcTrace gcTrace,
             GCLogFileReaderThrottle throttle) throws IOException {
         try {
             throttle.started();

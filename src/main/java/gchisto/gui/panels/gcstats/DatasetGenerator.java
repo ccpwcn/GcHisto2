@@ -25,8 +25,8 @@ package gchisto.gui.panels.gcstats;
 
 import gchisto.gcactivity.GCActivitySet;
 import gchisto.gctrace.GCActivityNames;
-import gchisto.gctrace.GCTrace;
-import gchisto.gctrace.GCTraceSet;
+import gchisto.gctrace.GcTrace;
+import gchisto.gctrace.GcTraceSet;
 import gchisto.jfreechart.extensions.AbstractChangingDataset;
 import gchisto.jfreechart.extensions.ChangingCategoryDataset;
 import gchisto.jfreechart.extensions.ChangingCategoryDatasetWithTTG;
@@ -137,7 +137,7 @@ public class DatasetGenerator {
         Formatting.doubleFormatter(), Formatting.doubleFormatter(),
         Formatting.doubleFormatter(), Formatting.doubleFormatter()
     };
-    final GCTraceSet gcTraceSet;
+    final GcTraceSet gcTraceSet;
     /**
      * A list that contains the names of the loaded GC traces.
      */
@@ -471,7 +471,7 @@ public class DatasetGenerator {
         for (int i = 0; i < gcTraceNum; ++i) {
             NumberSeq[] rowSeq = seqs[i];
 
-            GCTrace gcTrace = gcTraceSet.get(i);
+            GcTrace gcTrace = gcTraceSet.get(i);
             rowSeq[AGGREGATE_GC_ACTIVITY_INDEX] =
                     gcTrace.getAllGCActivities().getNumberSeq();
 
@@ -530,7 +530,7 @@ public class DatasetGenerator {
         return new Facade(metric, true);
     }
 
-    public DatasetGenerator(GCTraceSet gcTraceSet) {
+    public DatasetGenerator(GcTraceSet gcTraceSet) {
         ArgumentChecking.notNull(gcTraceSet, "gcTraceset");
 
         this.gcTraceSet = gcTraceSet;
