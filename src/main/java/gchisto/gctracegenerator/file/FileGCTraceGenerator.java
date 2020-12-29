@@ -29,6 +29,7 @@ import gchisto.utils.errorchecking.ArgumentChecking;
 import java.io.File;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -44,11 +45,23 @@ abstract public class FileGCTraceGenerator implements GCTraceGeneratorForFiles {
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(currDir);
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);
+        chooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                }
+                return f.getName().toLowerCase().endsWith(".log");
+            }
+
+            @Override
+            public String getDescription() {
+                return "GC 日志文件(.log)";
+            }
+        });
         int ret = chooser.showOpenDialog(component);
         if (ret == JFileChooser.APPROVE_OPTION) {
-            File file = chooser.getSelectedFile();
-            return file;
+            return chooser.getSelectedFile();
         } else {
             return null;
         }
@@ -56,15 +69,17 @@ abstract public class FileGCTraceGenerator implements GCTraceGeneratorForFiles {
     
     abstract protected FileGCTrace newFileGCTrace(File file);
     
+    @Override
     public void createNewGCTrace(File file,
-            GCTraceGeneratorListener listener) {
+                                 GCTraceGeneratorListener listener) {
         FileGCTrace gcTrace = newFileGCTrace(file);
         gcTrace.init(listener);
         currDir = file;
     }
     
+    @Override
     public void createNewGCTrace(JComponent component,
-            GCTraceGeneratorListener listener) {
+                                 GCTraceGeneratorListener listener) {
         ArgumentChecking.notNull(component, "component");
         
         File file = getFileFromDialog(component);

@@ -25,7 +25,6 @@ package gchisto;
 
 import gchisto.gui.MainFrame;
 import gchisto.utils.errorchecking.ErrorReporting;
-import java.awt.Dimension;
 
 /**
  * The main class of the application. It parses the command line parameters and
@@ -33,12 +32,12 @@ import java.awt.Dimension;
  *
  * @author Tony Printezis
  */
-public class Main {
+public class GcHistoMain {
     
     /**
      * Private constructor so that the class is not instantiated.
      */
-    private Main() {
+    private GcHistoMain() {
     }
     
     /**
@@ -49,9 +48,9 @@ public class Main {
      */
     public static void main(String[] args) {
         ErrorReporting.setShowWarnings(true);
-        
         MainFrame frame = new MainFrame();
-        frame.setSize(new Dimension(1024, 680));
+        frame.setSize(1024, 768);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.loadGCTraces(args);
     }

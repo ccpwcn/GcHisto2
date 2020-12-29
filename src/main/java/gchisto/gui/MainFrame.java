@@ -36,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * It attempts to load a GC trace with the given file name.
      *
-     * @param fileName The file name of the GC trace to be loaded.
+     * @param fileNames The file name of the GC trace to be loaded.
      *
      * TODO
      */
@@ -48,7 +48,7 @@ public class MainFrame extends javax.swing.JFrame {
      * TODO
      */
     public MainFrame() {
-        setTitle("GC Histogram Tool (GChisto)");
+        setTitle("GC Histogram Tool (GC histo)");
         initComponents();
         
         getContentPane().setLayout(new BorderLayout());

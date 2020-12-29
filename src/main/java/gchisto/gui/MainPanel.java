@@ -77,7 +77,7 @@ public class MainPanel extends javax.swing.JPanel {
     /**
      * It attempts to load a GC trace with the given file name.
      *
-     * @param fileName The file name of the GC trace to be loaded.
+     * @param fileNames The file name of the GC trace to be loaded.
      *
      * TODO
      */

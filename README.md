@@ -1,12 +1,6 @@
-# gchisto
+# gchisto2
+一个用于分析GC日志的工具，发展起源于https://github.com/wengyingjian/gchisto.git，向原作者表示敬意。
 
-
-#####Gchisto:
+#####GcHisto2:
 用于分析gc日志的一款强大工具。。  
-  
 
-Gchisto的maven版本。  
-svn官方地址：[https://svn.java.net/svn/gchisto~svn](https://svn.java.net/svn/gchisto~svn)
-  
-更多说明：  
-[http://wengyingjian.github.io/blog/2015/12/29/java-performance-gclog/](http://wengyingjian.github.io/blog/2015/12/29/java-performance-gclog/)

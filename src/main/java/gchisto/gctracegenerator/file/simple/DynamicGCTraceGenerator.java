@@ -38,6 +38,7 @@ public class DynamicGCTraceGenerator extends FileGCTraceGenerator {
         return "Dynamic Simple GC Log";
     }
     
+    @Override
     protected FileGCTrace newFileGCTrace(File file) {
         return new DynamicFileGCTrace(file, new GCLogFileReader());
     }

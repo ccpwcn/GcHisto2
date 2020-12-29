@@ -37,6 +37,7 @@ public class GCTraceGenerator extends FileGCTraceGenerator {
         return "Simple GC Log";
     }
     
+    @Override
     protected FileGCTrace newFileGCTrace(File file) {
         return new FileGCTrace(file, new GCLogFileReader());
     }
