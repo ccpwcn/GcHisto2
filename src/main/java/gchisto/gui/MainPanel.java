@@ -81,7 +81,7 @@ public class MainPanel extends javax.swing.JPanel {
      *
      * TODO
      */
-    public void loadGCTraces(String[] fileNames) {
+    public void loadGcTraces(String[] fileNames) {
         ArgumentChecking.notNull(fileNames, "fileNames");
 
         for (int i = 0; i < fileNames.length; ++i) {

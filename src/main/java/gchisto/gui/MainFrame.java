@@ -26,29 +26,25 @@ package gchisto.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+/**
+ * 应用程序主窗口
+ * @author lidawei
+ * @Date 2020/12/29 13:40
+ */
 public class MainFrame extends javax.swing.JFrame {
-    
-    /**
-     * TODO
-     */
-    private MainPanel mainPanel = new MainPanel();
+    private final MainPanel mainPanel = new MainPanel();
     
     /**
      * It attempts to load a GC trace with the given file name.
      *
      * @param fileNames The file name of the GC trace to be loaded.
-     *
-     * TODO
      */
-    public void loadGCTraces(String[] fileNames) {
-        mainPanel.loadGCTraces(fileNames);
+    public void loadGcTraces(String[] fileNames) {
+        mainPanel.loadGcTraces(fileNames);
     }
 
-    /**
-     * TODO
-     */
     public MainFrame() {
-        setTitle("GC Histogram Tool (GC histo)");
+        setTitle("GC Histogram Tool (GC histo2)");
         initComponents();
         
         getContentPane().setLayout(new BorderLayout());
