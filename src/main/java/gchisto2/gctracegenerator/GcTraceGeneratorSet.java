@@ -24,16 +24,22 @@
 package gchisto2.gctracegenerator;
 
 import gchisto2.utils.errorchecking.ErrorReporting;
+
 import java.util.LinkedList;
 
-public class GCTraceGeneratorSet extends LinkedList<GcTraceGenerator> {
+/**
+ * @author wengyingjian
+ * @updated by lidawei 2020/12/30
+ * @date 2015/10/29
+ */
+public class GcTraceGeneratorSet extends LinkedList<GcTraceGenerator> {
 
-    static private final int GCTRACE_GENERATOR_FOR_FILES_INDEX = 0;
-    static private final String[] GCTRACE_GENERATOR_CLASS_NAMES = {
-        "gchisto2.gctracegenerator.file.hotspot.GcTraceGenerator",
-        "gchisto2.gctracegenerator.file.hotspot.DynamicGcTraceGenerator",
-        "gchisto2.gctracegenerator.file.simple.GcTraceGenerator",
-        "gchisto2.gctracegenerator.file.simple.DynamicGcTraceGenerator"
+    static private final int GC_TRACE_GENERATOR_FOR_FILES_INDEX = 0;
+    static private final String[] GC_TRACE_GENERATOR_CLASS_NAMES = {
+            "gchisto2.gctracegenerator.file.hotspot.GcTraceGenerator",
+            "gchisto2.gctracegenerator.file.hotspot.DynamicGcTraceGenerator",
+            "gchisto2.gctracegenerator.file.simple.GcTraceGenerator",
+            "gchisto2.gctracegenerator.file.simple.DynamicGcTraceGenerator"
     };
     private GcTraceGeneratorForFiles gcTraceGeneratorForFiles;
 
@@ -41,8 +47,8 @@ public class GCTraceGeneratorSet extends LinkedList<GcTraceGenerator> {
         return gcTraceGeneratorForFiles;
     }
 
-    public GCTraceGeneratorSet() {
-        for (String className : GCTRACE_GENERATOR_CLASS_NAMES) {
+    public GcTraceGeneratorSet() {
+        for (String className : GC_TRACE_GENERATOR_CLASS_NAMES) {
             try {
                 Class<?> c = Class.forName(className);
                 Object s = c.newInstance();
@@ -60,11 +66,10 @@ public class GCTraceGeneratorSet extends LinkedList<GcTraceGenerator> {
                 "There must be at least one GC trace generator set up");
 
         try {
-            gcTraceGeneratorForFiles =
-                    (GcTraceGeneratorForFiles) get(GCTRACE_GENERATOR_FOR_FILES_INDEX);
+            gcTraceGeneratorForFiles = (GcTraceGeneratorForFiles) get(GC_TRACE_GENERATOR_FOR_FILES_INDEX);
         } catch (ClassCastException e) {
             ErrorReporting.fatalError("could not cast GC trace generator with index " +
-                    GCTRACE_GENERATOR_FOR_FILES_INDEX + " to GcTraceGeneratorForFiles");
+                    GC_TRACE_GENERATOR_FOR_FILES_INDEX + " to GcTraceGeneratorForFiles");
         }
         ErrorReporting.fatalError(gcTraceGeneratorForFiles != null,
                 "The GC trace generator for files should not be null");

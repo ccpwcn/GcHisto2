@@ -33,6 +33,7 @@ import org.jfree.data.general.DatasetChangeEvent;
 abstract public class AbstractChangingDataset extends AbstractDataset
         implements ChangingDataset {
 
+    @Override
     public void datasetChanged() {
         notifyListeners(new DatasetChangeEvent(this, this));
     }

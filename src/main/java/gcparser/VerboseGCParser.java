@@ -75,6 +75,7 @@ public class VerboseGCParser extends GCParser
 			th_commit_end, timestamp_beg, timestamp_end);
 	}
 
+	@Override
 	public boolean parse(String filename, int line, String s)
 	{
 		Matcher m = _ygc_pattern.matcher(s);
@@ -101,7 +102,9 @@ public class VerboseGCParser extends GCParser
 	// XXX
 	private void debug(String s, Matcher m, int base_grp)
 	{
-		if (_debug == null) return;
+		if (_debug == null) {
+            return;
+        }
 		debug(s); debug();
 		debug(m, timestamp_grp,                "ts ");
 		debug(m, base_grp + th_used_beg_ofs,   " tub");

@@ -145,8 +145,9 @@ public class NumberSeq {
      * is empty.
      */
     private double getVariance() {
-        if (getNum() <= 1)
+        if (getNum() <= 1) {
             return 0.0;
+        }
         
         double variance = 
                 (getSumOfSquares() - getSum() * getSum() / getNumD()) / (getNum() - 1.0);
@@ -180,10 +181,12 @@ public class NumberSeq {
             max = number;
         } else {
             assert num > 0;
-            if (number < min)
+            if (number < min) {
                 min = number;
-            if (number > max)
+            }
+            if (number > max) {
                 max = number;
+            }
         }
         sum += number;
         sumOfSquares += number * number;

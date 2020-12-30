@@ -24,7 +24,7 @@
 package gchisto2.gui.panels.gcdistribution;
 
 import gchisto2.gctrace.GcTrace;
-import gchisto2.gctrace.GCTraceCheckpoint;
+import gchisto2.gctrace.GcTraceCheckpoint;
 import gchisto2.gui.utils.TabbedPane;
 
 /**
@@ -35,7 +35,7 @@ public class Panel extends TabbedPane<ChartPanelSingle> {
 
     @Override
     protected ChartPanelSingle newPanel(GcTrace gcTrace) {
-        GCTraceCheckpoint checkpoint = new GCTraceCheckpoint(gcTrace);
+        GcTraceCheckpoint checkpoint = new GcTraceCheckpoint(gcTrace);
         checkpoint.checkpoint();
         
         Dataset dataset = new Dataset(gcTrace, checkpoint);

@@ -50,6 +50,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      * @param i The index of the row whose key will be returned.
      * @return The key of the row with the given index.
      */
+    @Override
     public Comparable getRowKey(int i) {
         return dataset.getColumnKey(i);
     }
@@ -62,6 +63,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      * @param rowKey The key to be looked up.
      * @return The index of the row that has the given key.
      */
+    @Override
     public int getRowIndex(Comparable rowKey) {
         assert rowKey != null;
         
@@ -74,6 +76,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      *
      * @return All the row keys in a list.
      */
+    @Override
     public List getRowKeys() {
         return dataset.getColumnKeys();
     }
@@ -85,6 +88,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      * @param i The index of the column whose key will be returned.
      * @return The key of the column with the given index.
      */
+    @Override
     public Comparable getColumnKey(int i) {
         return dataset.getRowKey(i);
     }
@@ -97,6 +101,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      * @param columnKey The key to be looked up.
      * @return The index of the column that has the given key.
      */
+    @Override
     public int getColumnIndex(Comparable columnKey) {
         assert columnKey != null;
         
@@ -109,6 +114,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      *
      * @return All the row keys in a list.
      */
+    @Override
     public List getColumnKeys() {
         return dataset.getRowKeys();
     }
@@ -119,6 +125,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      *
      * @return The number of rows in the dataset.
      */
+    @Override
     public int getRowCount() {
         return dataset.getColumnCount();
     }
@@ -129,6 +136,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      *
      * @return The number of columns in the dataset.
      */
+    @Override
     public int getColumnCount() {
         return dataset.getRowCount();
     }
@@ -143,6 +151,7 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      * @return The value in the dataset that corresponds to the given
      * row and column.
      */
+    @Override
     public Number getValue(Comparable row, Comparable column) {
         assert row != null;
         assert column != null;
@@ -160,10 +169,12 @@ public class SwappingCategoryDatasetWithTTG extends AbstractChangingDataset
      * @return The value in the dataset that corresponds to the given
      * row and column.
      */
+    @Override
     public Number getValue(int row, int column) {
         return dataset.getValue(column, row);
     }
     
+    @Override
     public String generateToolTip(CategoryDataset dataset, int row, int column) {
         assert dataset == this;
         return this.dataset.generateToolTip(this.dataset, column, row);

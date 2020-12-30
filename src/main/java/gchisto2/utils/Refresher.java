@@ -31,6 +31,7 @@ public class Refresher {
 
     private class Task implements WorkerTask {
 
+        @Override
         public void doIt() {
             callback.refresh();
             completeTask();
@@ -72,9 +73,7 @@ public class Refresher {
         }
     }
 
-    public Refresher(
-            WorkerThread workerThread,
-            RefresherCallback callback) {
+    public Refresher(WorkerThread workerThread, RefresherCallback callback) {
         this.workerThread = workerThread;
         this.callback = callback;
     }

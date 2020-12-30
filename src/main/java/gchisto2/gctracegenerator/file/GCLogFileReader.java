@@ -33,11 +33,11 @@ import java.io.IOException;
  */
 public interface GCLogFileReader {
 
-    public void setupGCActivityNames(GcTrace gcTrace);
+    public void setupGcActivityNames(GcTrace gcTrace);
     
     public void readFile(File file,
             GcTrace gcTrace,
-            GCLogFileReaderThrottle throttle)
+            GcLogFileReaderThrottle throttle)
             throws IOException;
     
 }

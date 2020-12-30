@@ -95,6 +95,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          * @param col The column in which the label will be added.
          * @return A new label for a particular table cell.
          */
+        @Override
         public Component getTableCellRendererComponent(
                 JTable table,
                 Object value,
@@ -132,6 +133,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          * @param col The column in which the check box will be added.
          * @return A new check box for a particular table cell.
          */
+        @Override
         public Component getTableCellRendererComponent(
                 JTable table,
                 Object value,
@@ -164,6 +166,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          *
          * @return The number of rows in the table.
          */
+        @Override
         public int getRowCount() {
             return dataset.getGroupCount();
         }
@@ -173,6 +176,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          *
          * @return The number of columns in the table.
          */
+        @Override
         public int getColumnCount() {
             return COLUMN_NAMES.length;
         }
@@ -184,6 +188,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          * be returned.
          * @return The column name for the specified column.
          */
+        @Override
         public String getColumnName(int columnIndex) {
             return COLUMN_NAMES[columnIndex];
         }
@@ -195,6 +200,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          * will be returned.
          * @return The class of the table cells in the specified column.
          */
+        @Override
         public Class<?> getColumnClass(int columnIndex) {
             return COLUMN_CLASSES[columnIndex];
         }
@@ -206,6 +212,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          * @param columnIndex The column index of the specified table cell.
          * @return Whether the specified table cell is editable.
          */
+        @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return COLUMN_EDITABLE[columnIndex];
         }
@@ -217,6 +224,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          * @param columnIndex The column index of the specified table cell.
          * @return The value of the specified table cell.
          */
+        @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             switch (columnIndex) {
                 case 0:
@@ -235,6 +243,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
          * @param rowIndex The row index of the specified table cell.
          * @param columnIndex The column index of the specified table cell.
          */
+        @Override
         public void setValueAt(Object value, final int rowIndex, int columnIndex) {
             assert columnIndex == 1;
             assert COLUMN_EDITABLE[columnIndex];
@@ -243,6 +252,7 @@ public class GroupActivatingPanel extends javax.swing.JPanel {
             final boolean active = ((Boolean) value).booleanValue();
             locker.doWhileLocked(new Runnable() {
 
+                @Override
                 public void run() {
                     dataset.setGroupActive(rowIndex, active);
                 }

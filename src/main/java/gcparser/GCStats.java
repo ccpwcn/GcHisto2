@@ -59,7 +59,9 @@ public class GCStats
 		_window_data = new TimingWindowData(cpu_count);
 
 		_input_has_time_zero = input_has_time_zero;
-		if (! _input_has_time_zero) _timestamp_beg = -1.0;
+		if (! _input_has_time_zero) {
+            _timestamp_beg = -1.0;
+        }
 
 		_file_timestamp_gap = file_timestamp_gap;
 		_file_timestamp_gap_min = file_timestamp_gap_min; 
@@ -464,7 +466,9 @@ public class GCStats
 	{
 		s.println(hdr);
 		print_stats(s);
-		if (has_generated_timestamps()) return;
+		if (has_generated_timestamps()) {
+            return;
+        }
 		s.println();
 		print_rates(s);
 	}
@@ -502,7 +506,9 @@ public class GCStats
 		}
 
 		if (this.has_generated_timestamps() ||
-			that.has_generated_timestamps()) return;
+			that.has_generated_timestamps()) {
+            return;
+        }
 
 		s.println();
 		print_comparison(s, new RateVars(this), new RateVars(that));

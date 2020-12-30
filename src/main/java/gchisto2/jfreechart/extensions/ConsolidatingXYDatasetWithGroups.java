@@ -133,6 +133,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      *
      * @return The order of the domain axis (i.e., the x-axis).
      */
+    @Override
     public DomainOrder getDomainOrder() {
         return DomainOrder.ASCENDING;
     }
@@ -143,6 +144,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      *
      * @return The number of series in the dataset
      */
+    @Override
     public int getSeriesCount() {
         return datasets.size();
     }
@@ -154,6 +156,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param series The index of the series whose key will be returned.
      * @return The series key of the given index.
      */
+    @Override
     public Comparable getSeriesKey(int series) {
         assert 0 <= series && series < names.size();
         
@@ -167,6 +170,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param seriesKey The series key whose index will be returned.
      * @return The series of the given series key.
      */
+    @Override
     public int indexOf(Comparable seriesKey) {
         assert seriesKey instanceof String;
         
@@ -181,6 +185,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param series The series whose item number will be returned.
      * @return The number of items in the given series.
      */
+    @Override
     public int getItemCount(int series) {
         assert 0 <= series && series < datasets.size();
         return maxCounts.get(series) * 2;
@@ -193,6 +198,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param item The index of the given data point.
      * @return The x-value for a given data point of the given series.
      */
+    @Override
     public Number getX(int series, int item) {
         assert 0 <= series && series < datasets.size();
         
@@ -206,6 +212,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param item The index of the given data point.
      * @return The x-value for a given data point of the given series.
      */
+    @Override
     public double getXValue(int series, int item) {
         assert 0 <= series && series < datasets.size();
         
@@ -219,6 +226,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param item The index of the given data point.
      * @return The y-value for a given data point of the given series.
      */
+    @Override
     public Number getY(int series, int item) {
         assert 0 <= series && series < datasets.size();
         
@@ -232,6 +240,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param item The index of the given data point.
      * @return The y-value for a given data point of the given series.
      */
+    @Override
     public double getYValue(int series, int item) {
         assert 0 <= series && series < datasets.size();
         
@@ -248,6 +257,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      *
      * @return The number of groups in the dataset.
      */
+    @Override
     public int getGroupCount() {
         return groupNames.length;
     }
@@ -259,6 +269,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param group The index of the group to be returned.
      * @return The name of the group with the givan index.
      */
+    @Override
     public String getGroupName(int group) {
         assert 0 <= group && group < groupNames.length;
         
@@ -273,6 +284,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * active.
      * @return Whether the group with the given index is active.
      */
+    @Override
     public boolean isGroupActive(int group) {
         assert 0 <= group && group < active.length;
         
@@ -291,6 +303,7 @@ public class ConsolidatingXYDatasetWithGroups extends AbstractDataset
      * @param group The index of the group to be set as active or not active.
      * @param value Whether the group will be set as active or not.
      */
+    @Override
     public void setGroupActive(int group, boolean value) {
         assert 0 <= group && group < active.length;
         

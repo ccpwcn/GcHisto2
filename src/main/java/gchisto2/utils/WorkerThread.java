@@ -45,6 +45,7 @@ public class WorkerThread extends Thread {
         return instance;
     }
     
+    @Override
     public void run() {
         while (true) {
             WorkerTask task;

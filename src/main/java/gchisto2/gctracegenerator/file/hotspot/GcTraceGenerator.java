@@ -41,7 +41,7 @@ public class GcTraceGenerator extends FileGcTraceGenerator {
     
     @Override
     protected FileGcTrace newFileGcTrace(File file) {
-        return new FileGcTrace(file, new GCLogFileReader());
+        return new FileGcTrace(file, new GcLogFileReader());
     }
     
     public GcTraceGenerator() {

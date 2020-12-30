@@ -84,11 +84,13 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
      */
     abstract public String getInfoString();
 
+    @Override
     public boolean equals(Object gcTrace) {
         assert gcTrace instanceof GcTrace;
         return ((GcTrace) gcTrace).hashCodeObject == hashCodeObject;
     }
 
+    @Override
     public int hashCode() {
         return hashCodeObject.hashCode();
     }

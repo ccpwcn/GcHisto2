@@ -245,24 +245,28 @@ public class DatasetGenerator {
         final private int metric;
         final private boolean ignoreAggregate;
 
+        @Override
         public Comparable getRowKey(int row) {
             assert 0 <= row && row < gcTraceNum;
 
             return gcTraceNames.get(row);
         }
 
+        @Override
         public int getRowIndex(Comparable rowKey) {
             String stringKey = (String) rowKey;
 
             return gcTraceNames.indexOf(stringKey);
         }
 
+        @Override
         public List getRowKeys() {
             assert gcTraceNum <= gcTraceNames.size();
 
             return gcTraceNames.subList(0, gcTraceNum);
         }
 
+        @Override
         public Comparable getColumnKey(int column) {
             assert !ignoreAggregate || 0 <= column && column < gcActivityNum :
                     "column = " + column + ", gcActivityNum = " + gcActivityNum;
@@ -276,6 +280,7 @@ public class DatasetGenerator {
             }
         }
 
+        @Override
         public int getColumnIndex(Comparable columnKey) {
             String stringKey = (String) columnKey;
 
@@ -286,6 +291,7 @@ public class DatasetGenerator {
             }
         }
 
+        @Override
         public List getColumnKeys() {
             if (ignoreAggregate) {
                 assert gcActivityNum <= gcActivityNamesMinusAggregate.size();
@@ -296,6 +302,7 @@ public class DatasetGenerator {
             }
         }
 
+        @Override
         public Number getValue(Comparable rowKey, Comparable columnKey) {
             String stringRow = (String) rowKey;
             String stringColumn = (String) columnKey;
@@ -303,10 +310,12 @@ public class DatasetGenerator {
             return getValue(getRowIndex(stringRow), getColumnIndex(stringColumn));
         }
 
+        @Override
         public int getRowCount() {
             return gcTraceNum;
         }
 
+        @Override
         public int getColumnCount() {
             if (ignoreAggregate) {
                 return gcActivityNum;
@@ -315,6 +324,7 @@ public class DatasetGenerator {
             }
         }
 
+        @Override
         public Number getValue(int row, int column) {
             if (row >= gcTraceNum) {
                 return UNAVAILABLE_VALUE;
@@ -358,45 +368,52 @@ public class DatasetGenerator {
                         return Calculations.perc(seqs[row][column].getSum(), lastTimeStampSec);
                     }
                 case METRIC_AVG:
-                    return Conversions.secToMS(seqs[row][column].getAvg());
+                    return Conversions.secToMs(seqs[row][column].getAvg());
                 case METRIC_SIGMA:
-                    return Conversions.secToMS(seqs[row][column].getSigma());
+                    return Conversions.secToMs(seqs[row][column].getSigma());
                 case METRIC_MIN:
-                    return Conversions.secToMS(seqs[row][column].getMin());
+                    return Conversions.secToMs(seqs[row][column].getMin());
                 case METRIC_MAX:
-                    return Conversions.secToMS(seqs[row][column].getMax());
+                    return Conversions.secToMs(seqs[row][column].getMax());
                 default:
                     throw new ShouldNotReachHereException();
             }
         }
 
         // for pie dataset
+        @Override
         public Comparable getKey(int index) {
             return getColumnKey(index);
         }
 
+        @Override
         public int getIndex(Comparable key) {
             String stringKey = (String) key;
 
             return getColumnIndex(stringKey);
         }
 
+        @Override
         public List getKeys() {
             return getColumnKeys();
         }
 
+        @Override
         public Number getValue(Comparable key) {
             return getValue(0, getIndex(key));
         }
 
+        @Override
         public int getItemCount() {
             return getColumnCount();
         }
 
+        @Override
         public Number getValue(int index) {
             return getValue(0, index);
         }
 
+        @Override
         public String generateToolTip(
                 CategoryDataset dataset,
                 int row, int column) {
@@ -419,6 +436,7 @@ public class DatasetGenerator {
             return str;
         }
 
+        @Override
         public String generateToolTip(
                 PieDataset dataset, Comparable key) {
             return generateToolTip(this, 0, getColumnIndex(key));

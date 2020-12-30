@@ -70,6 +70,7 @@ public class StatusLabelManager {
          * The deamon loop that monitors the updates to the label and resets,
          * when necessary, the label.
          */
+        @Override
         public void run() {
             while (true) {
                 long oldTimeStamp = timeStampMS;

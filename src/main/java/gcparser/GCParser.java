@@ -277,9 +277,15 @@ public abstract class GCParser
 	protected double heap_size_in_mb(String size, String unit)
 	{
 		double val = Double.parseDouble(size);
-		if (unit.charAt(0) == 'K') return val / 1024.0;
-		if (unit.charAt(0) == 'M') return val;
-		if (unit.charAt(0) == 'G') return val * 1024.0;
+		if (unit.charAt(0) == 'K') {
+            return val / 1024.0;
+        }
+		if (unit.charAt(0) == 'M') {
+            return val;
+        }
+		if (unit.charAt(0) == 'G') {
+            return val * 1024.0;
+        }
 		throw new IllegalArgumentException("unrecognized unit " + unit);
 	}
 
@@ -641,8 +647,14 @@ public abstract class GCParser
 
 	// XXX - debugging.
 	protected PrintStream _debug;	// XXX
-	protected void debug() { if (_debug != null) _debug.println(); }
-	protected void debug(String s) { if (_debug != null) _debug.print(s); }
+	protected void debug() { if (_debug != null) {
+        _debug.println();
+    }
+    }
+	protected void debug(String s) { if (_debug != null) {
+        _debug.print(s);
+    }
+    }
 	protected void debug(Matcher m, int grp, String grp_name)
 	{
 		if (_debug != null)

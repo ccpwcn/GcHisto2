@@ -33,6 +33,7 @@ public class ParGCFullGCParser extends GCParser
 		// _debug = System.err;	// XXX
 	}
 
+	@Override
 	public boolean parse(String filename, int line, String s)
 	{
 		Matcher m = _pattern.matcher(s);
@@ -55,7 +56,9 @@ public class ParGCFullGCParser extends GCParser
 	// XXX
 	private void debug(String s, Matcher m)
 	{
-		if (_debug == null) return;
+		if (_debug == null) {
+            return;
+        }
 		debug(s); debug();
 		debug(m, yg_used_beg_grp,   "yub");
 		debug(m, yg_used_end_grp,   " yue");

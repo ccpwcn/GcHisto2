@@ -35,6 +35,7 @@ abstract public class GCStatsChartPanel extends AbstractChartPanel {
 
     private class RefreshCallback extends AbstractRefresherCallback {
 
+        @Override
         public void refresh() {
             refreshDataset();
         }
@@ -42,6 +43,7 @@ abstract public class GCStatsChartPanel extends AbstractChartPanel {
 
     private class UpdateCallback extends AbstractRefresherCallback {
 
+        @Override
         public void refresh() {
             updateDataset();
         }

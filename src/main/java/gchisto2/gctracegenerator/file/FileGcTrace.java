@@ -42,8 +42,9 @@ public class FileGcTrace extends GcTrace {
     
     private class ConcurrentFileReader extends Thread {
         private GcTraceGeneratorListener listener;
-        private GCLogFileReaderThrottle throttle;
+        private GcLogFileReaderThrottle throttle;
         
+        @Override
         public void run() {
             MessageReporter.showMessage("Started reading file " + file.getAbsolutePath());
             listener.started();
@@ -58,22 +59,23 @@ public class FileGcTrace extends GcTrace {
         }
         
         public ConcurrentFileReader(GcTraceGeneratorListener listener,
-                                    GCLogFileReaderThrottle throttle) {
+                                    GcLogFileReaderThrottle throttle) {
             this.listener = listener;
             this.throttle = throttle;
         }
     }
     
     protected void readFileConcurrently(GcTraceGeneratorListener listener) {
-        readFileConcurrently(listener, new NopGCLogFileReaderThrottle());
+        readFileConcurrently(listener, new NopGcLogFileReaderThrottle());
     }
 
     protected void readFileConcurrently(GcTraceGeneratorListener listener,
-                                        GCLogFileReaderThrottle throttle) {
+                                        GcLogFileReaderThrottle throttle) {
         ConcurrentFileReader reader = new ConcurrentFileReader(listener, throttle);
         reader.start();
     }
 
+    @Override
     public String getLongName() {
         return "File : " + file.getAbsolutePath();
     }
@@ -82,7 +84,7 @@ public class FileGcTrace extends GcTrace {
         return file;
     }
     
-    private void readFile(GCLogFileReaderThrottle throttle)
+    private void readFile(GcLogFileReaderThrottle throttle)
             throws IOException {
         reader.readFile(file, this, throttle);
     }
@@ -91,10 +93,12 @@ public class FileGcTrace extends GcTrace {
         readFileConcurrently(listener);
     }
     
+    @Override
     public String getSuggestedName() {
         return "File : " + file.getName();
     }
     
+    @Override
     public String getInfoString() {
         return getName() + "\n" +
                 "\n" +
@@ -104,7 +108,7 @@ public class FileGcTrace extends GcTrace {
     }
     
     public FileGcTrace(File file, GCLogFileReader reader) {
-        reader.setupGCActivityNames(this);
+        reader.setupGcActivityNames(this);
         
         this.file = file;
         this.lastModifiedDate = new Date(file.lastModified());

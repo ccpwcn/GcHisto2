@@ -52,10 +52,12 @@ public class AllStatsTablePanelMulti extends GCStatsChartPanel {
         mainPanel().add(BorderLayout.CENTER, panel);
     }
 
+    @Override
     public void refreshDataset() {
         panel.refresh();
     }
 
+    @Override
     public void updateDataset() {
         panel.update();
     }

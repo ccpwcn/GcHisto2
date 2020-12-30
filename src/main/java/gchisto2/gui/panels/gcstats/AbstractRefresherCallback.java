@@ -31,13 +31,16 @@ import gchisto2.utils.RefresherCallback;
  */
 abstract public class AbstractRefresherCallback implements RefresherCallback {
 
+    @Override
     public boolean shouldRefresh() {
         return true;
     }
 
+    @Override
     public void beforeAddingTask() {
     }
 
+    @Override
     abstract public void refresh();
     
 }

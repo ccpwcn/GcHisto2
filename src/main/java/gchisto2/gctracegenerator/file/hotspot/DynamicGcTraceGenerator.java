@@ -42,7 +42,7 @@ public class DynamicGcTraceGenerator extends FileGcTraceGenerator {
 
     @Override
     protected FileGcTrace newFileGcTrace(File file) {
-        return new DynamicFileGcTrace(file, new GCLogFileReader());
+        return new DynamicFileGcTrace(file, new GcLogFileReader());
     }
 
     public DynamicGcTraceGenerator() {

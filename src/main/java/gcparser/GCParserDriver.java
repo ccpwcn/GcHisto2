@@ -212,7 +212,9 @@ public class GCParserDriver
 		}
 		_next_arg = i;
 
-		if (_actions.isEmpty()) _actions.set(PRINT_STATISTICS);
+		if (_actions.isEmpty()) {
+            _actions.set(PRINT_STATISTICS);
+        }
 
 		ArrayList<String> unknown = new ArrayList<String>();
 		_enabled_map = create_enabled_map(enable_list, enable_value,
@@ -292,7 +294,9 @@ public class GCParserDriver
 			{
 				d[i].print_statistics(System.out, new_name);
 			}
-			if (should_save()) d[i].save_data();
+			if (should_save()) {
+                d[i].save_data();
+            }
 		}
 
 		final boolean terse = _actions.get(TERSE);
@@ -338,8 +342,12 @@ public class GCParserDriver
 			} while(++i < argv.length);
 		}
 
-		if (should_print()) print_statistics(System.out);
-		if (should_save()) save_data();
+		if (should_print()) {
+            print_statistics(System.out);
+        }
+		if (should_save()) {
+            save_data();
+        }
 	}
 
 	/**
@@ -470,13 +478,17 @@ public class GCParserDriver
 	{
 		ResourceBundle b = ResourceBundle.getBundle("GCMetricHelp");
 
-		if (b.containsKey("intro")) s.println(b.getString("intro"));
+		if (b.containsKey("intro")) {
+            s.println(b.getString("intro"));
+        }
 		for (GCMetric metric:  GCMetric.values())
 		{
 			String name = metric.name();
 			s.println(name + '\t' + b.getString(name));
 		}
-		if (b.containsKey("closing")) s.println(b.getString("closing"));
+		if (b.containsKey("closing")) {
+            s.println(b.getString("closing"));
+        }
 	}
 
 	public void parse_output_file_pattern(String s)
@@ -547,7 +559,9 @@ public class GCParserDriver
 	public static GCMetric[]
 	parse_metric_names(String names[], Collection<String> unrecognized)
 	{
-		if (names == null || names.length == 0) return null;
+		if (names == null || names.length == 0) {
+            return null;
+        }
 		int errors = 0;
 
 		ArrayList<GCMetric> metrics;
@@ -566,7 +580,9 @@ public class GCParserDriver
 			}
 		}
 
-		if (metrics.size() == 0) return null;
+		if (metrics.size() == 0) {
+            return null;
+        }
 		return metrics.toArray(new GCMetric[metrics.size()]);
 	}
 
@@ -578,7 +594,9 @@ public class GCParserDriver
 	public static GCMetric[]
 	parse_metric_names(String list, Collection<String> unrecognized)
 	{
-		if (list == null) return null;
+		if (list == null) {
+            return null;
+        }
 		return parse_metric_names(list.split("[ \t,:]+"), unrecognized);
 	}
 
@@ -605,7 +623,9 @@ public class GCParserDriver
 	public static EnumMap<GCMetric, Boolean>
 	create_enabled_map(GCMetric metrics[], boolean value)
 	{
-		if (metrics == null) return null;
+		if (metrics == null) {
+            return null;
+        }
 
 		EnumMap<GCMetric, Boolean> map;
 		map = new EnumMap<GCMetric, Boolean>(GCMetric.class);
@@ -626,7 +646,9 @@ public class GCParserDriver
 	create_enabled_map(String metrics, boolean value,
 		Collection<String> unrecognized)
 	{
-		if (metrics == null) return null;
+		if (metrics == null) {
+            return null;
+        }
 		GCMetric m[] = parse_metric_names(metrics, unrecognized);
 		return create_enabled_map(m, value);
 	}

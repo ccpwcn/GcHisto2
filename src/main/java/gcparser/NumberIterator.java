@@ -35,14 +35,17 @@ public class NumberIterator implements Iterator<Double>
 		_inc = increment;
 	}
 
-	public boolean hasNext() { return true; }
-	public Double next()
+	@Override
+    public boolean hasNext() { return true; }
+	@Override
+    public Double next()
 	{
 		Double tmp = new Double(_cur);
 		_cur += _inc;
 		return tmp;
 	}
-	public void remove() { throw new UnsupportedOperationException(); }
+	@Override
+    public void remove() { throw new UnsupportedOperationException(); }
 
 	private double _cur;
 	private double _inc;

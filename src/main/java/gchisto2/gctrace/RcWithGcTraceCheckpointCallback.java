@@ -21,36 +21,14 @@
  * have any questions.
  *
  */
-package gchisto2.gctracegenerator.file;
+package gchisto2.gctrace;
 
 /**
- * TODO
+ *
+ * @author tony
  */
-public interface GCLogFileReaderThrottle {
-    
-    /**
-     * TODO
-     */
-    public void started();
-    
-    /**
-     * TODO
-     */
-    public boolean shouldContinue();
-    
-    /**
-     * TODO
-     */
-    public void beforeAddingGCActivity(double startSec);
+public interface RcWithGcTraceCheckpointCallback {
 
-    /**
-     * TODO
-     */
-    public void afterAddingGCActivity(double startSec);
-    
-    /**
-     * TODO
-     */
-    public void finished();
+    public void refresh(GcTraceCheckpoint checkpoint);
     
 }

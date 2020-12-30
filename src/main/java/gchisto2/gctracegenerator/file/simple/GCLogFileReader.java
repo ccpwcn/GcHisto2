@@ -24,7 +24,7 @@
 package gchisto2.gctracegenerator.file.simple;
 
 import gchisto2.gctrace.GcTrace;
-import gchisto2.gctracegenerator.file.GCLogFileReaderThrottle;
+import gchisto2.gctracegenerator.file.GcLogFileReaderThrottle;
 import gchisto2.utils.Comparisons;
 import java.io.BufferedReader;
 import java.io.File;
@@ -110,15 +110,17 @@ public class GCLogFileReader
         }
     }
 
-    public void setupGCActivityNames(GcTrace gcTrace) {
+    @Override
+    public void setupGcActivityNames(GcTrace gcTrace) {
         for (String name : SHARED_ACTIVITIES) {
             ensureGCActivityAdded(gcTrace, name);
         }
     }
 
+    @Override
     public void readFile(File file,
-            GcTrace gcTrace,
-            GCLogFileReaderThrottle throttle)
+                         GcTrace gcTrace,
+                         GcLogFileReaderThrottle throttle)
             throws IOException {
         FileReader reader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(reader);
@@ -136,7 +138,7 @@ public class GCLogFileReader
                     Double startSec = parseDouble(st);
                     Double durationSec = parseDouble(st);
 
-                    throttle.beforeAddingGCActivity(startSec);
+                    throttle.beforeAddingGcActivity(startSec);
 
                     ensureGCActivityAdded(gcTrace, activityName);
                     assert gcActivityNames.contains(activityName);
@@ -177,7 +179,7 @@ public class GCLogFileReader
                     } else {
                         gcTrace.addGCActivity(id, startSec, durationSec, overheadPerc);
                     }
-                    throttle.afterAddingGCActivity(startSec);
+                    throttle.afterAddingGcActivity(startSec);
                 }
 
                 line = bufferedReader.readLine();

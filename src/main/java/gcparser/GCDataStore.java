@@ -55,18 +55,21 @@ public class GCDataStore extends GCStats
 		}
 	}
 
+	@Override
 	public void add(GCMetric metric, double val)
 	{
 		super.add(metric, val);
 		_data_map.get(metric).add(new Double(val));
 	}
 
+	@Override
 	public void add(GCMetric metric, String s)
 	{
 		Double val = Double.parseDouble(s);
 		add(metric, val);
 	}
 
+	@Override
 	public void add_timestamp(GCMetric metric, double beg, double end)
 	{
 		super.add_timestamp(metric, beg, end);
@@ -87,6 +90,7 @@ public class GCDataStore extends GCStats
 		return _time_map.get(metric);
 	}
 
+	@Override
 	public void save(String prefix, String suffix) throws IOException
 	{
 		for (GCMetric metric:  GCMetric.values())
@@ -98,10 +102,14 @@ public class GCDataStore extends GCStats
 	public void save(GCMetric metric, String prefix, String suffix)
 	throws IOException
 	{
-		if (disabled(metric)) return;
+		if (disabled(metric)) {
+            return;
+        }
 
 		ArrayList<Double> d = data(metric);
-		if (d.size() == 0) return;
+		if (d.size() == 0) {
+            return;
+        }
 		Iterator<Double> diter = d.iterator();
 
 		ArrayList<Double> t = time(metric);
@@ -125,9 +133,13 @@ public class GCDataStore extends GCStats
 	protected String filename(GCMetric metric, String prefix, String suffix)
 	{
 		StringBuilder filename = new StringBuilder();
-		if (prefix != null) filename.append(prefix);
+		if (prefix != null) {
+            filename.append(prefix);
+        }
 		filename.append(metric);
-		if (suffix != null) filename.append(suffix);
+		if (suffix != null) {
+            filename.append(suffix);
+        }
 		return filename.toString();
 	}
 

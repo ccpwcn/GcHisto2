@@ -47,10 +47,12 @@ public class AbstractDatasetWithGroups extends AbstractChangingDataset
     
     private int groupNum;
 
+    @Override
     public int getGroupCount() {
         return groupNum;
     }
 
+    @Override
     public String getGroupName(int group) {
         assert 0 <= group && group < groupNum;
 
@@ -61,12 +63,14 @@ public class AbstractDatasetWithGroups extends AbstractChangingDataset
         return groupNames.indexOf(groupName);
     }
     
+    @Override
     public boolean isGroupActive(int group) {
         assert 0 <= group && group < groupNum;
 
         return groupActive.get(group);
     }
 
+    @Override
     public void setGroupActive(int group, boolean active) {
         assert 0 <= group && group < groupNames.size();
 

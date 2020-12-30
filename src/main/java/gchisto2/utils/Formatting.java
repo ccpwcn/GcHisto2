@@ -70,6 +70,7 @@ public class Formatting {
      */
     static final private Formatter doubleFormatter = new Formatter() {
 
+        @Override
         public String format(Number number) {
             if (isNA(number)) {
                 return NA_STRING;
@@ -83,6 +84,7 @@ public class Formatting {
      */
     static final private Formatter intFormatter = new Formatter() {
 
+        @Override
         public String format(Number number) {
             if (isNA(number)) {
                 return NA_STRING;
@@ -96,6 +98,7 @@ public class Formatting {
      */
     static final private Formatter percFormatter = new Formatter() {
 
+        @Override
         public String format(Number number) {
             if (isNA(number)) {
                 return NA_STRING;
@@ -110,6 +113,7 @@ public class Formatting {
      */
     static final private Formatter percDiffFormatter = new Formatter() {
 
+        @Override
         public String format(Number number) {
             if (isNA(number)) {
                 return NA_STRING;

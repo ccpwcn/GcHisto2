@@ -27,7 +27,7 @@ import gchisto2.gctrace.GcTrace;
 import gchisto2.gctracegenerator.GcTraceGenerator;
 import gchisto2.gctracegenerator.GcTraceGeneratorForFiles;
 import gchisto2.gctracegenerator.GcTraceGeneratorListener;
-import gchisto2.gctracegenerator.GCTraceGeneratorSet;
+import gchisto2.gctracegenerator.GcTraceGeneratorSet;
 import gchisto2.gctrace.GcTraceSet;
 import gchisto2.gctrace.GCTraceSetListener;
 import gchisto2.gui.panels.TraceManagementPanel;
@@ -90,7 +90,7 @@ public class Panel extends javax.swing.JPanel
      *
      * TODO
      */
-    final private GCTraceGeneratorSet gcTraceGeneratorSet = new GCTraceGeneratorSet();
+    final private GcTraceGeneratorSet gcTraceGeneratorSet = new GcTraceGeneratorSet();
     
     /**
      * The model for this table.

@@ -203,6 +203,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
         }
     }
     
+    @Override
     public void dispose() {
         gcTrace = null;
         super.dispose();
@@ -252,6 +253,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
 
         playButton.setText("Play");
         playButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playButtonActionPerformed(evt);
             }
@@ -262,6 +264,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
         realCheckBox.setText("Real Playback");
         realCheckBox.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         realCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 realCheckBoxActionPerformed(evt);
             }
@@ -307,6 +310,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
         fastCheckBox.setText("Fast Playback");
         fastCheckBox.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         fastCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fastCheckBoxActionPerformed(evt);
             }
@@ -407,6 +411,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
         pauseButton.setText("Pause");
         pauseButton.setEnabled(false);
         pauseButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pauseButtonActionPerformed(evt);
             }
@@ -415,6 +420,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
         stopButton.setText("Stop");
         stopButton.setEnabled(false);
         stopButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopButtonActionPerformed(evt);
             }
@@ -422,6 +428,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
 
         closeButton.setText("Close");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeButtonActionPerformed(evt);
             }

@@ -33,6 +33,7 @@ import org.jfree.chart.event.ChartProgressListener;
  */
 public class ChartLocker extends Locker implements ChartProgressListener {
 
+    @Override
     public void chartProgress(ChartProgressEvent event) {
         switch (event.getType()) {
             case ChartProgressEvent.DRAWING_STARTED:

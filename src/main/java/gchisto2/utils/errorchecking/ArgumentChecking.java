@@ -86,7 +86,7 @@ public class ArgumentChecking {
      */
     static public void withinBounds(double arg, double min, double max,
             String argName) {
-        if (!Comparisons.betweeneq(min, arg, max)) {
+        if (!Comparisons.betweenEq(min, arg, max)) {
             throw new IllegalArgumentException(
                     String.format("%s (%1.4f) out of bounds", argName, arg));
         }

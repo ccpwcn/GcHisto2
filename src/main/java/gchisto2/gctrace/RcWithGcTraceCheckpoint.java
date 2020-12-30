@@ -23,12 +23,40 @@
  */
 package gchisto2.gctrace;
 
+import gchisto2.utils.Locker;
+import gchisto2.utils.RefresherCallback;
+
 /**
  *
  * @author tony
  */
-public interface RCWithGCTraceCheckpointCallback {
+public class RcWithGcTraceCheckpoint implements RefresherCallback {
 
-    public void refresh(GCTraceCheckpoint checkpoint);
-    
+    final private GcTraceCheckpoint checkpoint;
+    final private Locker locker;
+    final private RcWithGcTraceCheckpointCallback callback;
+
+    @Override
+    public boolean shouldRefresh() {
+        return checkpoint.needsCheckpoint();
+    }
+
+    @Override
+    public void beforeAddingTask() {
+        locker.doWhileLocked(checkpoint::checkpoint);
+    }
+
+    @Override
+    public void refresh() {
+        callback.refresh(checkpoint);
+    }
+
+    public RcWithGcTraceCheckpoint(
+            GcTraceCheckpoint checkpoint,
+            Locker locker,
+            RcWithGcTraceCheckpointCallback callback) {
+        this.checkpoint = checkpoint;
+        this.locker = locker;
+        this.callback = callback;
+    }
 }

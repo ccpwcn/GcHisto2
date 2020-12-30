@@ -31,6 +31,7 @@ public class NopGcTraceGeneratorListener implements GcTraceGeneratorListener {
     public void started() {
     }
 
+    @Override
     public void finished(GcTrace gcTrace) {
     }
 

@@ -26,7 +26,7 @@ package gchisto2.gui.panels.gctimeline;
 import gchisto2.gcactivity.GCActivity;
 import gchisto2.gcactivity.GCActivitySet;
 import gchisto2.gctrace.GcTrace;
-import gchisto2.gctrace.GCTraceCheckpoint;
+import gchisto2.gctrace.GcTraceCheckpoint;
 import gchisto2.jfreechart.extensions.AbstractDatasetWithGroups;
 import gchisto2.jfreechart.extensions.IntervalXYDatasetWithGroups;
 import gchisto2.utils.Conversions;
@@ -63,7 +63,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * The GC trace that will provide the data for the datasets.
      */
     final private GcTrace gcTrace;
-    final private GCTraceCheckpoint checkpoint;
+    final private GcTraceCheckpoint checkpoint;
     /**
      * The metric that an instance of this class has been specialized for.
      */
@@ -107,6 +107,7 @@ public class Dataset extends AbstractDatasetWithGroups
      *
      * @return The order of the domain axis (i.e., the x-axis).
      */
+    @Override
     public DomainOrder getDomainOrder() {
         return DomainOrder.ASCENDING;
     }
@@ -118,6 +119,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @return The number of series (e.g., GC activity sets) in the
      * current GC trace.
      */
+    @Override
     public int getSeriesCount() {
         return getGroupCount();
     }
@@ -129,6 +131,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @param series The index of the series whose key will be returned.
      * @return The series key of the given index.
      */
+    @Override
     public Comparable getSeriesKey(int series) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
 
@@ -142,6 +145,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @param seriesKey The series key whose index will be returned.
      * @return The series of the given series key.
      */
+    @Override
     public int indexOf(Comparable seriesKey) {
         assert seriesKey instanceof String;
 
@@ -157,6 +161,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @return The number of items in the given series, or 0 if the
      * series is not active.
      */
+    @Override
     public int getItemCount(int series) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
 
@@ -179,6 +184,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndX(int, int)
      * @see #getEndXValue(int, int)
      */
+    @Override
     public Number getX(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(item);
@@ -203,6 +209,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndX(int, int)
      * @see #getEndXValue(int, int)
      */
+    @Override
     public double getXValue(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -230,6 +237,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndY(int, int)
      * @see #getEndYValue(int, int)
      */
+    @Override
     public Number getY(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -253,6 +261,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndY(int, int)
      * @see #getEndYValue(int, int)
      */
+    @Override
     public double getYValue(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -260,7 +269,7 @@ public class Dataset extends AbstractDatasetWithGroups
         switch (metric) {
             case METRIC_DURATION:
                 double durationSec = gcActivity(series, item).getDurationSec();
-                return Conversions.secToMS(durationSec);
+                return Conversions.secToMs(durationSec);
             default:
                 throw new ShouldNotReachHereException();
             }
@@ -281,6 +290,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndX(int, int)
      * @see #getEndXValue(int, int)
      */
+    @Override
     public Number getStartX(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -303,6 +313,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndX(int, int)
      * @see #getEndXValue(int, int)
      */
+    @Override
     public double getStartXValue(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -326,6 +337,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getStartXValue(int, int)
      * @see #getEndXValue(int, int)
      */
+    @Override
     public Number getEndX(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -348,6 +360,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getStartXValue(int, int)
      * @see #getEndX(int, int)
      */
+    @Override
     public double getEndXValue(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -372,6 +385,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndY(int, int)
      * @see #getEndYValue(int, int)
      */
+    @Override
     public Number getStartY(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -394,6 +408,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndY(int, int)
      * @see #getEndYValue(int, int)
      */
+    @Override
     public double getStartYValue(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -417,6 +432,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getStartYValue(int, int)
      * @see #getEndYValue(int, int)
      */
+    @Override
     public Number getEndY(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -440,6 +456,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getStartYValue(int, int)
      * @see #getEndY(int, int)
      */
+    @Override
     public double getEndYValue(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
@@ -447,6 +464,7 @@ public class Dataset extends AbstractDatasetWithGroups
         return getYValue(series, item);
     }
 
+    @Override
     public String generateToolTip(XYDataset dataset, int series, int item) {
         GCActivity gcActivity = gcActivity(series, item);
         String gcActivityName = gcActivity.getName();
@@ -466,7 +484,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @param gcTrace The GC trace that will provide data for the
      * new dataset generator.
      */
-    public Dataset(GcTrace gcTrace, GCTraceCheckpoint checkpoint, int metric) {
+    public Dataset(GcTrace gcTrace, GcTraceCheckpoint checkpoint, int metric) {
         super(gcTrace.getGCActivityNamesArray());
         
         this.gcTrace = gcTrace;

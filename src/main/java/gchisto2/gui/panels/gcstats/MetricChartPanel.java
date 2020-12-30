@@ -63,13 +63,16 @@ public class MetricChartPanel extends GCStatsChartPanel {
         mainPanel().add(BorderLayout.CENTER, new ChartPanel(chart));
     }
 
+    @Override
     public void refreshDataset() {
         updateDataset();
     }
 
+    @Override
     public void updateDataset() {
         locker.doWhileLocked(new Runnable() {
 
+            @Override
             public void run() {
                 dataset.datasetChanged();
             }

@@ -26,10 +26,10 @@ package gchisto2.gui.panels.gcdistribution;
 import gchisto2.gcactivity.GCActivity;
 import gchisto2.gcactivity.GCActivitySet;
 import gchisto2.gctrace.GcTrace;
-import gchisto2.gctrace.GCTraceCheckpoint;
+import gchisto2.gctrace.GcTraceCheckpoint;
 import gchisto2.gctrace.GCTraceListener;
-import gchisto2.gctrace.RCWithGCTraceCheckpoint;
-import gchisto2.gctrace.RCWithGCTraceCheckpointCallback;
+import gchisto2.gctrace.RcWithGcTraceCheckpoint;
+import gchisto2.gctrace.RcWithGcTraceCheckpointCallback;
 import gchisto2.gui.utils.AbstractChartPanel;
 import gchisto2.gui.utils.GroupActivatingPanel;
 import gchisto2.jfreechart.extensions.ChartLocker;
@@ -51,12 +51,12 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
  * @author Tony Printezis
  */
 public class ChartPanelSingle extends AbstractChartPanel
-        implements GCTraceListener, RCWithGCTraceCheckpointCallback {
+        implements GCTraceListener, RcWithGcTraceCheckpointCallback {
 
     final private Dataset dataset;
     final private Refresher refresher;
     final private ChartLocker locker = new ChartLocker();
-    final private GCTraceCheckpoint checkpoint;
+    final private GcTraceCheckpoint checkpoint;
     private GroupActivatingPanel groupActivatingPanel;
 
     /**
@@ -83,9 +83,11 @@ public class ChartPanelSingle extends AbstractChartPanel
         mainPanel().add(BorderLayout.CENTER, splitPane);
     }
 
-    public void refresh(GCTraceCheckpoint checkpoint) {
+    @Override
+    public void refresh(GcTraceCheckpoint checkpoint) {
         locker.doWhileLocked(new Runnable() {
 
+            @Override
             public void run() {
                 dataset.updateBuckets();
                 dataset.datasetChanged();
@@ -97,6 +99,7 @@ public class ChartPanelSingle extends AbstractChartPanel
         refresher.possiblyRefresh();
     }
 
+    @Override
     public void gcActivityAdded(
             GcTrace gcTrace,
             GCActivitySet gcActivitySet,
@@ -104,12 +107,14 @@ public class ChartPanelSingle extends AbstractChartPanel
         possiblyRefresh();
     }
 
+    @Override
     public void gcActivityNameAdded(
             final GcTrace gcTrace,
             final int id,
             final String gcActivityName) {
         locker.doWhileLocked(new Runnable() {
 
+            @Override
             public void run() {
                 dataset.addGCActivity(id, gcActivityName);
                 groupActivatingPanel.groupAdded();
@@ -129,13 +134,13 @@ public class ChartPanelSingle extends AbstractChartPanel
     public ChartPanelSingle(
             String title, String unitName,
             Dataset dataset,
-            GCTraceCheckpoint checkpoint) {
+            GcTraceCheckpoint checkpoint) {
         super(title, unitName);
 
         this.dataset = dataset;
         this.refresher = new Refresher(
                 WorkerThread.instance(),
-                new RCWithGCTraceCheckpoint(checkpoint, locker, this));
+                new RcWithGcTraceCheckpoint(checkpoint, locker, this));
         this.checkpoint = checkpoint;
 
         addChart();

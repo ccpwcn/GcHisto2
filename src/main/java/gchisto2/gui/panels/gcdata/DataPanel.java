@@ -26,10 +26,10 @@ package gchisto2.gui.panels.gcdata;
 import gchisto2.gcactivity.GCActivity;
 import gchisto2.gcactivity.GCActivitySet;
 import gchisto2.gctrace.GcTrace;
-import gchisto2.gctrace.GCTraceCheckpoint;
-import gchisto2.gctrace.RCWithGCTraceCheckpoint;
+import gchisto2.gctrace.GcTraceCheckpoint;
+import gchisto2.gctrace.RcWithGcTraceCheckpoint;
 import gchisto2.gctrace.GCTraceListener;
-import gchisto2.gctrace.RCWithGCTraceCheckpointCallback;
+import gchisto2.gctrace.RcWithGcTraceCheckpointCallback;
 import gchisto2.utils.Locker;
 import gchisto2.utils.Refresher;
 import gchisto2.utils.WorkerThread;
@@ -40,7 +40,7 @@ import gchisto2.utils.errorchecking.ArgumentChecking;
  * @author  tony
  */
 public class DataPanel extends javax.swing.JPanel
-        implements GCTraceListener, RCWithGCTraceCheckpointCallback {
+        implements GCTraceListener, RcWithGcTraceCheckpointCallback {
 
     final private GcTrace gcTrace;
     final private Refresher refresher;
@@ -64,7 +64,8 @@ public class DataPanel extends javax.swing.JPanel
         textArea.append(strBuilder.toString());
     }
 
-    public void refresh(GCTraceCheckpoint checkpoint) {
+    @Override
+    public void refresh(GcTraceCheckpoint checkpoint) {
         int from = checkpoint.prevAllGCActivitiesSize();
         int to = checkpoint.allGCActivitiesSize();
         updateTextArea(from, to);
@@ -74,6 +75,7 @@ public class DataPanel extends javax.swing.JPanel
         refresher.possiblyRefresh();
     }
 
+    @Override
     public void gcActivityAdded(
             GcTrace gcTrace,
             GCActivitySet gcActivitySet,
@@ -82,6 +84,7 @@ public class DataPanel extends javax.swing.JPanel
         possiblyRefresh();
     }
 
+    @Override
     public void gcActivityNameAdded(
             GcTrace gcTrace,
             int id,
@@ -92,10 +95,10 @@ public class DataPanel extends javax.swing.JPanel
         ArgumentChecking.notNull(gcTrace, "gcTrace");
 
         this.gcTrace = gcTrace;
-        GCTraceCheckpoint checkpoint = new GCTraceCheckpoint(gcTrace);
+        GcTraceCheckpoint checkpoint = new GcTraceCheckpoint(gcTrace);
         this.refresher = new Refresher(
                 WorkerThread.instance(),
-                new RCWithGCTraceCheckpoint(checkpoint, locker, this));
+                new RcWithGcTraceCheckpoint(checkpoint, locker, this));
         initComponents();
     }
 

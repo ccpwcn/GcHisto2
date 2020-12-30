@@ -31,9 +31,12 @@ public class ParCompactPhaseGCParser extends GCParser
 	{
 		super(gcstats, verbose);
 // 		_debug = System.err;	// XXX
-		if (_debug == null) return;
+		if (_debug == null) {
+            return;
+        }
 	}
 
+	@Override
 	public boolean parse(String filename, int line, String s)
 	{
 		for (int i = 0; i < _patterns.length; ++i)
@@ -61,7 +64,9 @@ public class ParCompactPhaseGCParser extends GCParser
 	// XXX
 	private void debug(String s, Matcher m, GCMetric metric)
 	{
-		if (_debug == null) return;
+		if (_debug == null) {
+            return;
+        }
 		debug(s); debug();
 		debug(m, m.groupCount() - 1, metric.toString());
 		debug();

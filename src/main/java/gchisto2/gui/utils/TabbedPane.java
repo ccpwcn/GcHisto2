@@ -48,6 +48,7 @@ abstract public class TabbedPane<T extends JPanel>
     
     abstract protected void updatePanel(T panel);
     
+    @Override
     synchronized public void gcTraceAdded(GcTrace gcTrace) {
         T panel = newPanel(gcTrace);
         String name = gcTrace.getName();
@@ -56,6 +57,7 @@ abstract public class TabbedPane<T extends JPanel>
         updatePanel(panel);
     }
     
+    @Override
     synchronized public void gcTraceRenamed(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         assert panel != null;
@@ -64,12 +66,14 @@ abstract public class TabbedPane<T extends JPanel>
         tabbedPane.setTitleAt(index, name);        
     }
     
+    @Override
     synchronized public void gcTraceRemoved(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         map.remove(gcTrace);
         tabbedPane.remove(panel);
     }
     
+    @Override
     synchronized public void gcTraceMovedUp(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         assert panel != null;        assert panel != null;
@@ -81,6 +85,7 @@ abstract public class TabbedPane<T extends JPanel>
         tabbedPane.add(panel, name, index - 1);
     }
 
+    @Override
     synchronized public void gcTraceMovedDown(GcTrace gcTrace) {
         T panel = map.get(gcTrace);
         assert panel != null;

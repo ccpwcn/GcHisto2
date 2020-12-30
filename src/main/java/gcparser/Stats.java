@@ -124,8 +124,12 @@ public class Stats
 	// Add a data point to the sample.
 	public void add(double value)
 	{
-		if (value < _min) _min = value;
-		if (value > _max) _max = value;
+		if (value < _min) {
+            _min = value;
+        }
+		if (value > _max) {
+            _max = value;
+        }
 		_sum += value;
 		_sum_of_squares += value * value;
 		_product *= value;

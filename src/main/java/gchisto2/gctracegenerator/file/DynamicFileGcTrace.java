@@ -44,7 +44,7 @@ public class DynamicFileGcTrace extends FileGcTrace {
     
     private PlaybackFrame frame = new PlaybackFrame(this);
     
-    abstract private class AbstractThrottle implements GCLogFileReaderThrottle {
+    abstract private class AbstractThrottle implements GcLogFileReaderThrottle {
 
         static final private int SLEEP_MS = 10;
         
@@ -89,15 +89,18 @@ public class DynamicFileGcTrace extends FileGcTrace {
                     prevStartSec - startTimeSec));
         }
         
+        @Override
         public void started() {
             startTimer();
             updateStatus();
         }
         
+        @Override
         public boolean shouldContinue() {
             return DynamicFileGcTrace.this.shouldContinue();
         }
         
+        @Override
         public void finished() {
             stopTimer();
         }
@@ -109,13 +112,15 @@ public class DynamicFileGcTrace extends FileGcTrace {
         private int speed;
         private double speedMult;
         
-        public void beforeAddingGCActivity(double startSec) {
+        @Override
+        public void beforeAddingGcActivity(double startSec) {
             double timeSec = startTimeSec + startSec / speedMult;
             waitUntil(timeSec);
             maybePause();
         }
         
-        public void afterAddingGCActivity(double startSec) {
+        @Override
+        public void afterAddingGcActivity(double startSec) {
             ++totalCount;
             updateStatus();
         }
@@ -132,7 +137,8 @@ public class DynamicFileGcTrace extends FileGcTrace {
         private int eventNum;
         private double durationSec;
         
-        public void beforeAddingGCActivity(double startSec) {
+        @Override
+        public void beforeAddingGcActivity(double startSec) {
             if (totalCount > 0 && totalCount % eventNum == 0) {
                 double timeSec = startTimeSec +
                         (double) (totalCount / eventNum) * durationSec;
@@ -141,7 +147,8 @@ public class DynamicFileGcTrace extends FileGcTrace {
             maybePause();
         }
         
-        public void afterAddingGCActivity(double startSec) {
+        @Override
+        public void afterAddingGcActivity(double startSec) {
             totalCount += 1;
             if (totalCount % eventNum == 0) {
                 updateStatus();
@@ -157,6 +164,7 @@ public class DynamicFileGcTrace extends FileGcTrace {
     
     private class FinishListener extends NopGcTraceGeneratorListener {
 
+        @Override
         public void finished(GcTrace gcTrace) {
             DynamicFileGcTrace.this.finished();
         }
@@ -211,7 +219,7 @@ public class DynamicFileGcTrace extends FileGcTrace {
         return !shouldFinish;
     }
     
-    void play(GCLogFileReaderThrottle throttle) {
+    void play(GcLogFileReaderThrottle throttle) {
         assert !playing;
         assert !shouldPause;
         assert !paused;
@@ -270,16 +278,19 @@ public class DynamicFileGcTrace extends FileGcTrace {
         frame.setStatus(status);
     }
     
+    @Override
     public void init(GcTraceGeneratorListener listener) {
         listener.started();
         MessageReporter.showMessage("Added dynamic file " + file.getAbsolutePath());
         listener.finished(this);
     }
 
+    @Override
     public void afterAddingToGCTraceSet() {
         frame.setVisible(true);
     }
     
+    @Override
     public void beforeRemovingFromGCTraceSet() {
         if (playing) {
             shouldFinish();

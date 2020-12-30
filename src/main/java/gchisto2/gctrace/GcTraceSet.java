@@ -325,12 +325,14 @@ public class GcTraceSet extends LinkedList<GcTrace> implements GCTraceListener {
         return allGCActivityNames.indexOf(gcActivityName);
     }
     
+    @Override
     public void gcActivityAdded(
             GcTrace gcTrace,
             GCActivitySet gcActivitySet,
             GCActivity gcActivity) {
     }
 
+    @Override
     public void gcActivityNameAdded(GcTrace gcTrace,
                                     int id,
                                     String gcActivityName) {

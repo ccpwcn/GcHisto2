@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author tony
  */
-public class GCTraceCheckpoint {
+public class GcTraceCheckpoint {
 
     private GcTrace gcTrace;
     private int gcTraceSize;
@@ -111,7 +111,7 @@ public class GCTraceCheckpoint {
         assert gcTraceSize == newGCTraceSize;
     }
 
-    public GCTraceCheckpoint(GcTrace gcTrace) {
+    public GcTraceCheckpoint(GcTrace gcTrace) {
         this.gcTrace = gcTrace;
         this.gcTraceSize = 0;
         this.prevAllSize = 0;

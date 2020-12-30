@@ -24,7 +24,7 @@
 package gchisto2.gctracegenerator.file.hotspot;
 
 import gchisto2.gctrace.GcTrace;
-import gchisto2.gctracegenerator.file.GCLogFileReaderThrottle;
+import gchisto2.gctracegenerator.file.GcLogFileReaderThrottle;
 import gcparser.GCDataStore;
 import gcparser.GCMetric;
 import gcparser.GCParserDriver;
@@ -38,16 +38,15 @@ import java.util.List;
  *
  * @author tony
  */
-public class GCLogFileReader
-        implements gchisto2.gctracegenerator.file.GCLogFileReader {
+public class GcLogFileReader implements gchisto2.gctracegenerator.file.GCLogFileReader {
 
-    private class MetricData {
+    private static class MetricData {
 
-        private String name;
-        private ArrayList<Double> times;
-        private ArrayList<Double> data;
+        private final String name;
+        private final ArrayList<Double> times;
+        private final ArrayList<Double> data;
         private int index;
-        private int length;
+        private final int length;
 
         public boolean hasMore() {
             return index < length;
@@ -85,7 +84,7 @@ public class GCLogFileReader
         }
     }
 
-    private class MetricDataSet extends ArrayList<MetricData> {
+    private static class MetricDataSet extends ArrayList<MetricData> {
 
         private MetricData last;
 
@@ -103,7 +102,7 @@ public class GCLogFileReader
         }
 
         public void moveToNext() {
-            assert last == getEarliest();
+            getEarliest();
             last.moveToNext();
         }
 
@@ -132,15 +131,14 @@ public class GCLogFileReader
     final private String[] SHARED_ACTIVITIES = {"Young GC", "Full GC"};
     final private List<String> gcActivityNames = new ArrayList<String>();
 
-    private int mapGCActivityNameToID(String name)
-            throws IOException {
+    private int mapGcActivityNameToID(String name) throws IOException {
         return gcActivityNames.indexOf(name);
     }
 
-    private void ensureGCActivityAdded(GcTrace gcTrace, String name) {
+    private void ensureGcActivityAdded(GcTrace gcTrace, String name) {
         if (!gcActivityNames.contains(name)) {
-            if (name.equals("Remark")) {
-                ensureGCActivityAdded(gcTrace, "Initial Mark");
+            if ("Remark".equals(name)) {
+                ensureGcActivityAdded(gcTrace, "Initial Mark");
             }
 
             gcActivityNames.add(name);
@@ -148,16 +146,18 @@ public class GCLogFileReader
         }
     }
 
-    public void setupGCActivityNames(GcTrace gcTrace) {
+    @Override
+    public void setupGcActivityNames(GcTrace gcTrace) {
         for (String name : SHARED_ACTIVITIES) {
-            ensureGCActivityAdded(gcTrace, name);
+            ensureGcActivityAdded(gcTrace, name);
         }
     }
 
+    @Override
     public void readFile(
             File file,
             GcTrace gcTrace,
-            GCLogFileReaderThrottle throttle) throws IOException {
+            GcLogFileReaderThrottle throttle) throws IOException {
         try {
             throttle.started();
 
@@ -169,7 +169,7 @@ public class GCLogFileReader
 
             ArrayList<Double> ygTimes = gcData.time(GCMetric.ygc_time);
             ArrayList<Double> ygData = gcData.data(GCMetric.ygc_time);
-            MetricData youngGCData = new MetricData("Young GC", ygTimes, ygData);
+            MetricData youngGcData = new MetricData("Young GC", ygTimes, ygData);
 
             ArrayList<Double> imTimes = gcData.time(GCMetric.cms_im_time);
             ArrayList<Double> imData = gcData.data(GCMetric.cms_im_time);
@@ -184,7 +184,7 @@ public class GCLogFileReader
             MetricData fullGCData = new MetricData("Full GC", fgTimes, fgData);
 
             MetricDataSet set = new MetricDataSet();
-            set.addMetricData(youngGCData);
+            set.addMetricData(youngGcData);
             set.addMetricData(initialMarkData);
             set.addMetricData(remarkData);
             set.addMetricData(fullGCData);
@@ -196,13 +196,13 @@ public class GCLogFileReader
                 double startSec = data.getTime();
                 double durationSec = data.getData();
 
-                throttle.beforeAddingGCActivity(startSec);
+                throttle.beforeAddingGcActivity(startSec);
 
-                ensureGCActivityAdded(gcTrace, activityName);
-                int id = mapGCActivityNameToID(activityName);
+                ensureGcActivityAdded(gcTrace, activityName);
+                int id = mapGcActivityNameToID(activityName);
                 gcTrace.addGCActivity(id, startSec, durationSec);
 
-                throttle.afterAddingGCActivity(startSec);
+                throttle.afterAddingGcActivity(startSec);
 
                 set.moveToNext();
             }

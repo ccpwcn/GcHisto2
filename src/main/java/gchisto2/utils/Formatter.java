@@ -45,6 +45,5 @@ public interface Formatter {
      *
      * @see gchisto2.utils.Formatting
      */
-    public String format(Number number);
-    
+    String format(Number number);
 }

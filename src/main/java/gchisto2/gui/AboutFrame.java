@@ -79,6 +79,7 @@ public class AboutFrame extends javax.swing.JFrame {
 
         closeButton.setText("Close");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeButtonActionPerformed(evt);
             }

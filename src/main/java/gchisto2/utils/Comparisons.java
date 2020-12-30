@@ -112,7 +112,7 @@ public class Comparisons {
      * @param v2 The v2 value in the comparison calculation.
      * @return Whether <tt>v1</tt> <= <tt>v</tt> <= <tt>v2</tt>.
      */
-    static public boolean betweeneq(double v1, double v, double v2) {
+    static public boolean betweenEq(double v1, double v, double v2) {
         return lteq(v1, v) && lteq(v, v2);
     }
     

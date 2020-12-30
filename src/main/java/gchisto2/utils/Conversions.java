@@ -39,7 +39,7 @@ public class Conversions {
      *
      * @see gchisto2.utils.Conversions#msToSec(double)
      */
-    static public double secToMS(double sec) {
+    static public double secToMs(double sec) {
         return sec * 1000.0;
     }
     
@@ -49,7 +49,7 @@ public class Conversions {
      * @param ms The millis to be converted in seconds.
      * @return The seconds amount that equals the <tt>ms</tt> argument.
      *
-     * @see gchisto2.utils.Conversions#secToMS(double)
+     * @see gchisto2.utils.Conversions#secToMs(double)
      */
     static public double msToSec(double ms) {
         return ms / 1000.0;

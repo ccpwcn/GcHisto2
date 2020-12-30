@@ -21,44 +21,36 @@
  * have any questions.
  *
  */
-package gchisto2.gctrace;
-
-import gchisto2.utils.Locker;
-import gchisto2.utils.RefresherCallback;
+package gchisto2.gctracegenerator.file;
 
 /**
  *
  * @author tony
  */
-public class RCWithGCTraceCheckpoint implements RefresherCallback {
+public class NopGcLogFileReaderThrottle implements GcLogFileReaderThrottle {
 
-    final private GCTraceCheckpoint checkpoint;
-    final private Locker locker;
-    final private RCWithGCTraceCheckpointCallback callback;
-
-    public boolean shouldRefresh() {
-        return checkpoint.needsCheckpoint();
+    @Override
+    public void started() {
+    }
+    
+    @Override
+    public void beforeAddingGcActivity(double startSec) {
     }
 
-    public void beforeAddingTask() {
-        locker.doWhileLocked(new Runnable() {
-
-            public void run() {
-                checkpoint.checkpoint();
-            }
-        });
+    @Override
+    public void afterAddingGcActivity(double startSec) {
     }
 
-    public void refresh() {
-        callback.refresh(checkpoint);
+    @Override
+    public boolean shouldContinue() {
+        return true;
     }
-
-    public RCWithGCTraceCheckpoint(
-            GCTraceCheckpoint checkpoint,
-            Locker locker,
-            RCWithGCTraceCheckpointCallback callback) {
-        this.checkpoint = checkpoint;
-        this.locker = locker;
-        this.callback = callback;
+    
+    @Override
+    public void finished() {
     }
+    
+    public NopGcLogFileReaderThrottle() {
+    }
+    
 }

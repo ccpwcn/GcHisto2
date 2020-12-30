@@ -67,6 +67,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          * @param col The column in which the label will be added.
          * @return The label of a particular table cell.
          */
+        @Override
         public Component getTableCellRendererComponent(
                 JTable table,
                 Object value,
@@ -115,6 +116,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          *
          * @return The number of rows in the table.
          */
+        @Override
         public int getRowCount() {
             return rows;
         }
@@ -124,6 +126,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          *
          * @return The number of columns in the table.
          */
+        @Override
         public int getColumnCount() {
             return columns;
         }
@@ -134,6 +137,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          * @param columnIndex The index of the column whose name to be returned.
          * @return The name of the given column.
          */
+        @Override
         public String getColumnName(int columnIndex) {
             assert 0 <= columnIndex && columnIndex < columns;
 
@@ -146,6 +150,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          * @param columnIndex The index of the column.
          * @return The class of the items in a given column.
          */
+        @Override
         public Class<?> getColumnClass(int columnIndex) {
             assert 0 <= columnIndex && columnIndex < columns;
 
@@ -160,6 +165,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          * @param columnIndex The column of the cell.
          * @return Whether the given cell is editable.
          */
+        @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             assert 0 <= rowIndex && rowIndex < rows;
             assert 0 <= columnIndex && columnIndex < columns;
@@ -175,6 +181,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          * @param columnIndex The column of the cell.
          * @return The value of the given cell.
          */
+        @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             assert 0 <= rowIndex && rowIndex < rows;
             assert 0 <= columnIndex && columnIndex < columns;
@@ -190,6 +197,7 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
          * @param rowIndex The row of the given cell.
          * @param columnIndex The column of the given cell.
          */
+        @Override
         public void setValueAt(Object value, int rowIndex, int columnIndex) {
             assert 0 <= rowIndex && rowIndex < rows;
             assert 0 <= columnIndex && columnIndex < columns;
@@ -254,9 +262,11 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
     public void refresh() {
         SwingUtilities.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 locker.doWhileLocked(new Runnable() {
 
+                    @Override
                     public void run() {
                         model.updateData();
                         model.fireTableDataChanged();
@@ -269,9 +279,11 @@ public class AllStatsTableSingle extends javax.swing.JPanel {
     public void update() {
         SwingUtilities.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 locker.doWhileLocked(new Runnable() {
 
+                    @Override
                     public void run() {
                         model.update();
                         model.updateData();

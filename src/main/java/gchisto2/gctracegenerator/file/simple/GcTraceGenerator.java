@@ -34,6 +34,7 @@ import java.io.File;
  */
 public class GcTraceGenerator extends FileGcTraceGenerator {
     
+    @Override
     public String getGcTraceType() {
         return "Simple GC Log";
     }

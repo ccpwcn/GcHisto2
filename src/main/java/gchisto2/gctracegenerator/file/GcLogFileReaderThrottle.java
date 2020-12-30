@@ -24,28 +24,33 @@
 package gchisto2.gctracegenerator.file;
 
 /**
- *
- * @author tony
+ * TODO
  */
-public class NopGCLogFileReaderThrottle implements GCLogFileReaderThrottle {
-
-    public void started() {
-    }
+public interface GcLogFileReaderThrottle {
     
-    public void beforeAddingGCActivity(double startSec) {
-    }
-
-    public void afterAddingGCActivity(double startSec) {
-    }
-
-    public boolean shouldContinue() {
-        return true;
-    }
+    /**
+     * TODO
+     */
+    public void started();
     
-    public void finished() {
-    }
+    /**
+     * TODO
+     */
+    public boolean shouldContinue();
     
-    public NopGCLogFileReaderThrottle() {
-    }
+    /**
+     * TODO
+     */
+    public void beforeAddingGcActivity(double startSec);
+
+    /**
+     * TODO
+     */
+    public void afterAddingGcActivity(double startSec);
+    
+    /**
+     * TODO
+     */
+    public void finished();
     
 }
