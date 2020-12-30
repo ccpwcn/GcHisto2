@@ -70,7 +70,7 @@
           <Font name="DejaVu Sans" size="13" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="GC Histogram Tool (GChisto)"/>
+        <Property name="text" type="java.lang.String" value="GC Histogram Tool 2 (Gchisto2)"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
