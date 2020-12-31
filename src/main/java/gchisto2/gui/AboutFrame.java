@@ -25,6 +25,8 @@ package gchisto2.gui;
 
 import gchisto2.utils.Copyright;
 
+import javax.swing.*;
+
 /**
  * @author Tony Printezis
  */
@@ -67,7 +69,7 @@ public class AboutFrame extends javax.swing.JFrame {
                         .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
 
         titleLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
