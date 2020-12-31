@@ -41,7 +41,7 @@ public class Panel extends TabbedPane<ChartPanelSingle> {
         Dataset dataset = new Dataset(gcTrace, checkpoint);
         
         String unitName = String.format("%1.0f ms buckets",
-                Dataset.bucketDurationMS());
+                Dataset.bucketDurationMs());
         String name = gcTrace.getName();
         ChartPanelSingle panel = new ChartPanelSingle(
                 name, unitName, dataset, checkpoint);

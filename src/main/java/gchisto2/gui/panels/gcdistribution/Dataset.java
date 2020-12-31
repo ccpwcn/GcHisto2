@@ -148,7 +148,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @return The series key of the given index.
      */
     @Override
-    public Comparable getSeriesKey(int series) {
+    public Comparable<String> getSeriesKey(int series) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
 
         return getGroupName(series);
@@ -313,6 +313,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndX(int, int)
      * @see #getEndXValue(int, int)
      */
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Override
     public double getStartXValue(int series, int item) {
         assert isGroupActive(series) : "series = " + series;
@@ -359,6 +360,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndX(int, int)
      * @see #getEndXValue(int, int)
      */
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Override
     public double getEndXValue(int series, int item) {
         assert isGroupActive(series);
@@ -405,6 +407,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getEndY(int, int)
      * @see #getEndYValue(int, int)
      */
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Override
     public double getStartYValue(int series, int item) {
         assert isGroupActive(series) : "series = " + series;
@@ -453,6 +456,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @see #getStartYValue(int, int)
      * @see #getEndYValue(int, int)
      */
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Override
     public double getEndYValue(int series, int item) {
         assert isGroupActive(series);
@@ -468,19 +472,18 @@ public class Dataset extends AbstractDatasetWithGroups
         double startSec = getBucketStartSec(item);
         double endSec = getBucketStartSec(item + 1);
         int value = buckets.get(series)[item];
-        String str = String.format("%s count in [%s sec, %s sec) = %s",
+        return String.format("%s count in [%s sec, %s sec) = %s",
                 gcActivityName,
                 Formatting.formatDouble(startSec),
                 Formatting.formatDouble(endSec),
                 Formatting.formatInt(value));
-        return str;
     }
     /**
      * It returns the duration of a bucket in millis.
      *
      * @return The duration of a bucket in millis.
      */
-    static public double bucketDurationMS() {
+    static public double bucketDurationMs() {
         return BUCKET_DURATION_MS;
     }
 
@@ -528,7 +531,6 @@ public class Dataset extends AbstractDatasetWithGroups
         if (bucketIndex >= bucketLen) {
             int newLen = (int) ((double) bucketIndex * BUCKET_RESIZING_FACTOR);
             int[] newBucket = new int[newLen];
-            assert newBucket.length == newLen;
             System.arraycopy(bucket, 0, newBucket, 0, bucketLen);
 
             buckets.set(id, newBucket);
@@ -594,10 +596,9 @@ public class Dataset extends AbstractDatasetWithGroups
     /**
      * It creates a new instance of this dataset generator.
      *
-     * @param gcTraceSet The GC trace set that contains the GC trace that will
-     * provide the data for the new dataset generator.
      * @param gcTrace The GC trace that will provide data for the
      * new dataset generator.
+     * @param checkpoint 检查点
      */
     public Dataset(GcTrace gcTrace, GcTraceCheckpoint checkpoint) {
         super();
