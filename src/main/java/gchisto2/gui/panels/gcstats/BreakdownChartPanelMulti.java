@@ -53,8 +53,6 @@ public class BreakdownChartPanelMulti extends GCStatsChartPanel {
 
     /**
      * It creates a chart for the given dataset and adds the chart to the panel.
-     *
-     * @param dataset The dataset that will provide the values for the chart.
      */
     private void addChart() {
         JFreeChart chart = ChartFactory.createStackedBarChart3D(

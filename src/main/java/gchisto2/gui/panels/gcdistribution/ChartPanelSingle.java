@@ -61,8 +61,6 @@ public class ChartPanelSingle extends AbstractChartPanel
 
     /**
      * It creates a chart for the given dataset and adds the chart to the panel.
-     *
-     * @param dataset The dataset that will provide the values for the chart.
      */
     private void addChart() {
         JFreeChart chart = ChartFactory.createXYBarChart(getTitle(),
@@ -71,10 +69,9 @@ public class ChartPanelSingle extends AbstractChartPanel
         chart.addProgressListener(locker);
         XYPlot plot = (XYPlot) chart.getPlot();
         XYItemRenderer renderer = plot.getRenderer();
-        renderer.setToolTipGenerator(dataset);
+        renderer.setBaseToolTipGenerator(dataset);
 
         groupActivatingPanel = new GroupActivatingPanel(dataset, locker);
-
         org.jfree.chart.ChartPanel chartPanel =
                 new org.jfree.chart.ChartPanel(chart);
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -85,13 +82,9 @@ public class ChartPanelSingle extends AbstractChartPanel
 
     @Override
     public void refresh(GcTraceCheckpoint checkpoint) {
-        locker.doWhileLocked(new Runnable() {
-
-            @Override
-            public void run() {
-                dataset.updateBuckets();
-                dataset.datasetChanged();
-            }
+        locker.doWhileLocked(() -> {
+            dataset.updateBuckets();
+            dataset.datasetChanged();
         });
     }
 
