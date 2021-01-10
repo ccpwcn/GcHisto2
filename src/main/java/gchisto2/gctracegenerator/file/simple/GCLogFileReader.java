@@ -105,7 +105,7 @@ public class GCLogFileReader
             }
             
             gcActivityNames.add(name);
-            gcTrace.addGCActivityName(gcActivityNames.indexOf(name),
+            gcTrace.addGcActivityName(gcActivityNames.indexOf(name),
                     addSpaces(name));
         }
     }
@@ -175,9 +175,9 @@ public class GCLogFileReader
                     durationSec = checkBounds(durationSec);
 
                     if (stw) {
-                        gcTrace.addGCActivity(id, startSec, durationSec);
+                        gcTrace.addGcActivity(id, startSec, durationSec);
                     } else {
-                        gcTrace.addGCActivity(id, startSec, durationSec, overheadPerc);
+                        gcTrace.addGcActivity(id, startSec, durationSec, overheadPerc);
                     }
                     throttle.afterAddingGcActivity(startSec);
                 }

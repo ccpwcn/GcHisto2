@@ -74,7 +74,7 @@ public class GcTraceSet extends LinkedList<GcTrace> implements GcTraceListener {
      * @param gcTrace The file for which a unique name will be created.
      * @return A unique GC trace name for the given file.
      */
-    private String createUniqueGcTraceName(GcTrace gcTrace) {
+    String createUniqueGcTraceName(GcTrace gcTrace) {
         assert gcTrace != null;
         
         String originalName = gcTrace.getSuggestedName();
@@ -172,7 +172,7 @@ public class GcTraceSet extends LinkedList<GcTrace> implements GcTraceListener {
         
         recreateAllGcActivityNames();
         listeners.callGCTraceAdded(gcTrace);
-        gcTrace.afterAddingToGCTraceSet();
+        gcTrace.afterAddingToGcTraceSet();
     }
     
     /**
@@ -217,7 +217,7 @@ public class GcTraceSet extends LinkedList<GcTrace> implements GcTraceListener {
         GcTrace gcTrace = findGcTrace(gcTraceName);
         ErrorReporting.fatalError(gcTrace != null,
                 gcTraceName + " does not exist in the GC trace set");
-        gcTrace.beforeRemovingFromGCTraceSet();
+        gcTrace.beforeRemovingFromGcTraceSet();
         boolean ret = super.remove(gcTrace);
         assert ret;
         

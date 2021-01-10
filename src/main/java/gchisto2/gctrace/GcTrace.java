@@ -38,9 +38,9 @@ import java.util.Date;
  * collections.
  *
  * @author Tony Printezis
- * @see    gchisto2.gcactivityset.GCActivitySet
- * @see    gchisto2.gctraceset.GCActivityNames
- * @see    gchisto2.gctraceset.GCTraceSet
+ * @see    GcActivitySet
+ * @see    GcActivityNames
+ * @see    GcTraceSet
  */
 public abstract class GcTrace extends ArrayList<GcActivitySet> {
 
@@ -50,7 +50,7 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      *
      * @see #getName()
      * @see #setName(String)
-     * @see gchisto2.gctraceset.GCTraceSet#createUniqueGCTraceName(File)
+     * @see GcTraceSet#createUniqueGcTraceName(GcTrace)
      */
     private String name;
     /**
@@ -58,29 +58,26 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      *
      * @see #getAddedDate()
      * @see #setAddedDate(Date)
-     *
-     * TODO
      */
     private Date addedDate;
     /**
      * A map of the GC activity names that appear in this GC trace.
      */
     final private GcActivityNames gcActivityNames = new GcActivityNames();
-    /**
-     * TODO
-     */
     final private GcTraceListenerSet listeners = new GcTraceListenerSet();
     final private Object hashCodeObject = new Object();
-    final private GcActivitySet allGCActivities = new GcActivitySet("All");
+    final private GcActivitySet allGcActivities = new GcActivitySet("All");
     private double lastTimeStampSec;
 
     /**
-     * TODO
+     * 建议的名称
+     * @return 字符串
      */
     abstract public String getSuggestedName();
 
     /**
-     * TODO
+     * GC信息
+     * @return 字符串
      */
     abstract public String getInfoString();
 
@@ -105,7 +102,7 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      * set.
      *
      * @see #setName(String)
-     * @see gchisto2.gctraceset.GCTraceSet#createUniqueGCTraceName(File)
+     * @see GcTraceSet#createUniqueGcTraceName(GcTrace)
      */
     public String getName() {
         return name;
@@ -120,8 +117,6 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      *
      * @return The date/time when this GC trace was populated.
      * @see #setAddedDate(Date)
-     *
-     * TODO
      */
     public Date getAddedDate() {
         return addedDate;
@@ -137,7 +132,7 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
     }
 
     public GcActivitySet getAllGcActivities() {
-        return allGCActivities;
+        return allGcActivities;
     }
 
     public double getLastTimeStampSec() {
@@ -161,7 +156,7 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      * @param name The new name of this GC trace.
      *
      * @see #getName()
-     * @see gchisto2/gctrace/GcTraceSet.java:79(File)
+     * @see GcTraceSet#createUniqueGcTraceName(GcTrace)
      */
     public void setName(String name) {
         ArgumentChecking.notNull(name, "name");
@@ -175,8 +170,6 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      *
      * @param addedDate The new read date/time of this GC trace.
      * @see #getAddedDate()
-     *
-     * TODO
      */
     public void setAddedDate(Date addedDate) {
         ArgumentChecking.notNull(addedDate, "addedDate");
@@ -191,19 +184,19 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      * name, it will be created. This version should be used for concurrent
      * GC activities.
      *
-     * @param gcActivityName The name of the GC activity to be added.
+     * @param id The id of the GC activity to be added.
      * @param startSec The time stamp of the start of the GC activity to
      * be added, in seconds.
      * @param durationSec The duration of the GC activity, in seconds.
      */
-    public void addGCActivity(
+    public void addGcActivity(
             int id,
             double startSec,
             double durationSec) {
         ArgumentChecking.withinBounds(id, 0, size() - 1, "id");
 
         String gcActivityName = gcActivityNames.get(id);
-        addGCActivity(id,
+        addGcActivity(id,
                 new GcActivity(gcActivityName, startSec, durationSec));
     }
 
@@ -214,14 +207,14 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      * name, it will be created. This version should be used for stop-the-world
      * GC activities.
      *
-     * @param gcActivityName The name of the GC activity to be added.
+     * @param id The id of the GC activity to be added.
      * @param startSec The time stamp of the start of the GC activity to
      * be added, in seconds.
      * @param durationSec The duration of the GC activity, in seconds.
      * @param overheadPerc The concurrent overhead of the GC activity to
      * be added.
      */
-    public void addGCActivity(
+    public void addGcActivity(
             int id,
             double startSec,
             double durationSec,
@@ -229,7 +222,7 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
         ArgumentChecking.withinBounds(id, 0, size() - 1, "id");
 
         String gcActivityName = gcActivityNames.get(id);
-        addGCActivity(id, new GcActivity(
+        addGcActivity(id, new GcActivity(
                 gcActivityName,
                 startSec, durationSec,
                 overheadPerc));
@@ -239,25 +232,25 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
      * It adds a new GC activity to this GC trace. This is a private method
      * that is used by all the public ones.
      *
-     * @param gcActivityName The name of the GC activity to be added.
+     * @param id The id of the GC activity to be added.
      * @param gcActivity The GC activity to be added.
      */
-    synchronized private void addGCActivity(
+    synchronized private void addGcActivity(
             int id,
             GcActivity gcActivity) {
         assert 0 <= id && id < size();
-        assert 0 <= id && id < gcActivityNames.size();
+        assert id < gcActivityNames.size();
         assert gcActivityNames.get(id).equals(gcActivity.getName());
 
         GcActivitySet gcActivitySet = get(id);
         gcActivitySet.addGCActivity(gcActivity);
-        allGCActivities.addGCActivity(gcActivity);
+        allGcActivities.addGCActivity(gcActivity);
         lastTimeStampSec = gcActivity.getEndSec();
 
         listeners.callGCActivityAdded(this, gcActivitySet, gcActivity);
     }
 
-    public void addGCActivityName(int id, String gcActivityName) {
+    public void addGcActivityName(int id, String gcActivityName) {
         assert gcActivityNames.size() == id;
         gcActivityNames.add(id, gcActivityName);
         assert gcActivityNames.size() == id + 1;
@@ -271,7 +264,7 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
     }
 
     /**
-     * TODO
+     * 添加监听器
      */
     synchronized public void addListener(GcTraceListener listener) {
         ArgumentChecking.notNull(listener, "listener");
@@ -280,7 +273,7 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
     }
 
     /**
-     * TODO
+     * 移除监听器
      */
     synchronized public void removeListener(GcTraceListener listener) {
         ArgumentChecking.notNull(listener, "listener");
@@ -289,28 +282,22 @@ public abstract class GcTrace extends ArrayList<GcActivitySet> {
     }
 
     /**
-     * TODO
+     * 添加之前
      */
-    public void afterAddingToGCTraceSet() {
-    // do nothing, unless overriden
+    public void afterAddingToGcTraceSet() {
+    // do nothing, unless overwritten
     }
 
     /**
-     * TODO
+     * 移除之前
+     * do nothing, unless overwritten
+     * this has to return before the GC trace is removed from the GC trace set
      */
-    public void beforeRemovingFromGCTraceSet() {
-    // do nothing, unless overriden
-    // this has to return before the GC trace is removed from the GC trace set
+    public void beforeRemovingFromGcTraceSet() {
     }
 
     /**
      * It creates a new GC trace instance.
-     *
-     * @param file The file associated with the new GC trace.
-     * @param lastModifiedDate The last modified date/time of the new GC trace.
-     * @param addedDate Thenew read date/time of the new GC trace.
-     *
-     * TODO
      */
     public GcTrace() {
     }
