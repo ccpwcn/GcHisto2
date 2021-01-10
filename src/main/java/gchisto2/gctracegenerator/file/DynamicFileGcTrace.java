@@ -286,12 +286,12 @@ public class DynamicFileGcTrace extends FileGcTrace {
     }
 
     @Override
-    public void afterAddingToGCTraceSet() {
+    public void afterAddingToGcTraceSet() {
         frame.setVisible(true);
     }
     
     @Override
-    public void beforeRemovingFromGCTraceSet() {
+    public void beforeRemovingFromGcTraceSet() {
         if (playing) {
             shouldFinish();
             synchronized(this) {

@@ -142,7 +142,7 @@ public class GcLogFileReader implements gchisto2.gctracegenerator.file.GCLogFile
             }
 
             gcActivityNames.add(name);
-            gcTrace.addGCActivityName(gcActivityNames.indexOf(name), name);
+            gcTrace.addGcActivityName(gcActivityNames.indexOf(name), name);
         }
     }
 
@@ -200,7 +200,7 @@ public class GcLogFileReader implements gchisto2.gctracegenerator.file.GCLogFile
 
                 ensureGcActivityAdded(gcTrace, activityName);
                 int id = mapGcActivityNameToID(activityName);
-                gcTrace.addGCActivity(id, startSec, durationSec);
+                gcTrace.addGcActivity(id, startSec, durationSec);
 
                 throttle.afterAddingGcActivity(startSec);
 
