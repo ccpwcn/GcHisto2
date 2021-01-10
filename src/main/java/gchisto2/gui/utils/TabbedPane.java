@@ -25,7 +25,7 @@ package gchisto2.gui.utils;
 
 import gchisto2.gctrace.GcTrace;
 import gchisto2.gctrace.GcTraceSet;
-import gchisto2.gctrace.GCTraceSetListener;
+import gchisto2.gctrace.GcTraceSetListener;
 import gchisto2.gui.panels.VisualizationPanel;
 import gchisto2.utils.errorchecking.ArgumentChecking;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ import javax.swing.JPanel;
  */
 abstract public class TabbedPane<T extends JPanel>
         extends javax.swing.JPanel
-        implements VisualizationPanel, GCTraceSetListener {
+        implements VisualizationPanel, GcTraceSetListener {
 
     final protected Map<GcTrace, T> map = new HashMap<GcTrace, T>();
     
@@ -104,7 +104,7 @@ abstract public class TabbedPane<T extends JPanel>
     abstract public String getPanelName();
 
     @Override
-    public GCTraceSetListener getListener() {
+    public GcTraceSetListener getListener() {
         return this;
     }
 

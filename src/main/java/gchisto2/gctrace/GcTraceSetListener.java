@@ -27,9 +27,9 @@ package gchisto2.gctrace;
  * A listener for changes in a GC trace set.
  *
  * @author Tony Printezis
- * @see    gchisto2.gctraceset.GCTraceSet
+ * @see    GcTraceSet
  */
-public interface GCTraceSetListener {
+public interface GcTraceSetListener {
     
     /**
      * Called after a GC trace has been added to the GC trace set.

@@ -30,9 +30,9 @@ import gchisto2.utils.errorchecking.ArgumentChecking;
  * It can be either stop-the-world or concurrent.
  *
  * @author Tony Printezis
- * @see    gchisto2.gcactivityset.GCActivitySet
+ * @see    GcActivitySet
  */
-public class GCActivity {
+public class GcActivity {
     
     private String name;
     
@@ -131,7 +131,7 @@ public class GCActivity {
      * seconds.
      * @param durationSec The duration of the GC activity, in seconds.
      */
-    public GCActivity(
+    public GcActivity(
             String name,
             double startSec,
             double durationSec) {
@@ -147,7 +147,7 @@ public class GCActivity {
      * @param durationSec The duration of the GC activity, in seconds.
      * @param overheadPerc The concurrent overhead of the GC activity.
      */
-    public GCActivity(
+    public GcActivity(
             String name,
             double startSec,
             double durationSec,
@@ -166,7 +166,7 @@ public class GCActivity {
      * or concurrent (false).
      * @param overheadPerc The concurrent overhead of the GC activity.
      */
-    private GCActivity(
+    private GcActivity(
             String name,
             double startSec,
             double durationSec,

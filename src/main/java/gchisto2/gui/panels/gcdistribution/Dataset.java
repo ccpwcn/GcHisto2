@@ -23,8 +23,8 @@
  */
 package gchisto2.gui.panels.gcdistribution;
 
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 import gchisto2.gctrace.GcTrace;
 import gchisto2.gctrace.GcTraceCheckpoint;
 import gchisto2.jfreechart.extensions.AbstractDatasetWithGroups;
@@ -558,12 +558,12 @@ public class Dataset extends AbstractDatasetWithGroups
         assert maxIndex.size() == gcTraceSize;
 
         for (int i = 0; i < gcTraceSize; ++i) {
-            GCActivitySet gcActivitySet = gcTrace.get(i);
+            GcActivitySet gcActivitySet = gcTrace.get(i);
 
             int from = checkpoint.prevSize(i);
             int to = checkpoint.size(i);
             for (int j = from; j < to; ++j) {
-                GCActivity gcActivity = gcActivitySet.get(j);
+                GcActivity gcActivity = gcActivitySet.get(j);
                 if (gcActivity.isSTW()) {
                     double durationSec = gcActivity.getDurationSec();
                     int index = getBucketIndex(durationSec);

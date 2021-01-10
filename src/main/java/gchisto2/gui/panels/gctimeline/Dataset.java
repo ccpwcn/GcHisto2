@@ -23,8 +23,8 @@
  */
 package gchisto2.gui.panels.gctimeline;
 
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 import gchisto2.gctrace.GcTrace;
 import gchisto2.gctrace.GcTraceCheckpoint;
 import gchisto2.jfreechart.extensions.AbstractDatasetWithGroups;
@@ -77,7 +77,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * GC trace.
      * @return The GC activity set for a given series.
      */
-    private GCActivitySet gcActivitySet(int series) {
+    private GcActivitySet gcActivitySet(int series) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
 
         return gcTrace.get(series);
@@ -95,7 +95,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * @return The GC activity object for a given series and item
      * combination.
      */
-    private GCActivity gcActivity(int series, int item) {
+    private GcActivity gcActivity(int series, int item) {
         assert 0 <= series && series < checkpoint.gcTraceSize();
         assert 0 <= item && item < checkpoint.size(series);
 
@@ -466,7 +466,7 @@ public class Dataset extends AbstractDatasetWithGroups
 
     @Override
     public String generateToolTip(XYDataset dataset, int series, int item) {
-        GCActivity gcActivity = gcActivity(series, item);
+        GcActivity gcActivity = gcActivity(series, item);
         String gcActivityName = gcActivity.getName();
         double startSec = gcActivity.getStartSec();
         double durationSec = gcActivity.getDurationSec();
@@ -485,7 +485,7 @@ public class Dataset extends AbstractDatasetWithGroups
      * new dataset generator.
      */
     public Dataset(GcTrace gcTrace, GcTraceCheckpoint checkpoint, int metric) {
-        super(gcTrace.getGCActivityNamesArray());
+        super(gcTrace.getGcActivityNamesArray());
         
         this.gcTrace = gcTrace;
         this.checkpoint = checkpoint;

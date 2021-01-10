@@ -34,10 +34,10 @@ import java.util.ArrayList;
  * increase as new GC activity names are added to the map.
  *
  * @author Tony Printezis
- * @see    gchisto2.gctraceset.GCTrace
- * @see    gchisto2.gctraceset.GCTraceSet
+ * @see    GcTrace
+ * @see    GcTraceSet
  */
-public class GCActivityNames extends ArrayList<String> {
+public class GcActivityNames extends ArrayList<String> {
     
     /**
      * It returns an array that contains all the unique strings of the GC
@@ -58,7 +58,7 @@ public class GCActivityNames extends ArrayList<String> {
      * @param gcActivityNames The GC activity names that will be merged
      * with this map.
      */
-    public void merge(GCActivityNames gcActivityNames) {
+    public void merge(GcActivityNames gcActivityNames) {
         ArgumentChecking.notNull(gcActivityNames, "gcActivityNames");
         
         for (String activityName : gcActivityNames.getNames()) {

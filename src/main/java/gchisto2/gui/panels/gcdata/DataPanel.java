@@ -23,12 +23,12 @@
  */
 package gchisto2.gui.panels.gcdata;
 
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 import gchisto2.gctrace.GcTrace;
 import gchisto2.gctrace.GcTraceCheckpoint;
 import gchisto2.gctrace.RcWithGcTraceCheckpoint;
-import gchisto2.gctrace.GCTraceListener;
+import gchisto2.gctrace.GcTraceListener;
 import gchisto2.gctrace.RcWithGcTraceCheckpointCallback;
 import gchisto2.utils.Locker;
 import gchisto2.utils.Refresher;
@@ -40,13 +40,13 @@ import gchisto2.utils.errorchecking.ArgumentChecking;
  * @author  tony
  */
 public class DataPanel extends javax.swing.JPanel
-        implements GCTraceListener, RcWithGcTraceCheckpointCallback {
+        implements GcTraceListener, RcWithGcTraceCheckpointCallback {
 
     final private GcTrace gcTrace;
     final private Refresher refresher;
     final private Locker locker = new Locker();
 
-    String getString(GCActivity gcActivity) {
+    String getString(GcActivity gcActivity) {
         return String.format("%20s %12.4f %12.6f\n",
                 gcActivity.getName(),
                 gcActivity.getStartSec(),
@@ -54,10 +54,10 @@ public class DataPanel extends javax.swing.JPanel
     }
 
     private void updateTextArea(int from, int to) {
-        GCActivitySet allGCActivities = gcTrace.getAllGCActivities();
+        GcActivitySet allGcActivities = gcTrace.getAllGcActivities();
         StringBuilder strBuilder = new StringBuilder();
         for (int i = from; i < to; ++i) {
-            GCActivity gcActivity = allGCActivities.get(i);
+            GcActivity gcActivity = allGcActivities.get(i);
             String str = getString(gcActivity);
             strBuilder.append(str);
         }
@@ -78,8 +78,8 @@ public class DataPanel extends javax.swing.JPanel
     @Override
     public void gcActivityAdded(
             GcTrace gcTrace,
-            GCActivitySet gcActivitySet,
-            GCActivity gcActivity) {
+            GcActivitySet gcActivitySet,
+            GcActivity gcActivity) {
         assert gcTrace == this.gcTrace;
         possiblyRefresh();
     }

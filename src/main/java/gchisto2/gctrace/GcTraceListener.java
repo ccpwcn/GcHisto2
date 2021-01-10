@@ -23,20 +23,32 @@
  */
 package gchisto2.gctrace;
 
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 
-public interface GCTraceListener {
+/**
+ * GC跟踪信息监听器
+ */
+public interface GcTraceListener {
 
     /**
-     * TODO
+     * 按实例添加
+     * @param gcTrace 跟踪信息
+     * @param gcActivitySet 活动集
+     * @param gcActivity 实例
      */
-    public void gcActivityAdded(
+    void gcActivityAdded(
             GcTrace gcTrace,
-            GCActivitySet gcActivitySet,
-            GCActivity gcActivity);
+            GcActivitySet gcActivitySet,
+            GcActivity gcActivity);
 
-    public void gcActivityNameAdded(
+    /**
+     * 按名称添加
+     * @param gcTrace 跟踪信息
+     * @param id 序号
+     * @param gcActivityName 名称
+     */
+    void gcActivityNameAdded(
             GcTrace gcTrace,
             int id,
             String gcActivityName);

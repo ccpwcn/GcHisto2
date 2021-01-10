@@ -23,23 +23,23 @@
  */
 package gchisto2.gctrace;
 
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 import gchisto2.utils.ListenerSet;
 import gchisto2.utils.errorchecking.ArgumentChecking;
 
-public class GCTraceListenerSet extends ListenerSet<GCTraceListener> {
+public class GcTraceListenerSet extends ListenerSet<GcTraceListener> {
 
     /**
      * TODO
      */
     public void callGCActivityAdded(GcTrace gcTrace,
-                                    GCActivitySet gcActivitySet,
-                                    GCActivity gcActivity) {
+                                    GcActivitySet gcActivitySet,
+                                    GcActivity gcActivity) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         ArgumentChecking.notNull(gcActivitySet, "gcActivitySet");
 
-        for (GCTraceListener listener : listeners()) {
+        for (GcTraceListener listener : listeners()) {
             listener.gcActivityAdded(gcTrace, gcActivitySet, gcActivity);
         }
     }
@@ -51,7 +51,7 @@ public class GCTraceListenerSet extends ListenerSet<GCTraceListener> {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         ArgumentChecking.notNull(gcActivityName, "gcActivityName");
 
-        for (GCTraceListener listener : listeners()) {
+        for (GcTraceListener listener : listeners()) {
             listener.gcActivityNameAdded(gcTrace, id, gcActivityName);
         }
     }
@@ -59,6 +59,6 @@ public class GCTraceListenerSet extends ListenerSet<GCTraceListener> {
     /**
      * It creates a new GC trace listener set.
      */
-    public GCTraceListenerSet() {
+    public GcTraceListenerSet() {
     }
 }

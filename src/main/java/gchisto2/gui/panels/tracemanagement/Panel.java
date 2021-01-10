@@ -29,7 +29,7 @@ import gchisto2.gctracegenerator.GcTraceGeneratorForFiles;
 import gchisto2.gctracegenerator.GcTraceGeneratorListener;
 import gchisto2.gctracegenerator.GcTraceGeneratorSet;
 import gchisto2.gctrace.GcTraceSet;
-import gchisto2.gctrace.GCTraceSetListener;
+import gchisto2.gctrace.GcTraceSetListener;
 import gchisto2.gui.panels.TraceManagementPanel;
 import gchisto2.gui.utils.GUIUtilities;
 import gchisto2.utils.errorchecking.ArgumentChecking;
@@ -100,12 +100,12 @@ public class Panel extends javax.swing.JPanel
     /**
      * The GC trace set setListener of this panel.
      */
-    final private GCTraceSetListener setListener = new SetListener();
+    final private GcTraceSetListener setListener = new SetListener();
     
     /**
      * The GC trace set listener for this panel.
      */
-    private class SetListener implements GCTraceSetListener {
+    private class SetListener implements GcTraceSetListener {
         @Override
         public void gcTraceAdded(GcTrace gcTrace)     {
             callTableChanged();
@@ -224,7 +224,7 @@ public class Panel extends javax.swing.JPanel
          */
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            GcTrace gcTrace = gcTraceSet.findGCTrace(rowIndex);
+            GcTrace gcTrace = gcTraceSet.findGcTrace(rowIndex);
             switch (columnIndex) {
                 case 0:
                     return gcTrace.getName();
@@ -288,7 +288,7 @@ public class Panel extends javax.swing.JPanel
      * be selected.
      */
     private void setSelectedTrace(GcTrace gcTrace) {
-        int index = gcTraceSet.findGCTraceIndex(gcTrace.getName());
+        int index = gcTraceSet.findGcTraceIndex(gcTrace.getName());
         assert 0 <= index && index < gcTraceSet.size();
         
         setSelectedRow(index);
@@ -302,7 +302,7 @@ public class Panel extends javax.swing.JPanel
         if (selectedRowIndex != -1) {
             assert 0 <= selectedRowIndex && selectedRowIndex < gcTraceSet.size();
             
-            GcTrace gcTrace = gcTraceSet.findGCTrace(selectedRowIndex);
+            GcTrace gcTrace = gcTraceSet.findGcTrace(selectedRowIndex);
             updateTraceInfo(gcTrace);
         } else {
             updateTraceInfo(null);
@@ -346,7 +346,7 @@ public class Panel extends javax.swing.JPanel
         @Override
         public void finished(GcTrace gcTrace) {
             assert gcTrace != null;
-            gcTraceSet.addGCTrace(gcTrace);
+            gcTraceSet.addGcTrace(gcTrace);
         }
 
         @Override
@@ -387,7 +387,7 @@ public class Panel extends javax.swing.JPanel
         ArgumentChecking.withinBounds(index, 0, gcTraceSet.size() - 1, "index");
         ArgumentChecking.notNull(newName, "newName");
         
-        String traceName = gcTraceSet.findGCTrace(index).getName();
+        String traceName = gcTraceSet.findGcTrace(index).getName();
         gcTraceSet.rename(traceName, newName);
     }
     
@@ -399,7 +399,7 @@ public class Panel extends javax.swing.JPanel
         if (index > -1) {
             assert index < gcTraceSet.size();
             
-            GcTrace gcTrace = gcTraceSet.findGCTrace(index);
+            GcTrace gcTrace = gcTraceSet.findGcTrace(index);
             gcTraceSet.remove(gcTrace.getName());
             if (gcTraceSet.size() > 0) {
                 if (index < gcTraceSet.size()) {
@@ -420,7 +420,7 @@ public class Panel extends javax.swing.JPanel
         if (index > -1) {
             assert index < gcTraceSet.size();
             
-            GcTrace gcTrace = gcTraceSet.findGCTrace(index);
+            GcTrace gcTrace = gcTraceSet.findGcTrace(index);
             gcTraceSet.moveUp(gcTrace.getName());
         }
     }
@@ -433,7 +433,7 @@ public class Panel extends javax.swing.JPanel
         if (index > -1) {
             assert index < gcTraceSet.size();
             
-            GcTrace gcTrace = gcTraceSet.findGCTrace(index);
+            GcTrace gcTrace = gcTraceSet.findGcTrace(index);
             gcTraceSet.moveDown(gcTrace.getName());
         }
     }
@@ -459,7 +459,7 @@ public class Panel extends javax.swing.JPanel
     }
     
     @Override
-    public GCTraceSetListener getListener() {
+    public GcTraceSetListener getListener() {
         return setListener;
     }
     

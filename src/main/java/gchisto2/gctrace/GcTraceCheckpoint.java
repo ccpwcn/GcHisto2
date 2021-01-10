@@ -53,7 +53,7 @@ public class GcTraceCheckpoint {
             int size = gcTrace.get(i).size();
             checkpointedSizes.set(i, size);
         }
-        allSize = gcTrace.getAllGCActivities().size();
+        allSize = gcTrace.getAllGcActivities().size();
     }
 
     public int gcTraceSize() {
@@ -82,7 +82,7 @@ public class GcTraceCheckpoint {
                 return true;
             }
         }
-        if (allSize != gcTrace.getAllGCActivities().size()) {
+        if (allSize != gcTrace.getAllGcActivities().size()) {
             return true;
         }
         return false;

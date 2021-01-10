@@ -30,10 +30,10 @@ import gchisto2.utils.errorchecking.ArgumentChecking;
  * A set of GC trace set listeners.
  *
  * @author Tony Printezis
- * @see    gchisto2.gctraceset.GCTraceSet
- * @see    gchisto2.gctraceset.GCTraceSetListener
+ * @see    GcTraceSet
+ * @see    GcTraceSetListener
  */
-public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
+public class GcTraceSetListenerSet extends ListenerSet<GcTraceSetListener> {
     
     /**
      * It calls the <tt>gcTraceAdded()</tt> method on all the listeners in
@@ -42,12 +42,12 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
      * @param gcTrace The GC trace that has just been added to the GC
      * trace set.
      * 
-     * @see gchisto2.gctraceset.GCTraceSetListener#gcTraceAdded(GcTrace)
+     * @see GcTraceSetListener#gcTraceAdded(GcTrace)
      */
     public void callGCTraceAdded(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
-        for (GCTraceSetListener listener : listeners()) {
+        for (GcTraceSetListener listener : listeners()) {
             listener.gcTraceAdded(gcTrace);
         }
     }
@@ -64,7 +64,7 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
     public void callGCTraceRenamed(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
-        for (GCTraceSetListener listener : listeners()) {
+        for (GcTraceSetListener listener : listeners()) {
             listener.gcTraceRenamed(gcTrace);
         }
     }
@@ -81,7 +81,7 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
     public void callGCTraceRemoved(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
-        for (GCTraceSetListener listener : listeners()) {
+        for (GcTraceSetListener listener : listeners()) {
             listener.gcTraceRemoved(gcTrace);
         }
     }
@@ -98,7 +98,7 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
     public void callGCTraceMovedUp(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
-        for (GCTraceSetListener listener : listeners()) {
+        for (GcTraceSetListener listener : listeners()) {
             listener.gcTraceMovedUp(gcTrace);
         }
     }
@@ -115,7 +115,7 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
     public void callGCTraceMovedDown(GcTrace gcTrace) {
         ArgumentChecking.notNull(gcTrace, "gcTrace");
         
-        for (GCTraceSetListener listener : listeners()) {
+        for (GcTraceSetListener listener : listeners()) {
             listener.gcTraceMovedDown(gcTrace);
         }
     }
@@ -123,7 +123,7 @@ public class GCTraceSetListenerSet extends ListenerSet<GCTraceSetListener> {
     /**
      * It creates a new GC trace set listener set.
      */
-    public GCTraceSetListenerSet() {
+    public GcTraceSetListenerSet() {
     }
     
 }

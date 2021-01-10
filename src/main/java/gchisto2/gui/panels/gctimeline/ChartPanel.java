@@ -24,11 +24,11 @@
 package gchisto2.gui.panels.gctimeline;
 
 import gchisto2.jfreechart.extensions.ChartLocker;
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 import gchisto2.gctrace.GcTrace;
 import gchisto2.gctrace.GcTraceCheckpoint;
-import gchisto2.gctrace.GCTraceListener;
+import gchisto2.gctrace.GcTraceListener;
 import gchisto2.gctrace.RcWithGcTraceCheckpoint;
 import gchisto2.gctrace.RcWithGcTraceCheckpointCallback;
 import gchisto2.gui.utils.AbstractChartPanel;
@@ -51,7 +51,7 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
  * @author Tony Printezis
  */
 public class ChartPanel extends AbstractChartPanel
-        implements GCTraceListener, RcWithGcTraceCheckpointCallback {
+        implements GcTraceListener, RcWithGcTraceCheckpointCallback {
 
     final private Dataset dataset;
     final private Refresher refresher;
@@ -101,8 +101,8 @@ public class ChartPanel extends AbstractChartPanel
     @Override
     public void gcActivityAdded(
             GcTrace gcTrace,
-            GCActivitySet gcActivitySet,
-            GCActivity gcActivity) {
+            GcActivitySet gcActivitySet,
+            GcActivity gcActivity) {
         possiblyRefresh();
     }
 
@@ -111,14 +111,10 @@ public class ChartPanel extends AbstractChartPanel
             final GcTrace gcTrace,
             final int id,
             final String gcActivityName) {
-        locker.doWhileLocked(new Runnable() {
-
-            @Override
-            public void run() {
-                dataset.addGroup(id, gcActivityName);
-                groupActivatingTable.groupAdded();
-                checkpoint.extend(id);
-            }
+        locker.doWhileLocked(() -> {
+            dataset.addGroup(id, gcActivityName);
+            groupActivatingTable.groupAdded();
+            checkpoint.extend(id);
         });
         possiblyRefresh();
     }

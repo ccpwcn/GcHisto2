@@ -24,7 +24,7 @@
 package gchisto2.gui.panels;
 
 import gchisto2.gctrace.GcTraceSet;
-import gchisto2.gctrace.GCTraceSetListener;
+import gchisto2.gctrace.GcTraceSetListener;
 import javax.swing.JPanel;
 
 /**
@@ -57,7 +57,7 @@ public interface VisualizationPanel {
      *
      * @return The GC trace set listener associated with this panel.
      */
-    GCTraceSetListener getListener();
+    GcTraceSetListener getListener();
     
     /**
      * It installs the GC trace set of the application in the panel.

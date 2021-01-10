@@ -23,12 +23,12 @@
  */
 package gchisto2.gui.panels.gcstats;
 
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 import gchisto2.gctrace.GcTrace;
-import gchisto2.gctrace.GCTraceListener;
+import gchisto2.gctrace.GcTraceListener;
 import gchisto2.gctrace.GcTraceSet;
-import gchisto2.gctrace.GCTraceSetListener;
+import gchisto2.gctrace.GcTraceSetListener;
 import gchisto2.gui.panels.VisualizationPanel;
 import gchisto2.jfreechart.extensions.ChangingCategoryDatasetWithTTG;
 import gchisto2.jfreechart.extensions.ChangingPieDatasetWithTTG;
@@ -44,7 +44,7 @@ import javax.swing.JPanel;
  * @author Tony Printezis
  */
 public class Panel extends javax.swing.JPanel
-        implements VisualizationPanel, GCTraceSetListener, GCTraceListener {
+        implements VisualizationPanel, GcTraceSetListener, GcTraceListener {
 
     /**
      * The prefix string that will be added to the title of all the tabbed panes,
@@ -192,8 +192,8 @@ public class Panel extends javax.swing.JPanel
     @Override
     public void gcActivityAdded(
             GcTrace gcTrace,
-            GCActivitySet gcActivitySet,
-            GCActivity gcActivity) {
+            GcActivitySet gcActivitySet,
+            GcActivity gcActivity) {
         refresh();
     }
 
@@ -274,7 +274,7 @@ public class Panel extends javax.swing.JPanel
     }
 
     @Override
-    public GCTraceSetListener getListener() {
+    public GcTraceSetListener getListener() {
         return this;
     }
 

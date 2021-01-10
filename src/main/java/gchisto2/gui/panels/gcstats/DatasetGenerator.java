@@ -23,8 +23,8 @@
  */
 package gchisto2.gui.panels.gcstats;
 
-import gchisto2.gcactivity.GCActivitySet;
-import gchisto2.gctrace.GCActivityNames;
+import gchisto2.gcactivity.GcActivitySet;
+import gchisto2.gctrace.GcActivityNames;
 import gchisto2.gctrace.GcTrace;
 import gchisto2.gctrace.GcTraceSet;
 import gchisto2.jfreechart.extensions.AbstractChangingDataset;
@@ -450,8 +450,8 @@ public class DatasetGenerator {
 
     synchronized void checkpoint() {
         gcTraceNum = gcTraceSet.size();
-        GCActivityNames allGCActivityNames = gcTraceSet.getAllGCActivityNames();
-        gcActivityNum = allGCActivityNames.size();
+        GcActivityNames allGcActivityNames = gcTraceSet.getAllGcActivityNames();
+        gcActivityNum = allGcActivityNames.size();
     }
 
     public void update() {
@@ -466,13 +466,13 @@ public class DatasetGenerator {
         }
 
         // the number of columns
-        GCActivityNames allGCActivityNames = gcTraceSet.getAllGCActivityNames();
+        GcActivityNames allGcActivityNames = gcTraceSet.getAllGcActivityNames();
         // +1 for the aggregate name
         gcActivityNames = new ArrayList<String>(1 + gcActivityNum);
         gcActivityNamesMinusAggregate = new ArrayList<String>(gcActivityNum);
         gcActivityNames.add(AGGREGATE_GC_ACTIVITY_NAME);
         for (int i = 0; i < gcActivityNum; ++i) {
-            String gcActivityName = allGCActivityNames.get(i);
+            String gcActivityName = allGcActivityNames.get(i);
             gcActivityNames.add(gcActivityName);
             gcActivityNamesMinusAggregate.add(gcActivityName);
         }
@@ -491,11 +491,11 @@ public class DatasetGenerator {
 
             GcTrace gcTrace = gcTraceSet.get(i);
             rowSeq[AGGREGATE_GC_ACTIVITY_INDEX] =
-                    gcTrace.getAllGCActivities().getNumberSeq();
+                    gcTrace.getAllGcActivities().getNumberSeq();
 
-            for (GCActivitySet gcActivitySet : gcTrace) {
+            for (GcActivitySet gcActivitySet : gcTrace) {
                 String gcActivityName = gcActivitySet.getGCActivityName();
-                int index = allGCActivityNames.indexOf(gcActivityName);
+                int index = allGcActivityNames.indexOf(gcActivityName);
                 assert index != -1;
                 rowSeq[FIRST_GC_ACTIVITY_INDEX + index] = gcActivitySet.getNumberSeq();
             }

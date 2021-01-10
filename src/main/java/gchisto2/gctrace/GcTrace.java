@@ -23,8 +23,8 @@
  */
 package gchisto2.gctrace;
 
-import gchisto2.gcactivity.GCActivity;
-import gchisto2.gcactivity.GCActivitySet;
+import gchisto2.gcactivity.GcActivity;
+import gchisto2.gcactivity.GcActivitySet;
 import gchisto2.utils.errorchecking.ArgumentChecking;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +42,7 @@ import java.util.Date;
  * @see    gchisto2.gctraceset.GCActivityNames
  * @see    gchisto2.gctraceset.GCTraceSet
  */
-public abstract class GcTrace extends ArrayList<GCActivitySet> {
+public abstract class GcTrace extends ArrayList<GcActivitySet> {
 
     /**
      * The name that is associated with this GC trace. This is unique across
@@ -65,13 +65,13 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
     /**
      * A map of the GC activity names that appear in this GC trace.
      */
-    final private GCActivityNames gcActivityNames = new GCActivityNames();
+    final private GcActivityNames gcActivityNames = new GcActivityNames();
     /**
      * TODO
      */
-    final private GCTraceListenerSet listeners = new GCTraceListenerSet();
+    final private GcTraceListenerSet listeners = new GcTraceListenerSet();
     final private Object hashCodeObject = new Object();
-    final private GCActivitySet allGCActivities = new GCActivitySet("All");
+    final private GcActivitySet allGCActivities = new GcActivitySet("All");
     private double lastTimeStampSec;
 
     /**
@@ -132,11 +132,11 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
      *
      * @return A map of the GC activity names that appear in this GC trace.
      */
-    public GCActivityNames getGCActivityNames() {
+    public GcActivityNames getGcActivityNames() {
         return gcActivityNames;
     }
 
-    public GCActivitySet getAllGCActivities() {
+    public GcActivitySet getAllGcActivities() {
         return allGCActivities;
     }
 
@@ -151,7 +151,7 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
      * @return An array containing the GC activity names that appear in this
      * GC trace.
      */
-    public String[] getGCActivityNamesArray() {
+    public String[] getGcActivityNamesArray() {
         return gcActivityNames.getNames();
     }
 
@@ -161,7 +161,7 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
      * @param name The new name of this GC trace.
      *
      * @see #getName()
-     * @see gchisto2.gctraceset.GCTraceSet#createUniqueGCTraceName(File)
+     * @see gchisto2/gctrace/GcTraceSet.java:79(File)
      */
     public void setName(String name) {
         ArgumentChecking.notNull(name, "name");
@@ -204,7 +204,7 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
 
         String gcActivityName = gcActivityNames.get(id);
         addGCActivity(id,
-                new GCActivity(gcActivityName, startSec, durationSec));
+                new GcActivity(gcActivityName, startSec, durationSec));
     }
 
     /**
@@ -229,7 +229,7 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
         ArgumentChecking.withinBounds(id, 0, size() - 1, "id");
 
         String gcActivityName = gcActivityNames.get(id);
-        addGCActivity(id, new GCActivity(
+        addGCActivity(id, new GcActivity(
                 gcActivityName,
                 startSec, durationSec,
                 overheadPerc));
@@ -244,12 +244,12 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
      */
     synchronized private void addGCActivity(
             int id,
-            GCActivity gcActivity) {
+            GcActivity gcActivity) {
         assert 0 <= id && id < size();
         assert 0 <= id && id < gcActivityNames.size();
         assert gcActivityNames.get(id).equals(gcActivity.getName());
 
-        GCActivitySet gcActivitySet = get(id);
+        GcActivitySet gcActivitySet = get(id);
         gcActivitySet.addGCActivity(gcActivity);
         allGCActivities.addGCActivity(gcActivity);
         lastTimeStampSec = gcActivity.getEndSec();
@@ -263,7 +263,7 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
         assert gcActivityNames.size() == id + 1;
 
         assert size() == id;
-        GCActivitySet gcActivitySet = new GCActivitySet(gcActivityName);
+        GcActivitySet gcActivitySet = new GcActivitySet(gcActivityName);
         add(id, gcActivitySet);
         assert size() == id + 1;
 
@@ -273,7 +273,7 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
     /**
      * TODO
      */
-    synchronized public void addListener(GCTraceListener listener) {
+    synchronized public void addListener(GcTraceListener listener) {
         ArgumentChecking.notNull(listener, "listener");
 
         listeners.add(listener);
@@ -282,7 +282,7 @@ public abstract class GcTrace extends ArrayList<GCActivitySet> {
     /**
      * TODO
      */
-    synchronized public void removeListener(GCTraceListener listener) {
+    synchronized public void removeListener(GcTraceListener listener) {
         ArgumentChecking.notNull(listener, "listener");
 
         listeners.remove(listener);

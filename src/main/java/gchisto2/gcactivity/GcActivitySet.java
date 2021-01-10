@@ -38,11 +38,11 @@ import java.util.ArrayList;
  * collections.
  *
  * @author Tony Printezis
- * @see    gchisto2.gcactivityset.GCActivity
- * @see    gchisto2.gcactivityset.GCActivitySetListener
+ * @see    GcActivity
+ * @see    GcActivity
  * @see    java.util.ArrayList
  */
-public class GCActivitySet extends ArrayList<GCActivity> {
+public class GcActivitySet extends ArrayList<GcActivity> {
     
     /**
      * The name of the GC activities in the set. This name is the "kind"
@@ -60,7 +60,7 @@ public class GCActivitySet extends ArrayList<GCActivity> {
      *
      * @param gcActivity The GC activity to be added to the set.
      */
-    public void addGCActivity(GCActivity gcActivity) {
+    public void addGCActivity(GcActivity gcActivity) {
         assert gcActivity != null;
         
         add(gcActivity);
@@ -94,7 +94,7 @@ public class GCActivitySet extends ArrayList<GCActivity> {
      * @param gcActivityName The name of the GC activites in the set. This
      * name is the "kind" of the GC activities in the set.
      */
-    public GCActivitySet(String gcActivityName) {
+    public GcActivitySet(String gcActivityName) {
         this.gcActivityName = gcActivityName;
     }
     
