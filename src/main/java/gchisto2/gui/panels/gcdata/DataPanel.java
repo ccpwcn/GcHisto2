@@ -66,8 +66,8 @@ public class DataPanel extends javax.swing.JPanel
 
     @Override
     public void refresh(GcTraceCheckpoint checkpoint) {
-        int from = checkpoint.prevAllGCActivitiesSize();
-        int to = checkpoint.allGCActivitiesSize();
+        int from = checkpoint.prevAllGcActivitiesSize();
+        int to = checkpoint.allGcActivitiesSize();
         updateTextArea(from, to);
     }
 

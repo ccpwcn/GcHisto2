@@ -53,7 +53,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
             double def, double min, double max) {
         double value = def;
         String text = textField.getText();
-        if (!text.equals("") && !text.equals(" ")) {
+        if (!"".equals(text) && !" ".equals(text)) {
             try {
                 value = Double.parseDouble(text);
                 if (value < min) {
@@ -73,7 +73,7 @@ public class PlaybackFrame extends javax.swing.JFrame {
             int def, int min, int max) {
         int value = def;
         String text = textField.getText();
-        if (!text.equals("") && !text.equals(" ")) {
+        if (!"".equals(text) && !" ".equals(text)) {
             try {
                 value = Integer.parseInt(text);
                 if (value < min) {

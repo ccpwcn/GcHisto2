@@ -114,87 +114,87 @@ public class GCParserDriver
 
 			String s = argv[i];
 			if (s == null) { /* empty */ }
-			else if (s.equals("-c") ||
-				s.equals("--compare") ||
-				s.equals("--comparestats"))
+			else if ("-c".equals(s) ||
+				"--compare".equals(s) ||
+				"--comparestats".equals(s))
 			{
 				_actions.set(COMPARE_STATISTICS);
 			}
 			else if (i + 1 < n &&
-				(s.equals("-d") ||
-				s.equals("--disable") ||
-				s.equals("--disablemetrics")))
+				("-d".equals(s) ||
+				"--disable".equals(s) ||
+				"--disablemetrics".equals(s)))
 			{
 				enable_list = argv[++i];
 				enable_value = false;
 			}
 			else if (i + 1 < n &&
-				(s.equals("-e") ||
-				s.equals("--enable") ||
-				s.equals("--enablemetrics")))
+				("-e".equals(s) ||
+				"--enable".equals(s) ||
+				"--enablemetrics".equals(s)))
 			{
 				enable_list = argv[++i];
 				enable_value = true;
 			}
-			else if (s.equals("-h") ||
-				s.equals("--help"))
+			else if ("-h".equals(s) ||
+				"--help".equals(s))
 			{
 				help(System.out);
 				System.exit(0);
 			}
-			else if (s.equals("-l") ||
-				s.equals("--list") ||
-				s.equals("--listmetrics"))
+			else if ("-l".equals(s) ||
+				"--list".equals(s) ||
+				"--listmetrics".equals(s))
 			{
 				list_metrics(System.out);
 				System.exit(0);
 			}
-			else if (i + 1 < n && (s.equals("-n") ||
-				s.equals("--cpu") ||
-				s.equals("--cpucount")))
+			else if (i + 1 < n && ("-n".equals(s) ||
+				"--cpu".equals(s) ||
+				"--cpucount".equals(s)))
 			{
 				_cpu_count = Integer.parseInt(argv[++i]);
 			}
-			else if (s.equals("-p") ||
-				s.equals("--print") ||
-				s.equals("--printstats"))
+			else if ("-p".equals(s) ||
+				"--print".equals(s) ||
+				"--printstats".equals(s))
 			{
 				_actions.set(PRINT_STATISTICS);
 			}
-			else if (i + 1 < n && (s.equals("-o") ||
-				s.equals("--ofile") ||
-				s.equals("--outputfilepattern")))
+			else if (i + 1 < n && ("-o".equals(s) ||
+				"--ofile".equals(s) ||
+				"--outputfilepattern".equals(s)))
 			{
 				parse_output_file_pattern(argv[++i]);
 				// This option implies -s.
 				_actions.set(COLLECT_DATA);
 				_actions.set(SAVE_DATA);
 			}
-			else if (s.equals("-s") ||
-				s.equals("--save") ||
-				s.equals("--savedata"))
+			else if ("-s".equals(s) ||
+				"--save".equals(s) ||
+				"--savedata".equals(s))
 			{
 				_actions.set(COLLECT_DATA);
 				_actions.set(SAVE_DATA);
 			}
-			else if (s.equals("-t") || s.equals("--terse"))
+			else if ("-t".equals(s) || "--terse".equals(s))
 			{
 				_actions.set(TERSE);
 			}
-			else if (s.equals("-v") || s.equals("--verbose"))
+			else if ("-v".equals(s) || "--verbose".equals(s))
 			{
 				_actions.set(VERBOSE);
 				verbose = true;
 			}
-			else if (s.equals("-z") || s.equals("--time-zero"))
+			else if ("-z".equals(s) || "--time-zero".equals(s))
 			{
 				_has_time_zero = true;
 			}
-			else if (s.equals("+z") || s.equals("--no-time-zero"))
+			else if ("+z".equals(s) || "--no-time-zero".equals(s))
 			{
 				_has_time_zero = false;
 			}
-			else if (s.equals("--"))
+			else if ("--".equals(s))
 			{
 				/* empty */
 				matched = false;

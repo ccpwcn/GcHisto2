@@ -42,6 +42,8 @@ public class ChartLocker extends Locker implements ChartProgressListener {
             case ChartProgressEvent.DRAWING_FINISHED:
                 unlock();
                 break;
+            default:
+                break;
         }
     }
 }

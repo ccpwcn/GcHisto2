@@ -58,7 +58,7 @@ public class MetricChartPanel extends GCStatsChartPanel {
         chart.addProgressListener(locker);
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         CategoryItemRenderer renderer = plot.getRenderer();
-        renderer.setToolTipGenerator(dataset);
+        renderer.setBaseToolTipGenerator(dataset);
         
         mainPanel().add(BorderLayout.CENTER, new ChartPanel(chart));
     }

@@ -100,7 +100,7 @@ public class GCLogFileReader
 
     private void ensureGCActivityAdded(GcTrace gcTrace, String name) {
         if (!gcActivityNames.contains(name)) {
-            if (name.equals("Remark")) {
+            if ("Remark".equals(name)) {
                 ensureGCActivityAdded(gcTrace, "InitialMark");
             }
             
