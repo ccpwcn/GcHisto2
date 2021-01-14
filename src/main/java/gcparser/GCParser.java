@@ -319,7 +319,7 @@ public abstract class GCParser
 	protected void add_ts(GCMetric metric, double beg, double end)
 	{
 		vtrace(metric.toString() + ".beg:" + beg);
-		gcstats().add_timestamp(metric, beg, end);
+		gcstats().addTimestamp(metric, beg, end);
 	}
 
 // 	protected void add_ts(GCMetric metric, Matcher m, int group)

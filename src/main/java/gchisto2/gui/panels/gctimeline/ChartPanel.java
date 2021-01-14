@@ -71,7 +71,7 @@ public class ChartPanel extends AbstractChartPanel
         chart.addProgressListener(locker);
         XYPlot plot = (XYPlot) chart.getPlot();
         XYItemRenderer renderer = plot.getRenderer();
-        renderer.setToolTipGenerator(dataset);
+        renderer.setBaseToolTipGenerator(dataset);
 
         groupActivatingTable = new GroupActivatingPanel(dataset, locker);
 

@@ -128,16 +128,16 @@ public class CMSGCParser extends GCParser {
         GCMetric active_metric = null;
         GCMetric elapsed_metric = null;
         String phase = m.group(_cms_concurrent_phase_name_grp);
-        if (phase.equals("mark")) {
+        if ("mark".equals(phase)) {
             active_metric = GCMetric.cms_cm_a_time;
             elapsed_metric = GCMetric.cms_cm_e_time;
         } else if (phase.indexOf("preclean") >= 0) {
             active_metric = GCMetric.cms_cp_a_time;
             elapsed_metric = GCMetric.cms_cp_e_time;
-        } else if (phase.equals("sweep")) {
+        } else if ("sweep".equals(phase)) {
             active_metric = GCMetric.cms_cs_a_time;
             elapsed_metric = GCMetric.cms_cs_e_time;
-        } else if (phase.equals("reset")) {
+        } else if ("reset".equals(phase)) {
             is_reset = true;
             active_metric = GCMetric.cms_cr_a_time;
             elapsed_metric = GCMetric.cms_cr_e_time;

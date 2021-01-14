@@ -32,10 +32,10 @@ import java.util.List;
  */
 public class GcTraceCheckpoint {
 
-    private GcTrace gcTrace;
+    private final GcTrace gcTrace;
     private int gcTraceSize;
-    private List<Integer> prevCheckpointedSizes = new ArrayList<Integer>();
-    private List<Integer> checkpointedSizes = new ArrayList<Integer>();
+    private final List<Integer> prevCheckpointedSizes = new ArrayList<>();
+    private final List<Integer> checkpointedSizes = new ArrayList<>();
     private int prevAllSize;
     private int allSize;
 
@@ -68,11 +68,11 @@ public class GcTraceCheckpoint {
         return checkpointedSizes.get(index);
     }
 
-    public int prevAllGCActivitiesSize() {
+    public int prevAllGcActivitiesSize() {
         return prevAllSize;
     }
 
-    public int allGCActivitiesSize() {
+    public int allGcActivitiesSize() {
         return allSize;
     }
 
@@ -82,33 +82,30 @@ public class GcTraceCheckpoint {
                 return true;
             }
         }
-        if (allSize != gcTrace.getAllGcActivities().size()) {
-            return true;
-        }
-        return false;
+        return allSize != gcTrace.getAllGcActivities().size();
     }
 
     public void extend(int id) {
         assert id == gcTraceSize;
-        int newGCTraceSize = gcTraceSize + 1;
-        assert prevCheckpointedSizes.size() == newGCTraceSize - 1;
-        assert checkpointedSizes.size() == newGCTraceSize - 1;
+        int newGcTraceSize = gcTraceSize + 1;
+        assert prevCheckpointedSizes.size() == newGcTraceSize - 1;
+        assert checkpointedSizes.size() == newGcTraceSize - 1;
         prevCheckpointedSizes.add(id, 0);
         checkpointedSizes.add(id, 0);
-        assert prevCheckpointedSizes.size() == newGCTraceSize;
-        assert checkpointedSizes.size() == newGCTraceSize;
-        gcTraceSize = newGCTraceSize;
+        assert prevCheckpointedSizes.size() == newGcTraceSize;
+        assert checkpointedSizes.size() == newGcTraceSize;
+        gcTraceSize = newGcTraceSize;
     }
 
     private void extendSizes() {
         assert gcTraceSize == 0;
         
-        int newGCTraceSize = gcTrace.size();
-        for (int i = 0; i < newGCTraceSize; ++i) {
+        int newGcTraceSize = gcTrace.size();
+        for (int i = 0; i < newGcTraceSize; ++i) {
             extend(i);
         }
         
-        assert gcTraceSize == newGCTraceSize;
+        assert gcTraceSize == newGcTraceSize;
     }
 
     public GcTraceCheckpoint(GcTrace gcTrace) {
