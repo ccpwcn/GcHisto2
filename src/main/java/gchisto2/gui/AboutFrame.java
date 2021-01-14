@@ -26,6 +26,7 @@ package gchisto2.gui;
 import gchisto2.utils.Copyright;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author Tony Printezis
@@ -74,7 +75,7 @@ public class AboutFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
 
-        titleLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
+        titleLabel.setFont(new java.awt.Font("DejaVu Sans", Font.BOLD, 13));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("GC Histogram Tool 2 (Gchisto2)");
 
@@ -84,12 +85,7 @@ public class AboutFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(textArea);
 
         closeButton.setText("Close");
-        closeButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeButtonActionPerformed(evt);
-            }
-        });
+        closeButton.addActionListener(this::closeButtonActionPerformed);
         jPanel2.add(closeButton);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,10 +114,14 @@ public class AboutFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-        // TODO add your handling code here:
+    /**
+     * GEN-FIRST:event_closeButtonActionPerformed
+     * @param evt 点击事件对象
+     */
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         setVisible(false);
-    }//GEN-LAST:event_closeButtonActionPerformed
+    }
+    //GEN-LAST:event_closeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;

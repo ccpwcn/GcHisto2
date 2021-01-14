@@ -37,13 +37,13 @@ public class AbstractDatasetWithGroups extends AbstractChangingDataset
      * A list that contains the names of all the GC activites in all the
      * loaded traces, as well as the aggregate GC activity.
      */
-    final private List<String> groupNames = new ArrayList<String>();
+    final private List<String> groupNames = new ArrayList<>();
     /**
      * An array with one entry per GC activity in the GC trace that
      * dictates whether that GC activity is groupActive (i.e., whether
      * it will be displayed in the chart).
      */
-    final private List<Boolean> groupActive = new ArrayList<Boolean>();
+    final private List<Boolean> groupActive = new ArrayList<>();
     
     private int groupNum;
 
