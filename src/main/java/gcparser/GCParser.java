@@ -92,10 +92,10 @@ public abstract class GCParser
 	public static final int gc_time_ms_re_groups = 
 		gc_time_re_groups + 1;
 
-	public static final String timestamp_re =
+	public static final String TIMESTAMP_RE =
 		"(" + gc_time_re + ": *)?";
-	public static final int timestamp_re_time_group = 2;
-	public static final int timestamp_re_groups =
+	public static final int TIMESTAMP_RE_TIME_GROUP = 2;
+	public static final int TIMESTAMP_RE_GROUPS =
 		gc_time_re_groups + 1;
 
 	public static final String timestamp_range_re =

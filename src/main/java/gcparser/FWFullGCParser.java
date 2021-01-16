@@ -87,16 +87,16 @@ public class FWFullGCParser extends GCParser
 	// 2.228: [Full GC 2.228: [Tenured: 348940K->348940K(349568K), 0.1496737 secs] 488012K->488005K(506816K), [Perm: 1653K->1653K(16384K)], 0.1497941 secs]
 
 	private static Pattern _pattern = Pattern.compile(
-		timestamp_re + full_gc_re +
-		timestamp_re + "\\[" + fw_old_gen_re + ": " +
+		TIMESTAMP_RE + full_gc_re +
+				TIMESTAMP_RE + "\\[" + fw_old_gen_re + ": " +
 		heap_report_re + "\\] " +
 		heap_size_status_re + ", \\[" + fw_perm_gen_re + ": " +
 		heap_size_status_re + "\\], " + gc_time_secs_re + "\\]");
 
-	private static final int timestamp_grp = timestamp_re_time_group;
+	private static final int timestamp_grp = TIMESTAMP_RE_TIME_GROUP;
 
 	private static final int og_heap_report_grp =
-		timestamp_re_groups + full_gc_re_groups + timestamp_re_groups +
+		TIMESTAMP_RE_GROUPS + full_gc_re_groups + TIMESTAMP_RE_GROUPS +
 		fw_old_gen_re_groups;
 	private static final int og_used_beg_grp =
 		og_heap_report_grp + heap_report_re_size_beg_group;

@@ -51,7 +51,7 @@ public class ParCompactPhaseGCParser extends GCParser
 				double len = Double.parseDouble(str);
 				add_dp(_metrics[i], len);
 
-				double ts = get_ts(m, timestamp_re_time_group);
+				double ts = get_ts(m, TIMESTAMP_RE_TIME_GROUP);
 				add_ts(_metrics[i], ts, ts + len);
 
 				return true;
@@ -74,7 +74,7 @@ public class ParCompactPhaseGCParser extends GCParser
 
 	private static Pattern phase_pattern(String phase_name_re)
 	{
-		return Pattern.compile(timestamp_re + "\\[" + phase_name_re +
+		return Pattern.compile(TIMESTAMP_RE + "\\[" + phase_name_re +
 				" *[,:] *" + gc_time_secs_re + "\\]");
 	}
 

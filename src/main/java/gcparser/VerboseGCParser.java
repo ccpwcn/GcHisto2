@@ -115,19 +115,19 @@ public class VerboseGCParser extends GCParser
 	}
 
 	private static Pattern _ygc_pattern = Pattern.compile(
-		timestamp_re + pargc_young_gc_re + heap_size_status_re + ", " + 
+		TIMESTAMP_RE + pargc_young_gc_re + heap_size_status_re + ", " +
 		gc_time_secs_re + "\\]");
 
 	private static Pattern _fgc_pattern = Pattern.compile(
-		timestamp_re + "\\[Full GC " + heap_size_status_re + ", " + 
+		TIMESTAMP_RE + "\\[Full GC " + heap_size_status_re + ", " +
 		gc_time_secs_re + "\\]");
 
-	private static final int timestamp_grp = timestamp_re_time_group;
+	private static final int timestamp_grp = TIMESTAMP_RE_TIME_GROUP;
 
 	private static final int ygc_base_grp = 
-		timestamp_re_groups + pargc_young_gc_re_groups;
+		TIMESTAMP_RE_GROUPS + pargc_young_gc_re_groups;
 	private static final int fgc_base_grp =
-		timestamp_re_groups;
+			TIMESTAMP_RE_GROUPS;
 
 	// These are offsets from one of the above base group numbers.
 	private static final int th_used_beg_ofs =

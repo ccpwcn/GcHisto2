@@ -31,7 +31,7 @@ public enum GCMetric
 	/* gc pauses */
 	ygc_time	(1),
 	fgc_time	(1),
-	cms_im_time	(1),
+	CMS_IM_TIME(1),
 	cms_rm_time	(1),
 	tgc_time	(1),
 

@@ -171,8 +171,8 @@ public class GcLogFileReader implements gchisto2.gctracegenerator.file.GCLogFile
             ArrayList<Double> ygData = gcData.data(GCMetric.ygc_time);
             MetricData youngGcData = new MetricData("Young GC", ygTimes, ygData);
 
-            ArrayList<Double> imTimes = gcData.time(GCMetric.cms_im_time);
-            ArrayList<Double> imData = gcData.data(GCMetric.cms_im_time);
+            ArrayList<Double> imTimes = gcData.time(GCMetric.CMS_IM_TIME);
+            ArrayList<Double> imData = gcData.data(GCMetric.CMS_IM_TIME);
             MetricData initialMarkData = new MetricData("Initial Mark", imTimes, imData);
 
             ArrayList<Double> rmTimes = gcData.time(GCMetric.cms_rm_time);
