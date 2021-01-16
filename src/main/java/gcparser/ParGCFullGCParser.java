@@ -75,7 +75,7 @@ public class ParGCFullGCParser extends GCParser
 	}
 
 	private static Pattern _pattern = Pattern.compile(
-		timestamp_re + full_gc_re +
+		TIMESTAMP_RE + full_gc_re +
 		"\\[" + pargc_young_gen_name_re + ": +" +
 		heap_size_status_re + "\\] " +
 		"\\[" + pargc_old_gen_name_re + ": +" +
@@ -85,10 +85,10 @@ public class ParGCFullGCParser extends GCParser
 		heap_size_status_re + "\\], " + 
 		gc_time_secs_re + "\\]");
 
-	private static final int timestamp_grp = timestamp_re_time_group;
+	private static final int timestamp_grp = TIMESTAMP_RE_TIME_GROUP;
 
 	private static final int yg_used_beg_grp =
-		timestamp_re_groups + full_gc_re_groups +
+		TIMESTAMP_RE_GROUPS + full_gc_re_groups +
 		pargc_young_gen_name_re_groups + 1;
 	private static final int yg_used_end_grp =
 		yg_used_beg_grp + heap_size_re_groups;

@@ -71,14 +71,14 @@ public class FWYoungGCParser extends GCParser
 
 	// 0.246: [GC 0.246: [DefNew: 1403K->105K(1984K), 0.0109275 secs] 1403K->1277K(6080K), 0.0110143 secs]
 	private static Pattern _pattern = Pattern.compile(
-		timestamp_re + "\\[GC " + timestamp_re + "\\[" +
+		TIMESTAMP_RE + "\\[GC " + TIMESTAMP_RE + "\\[" +
 		fw_young_gen_re + ": " + heap_report_re + "\\] " +
 		heap_report_re + "\\]");
 
-	private static final int timestamp_grp = timestamp_re_time_group;
+	private static final int timestamp_grp = TIMESTAMP_RE_TIME_GROUP;
 
 	private static final int yg_used_beg_grp =
-		timestamp_re_groups * 2 + fw_young_gen_re_groups + 1;
+		TIMESTAMP_RE_GROUPS * 2 + fw_young_gen_re_groups + 1;
 	private static final int yg_used_end_grp =
 		yg_used_beg_grp + heap_size_re_groups;
 	private static final int yg_commit_end_grp =

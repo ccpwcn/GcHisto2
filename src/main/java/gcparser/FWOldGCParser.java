@@ -85,16 +85,16 @@ public class FWOldGCParser extends GCParser
 	// 1.610: [GC 1.610: [DefNew (promotion failed): 139074K->139074K(157248K), 0.3963535 secs]2.007: [Tenured: 348940K->348940K(349568K), 0.0460584 secs] 366919K->366909K(506816K), 0.4425853 secs]
 
 	private static Pattern _pattern = Pattern.compile(
-		timestamp_re + "\\[GC " +
-		timestamp_re + "\\[" + fw_young_gen_re + ": " +
+		TIMESTAMP_RE + "\\[GC " +
+				TIMESTAMP_RE + "\\[" + fw_young_gen_re + ": " +
 		heap_report_re + "\\] ?" +
-		timestamp_re + "\\[" + fw_old_gen_re + ": " +
+				TIMESTAMP_RE + "\\[" + fw_old_gen_re + ": " +
 		heap_report_re + "\\] " + heap_report_re + "\\]");
 
-	private static final int timestamp_grp = timestamp_re_time_group;
+	private static final int timestamp_grp = TIMESTAMP_RE_TIME_GROUP;
 
 	private static final int yg_heap_report_grp =
-		timestamp_re_groups * 2 + fw_young_gen_re_groups;
+		TIMESTAMP_RE_GROUPS * 2 + fw_young_gen_re_groups;
 	private static final int yg_used_beg_grp =
 		yg_heap_report_grp + heap_report_re_size_beg_group;
 	private static final int yg_used_end_grp =
@@ -104,7 +104,7 @@ public class FWOldGCParser extends GCParser
 
 	private static final int og_heap_report_grp =
 		yg_heap_report_grp + heap_report_re_groups +
-		timestamp_re_groups + fw_old_gen_re_groups;
+				TIMESTAMP_RE_GROUPS + fw_old_gen_re_groups;
 	private static final int og_used_beg_grp =
 		og_heap_report_grp + heap_report_re_size_beg_group;
 	private static final int og_used_end_grp =

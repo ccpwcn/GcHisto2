@@ -205,14 +205,14 @@ public class CMSGCParser extends GCParser {
     private double cmsPhaseBegTimestamp;
 
     private static Pattern cmsImarkPattern = Pattern.compile(
-            timestamp_re + "\\[GC \\[1 (AS)?CMS-initial-mark: " +
+            TIMESTAMP_RE + "\\[GC \\[1 (AS)?CMS-initial-mark: " +
                     cms_heap_size_re + "\\] " +
                     cms_heap_report_re + "\\]");
 
     private static final int _cms_imark_timestamp_grp =
-            timestamp_re_time_group;
+            TIMESTAMP_RE_TIME_GROUP;
     private static final int _cms_imark_og_used_beg_grp =
-            timestamp_re_groups + 2;
+            TIMESTAMP_RE_GROUPS + 2;
     private static final int _cms_imark_og_commit_end_grp =
             _cms_imark_og_used_beg_grp + heap_size_re_groups;
     private static final int _cms_imark_th_used_beg_grp =
@@ -220,35 +220,35 @@ public class CMSGCParser extends GCParser {
     private static final int _cms_imark_th_commit_end_grp =
             _cms_imark_th_used_beg_grp + heap_size_re_groups;
     private static final int _cms_imark_time_grp =
-            timestamp_re_groups + 1 + cms_heap_size_re_groups +
+            TIMESTAMP_RE_GROUPS + 1 + cms_heap_size_re_groups +
                     cms_heap_report_re_groups - 1;
 
     private static Pattern cmsRmarkPattern = Pattern.compile(
-            timestamp_re + "\\[GC.*\\[1 (AS)?CMS-remark: " +
+            TIMESTAMP_RE + "\\[GC.*\\[1 (AS)?CMS-remark: " +
                     cms_heap_size_re + "\\] " +
                     cms_heap_report_re + "\\]");
     private static final int _cms_rmark_timestamp_grp =
-            timestamp_re_time_group;
+            TIMESTAMP_RE_TIME_GROUP;
     private static final int _cms_rmark_time_grp =
-            timestamp_re_groups + 1 + cms_heap_size_re_groups +
+            TIMESTAMP_RE_GROUPS + 1 + cms_heap_size_re_groups +
                     cms_heap_report_re_groups - 1;
 
     private static Pattern cmsPhaseBegPattern = Pattern.compile(
-            timestamp_re + "\\[" + cms_concurrent_phase_name_re +
+            TIMESTAMP_RE + "\\[" + cms_concurrent_phase_name_re +
                     "-start\\]");
     private static int cmsPhaseBegTimestampGrp =
-            timestamp_re_time_group;
+            TIMESTAMP_RE_TIME_GROUP;
 
     private static Pattern cmsConcurrentPhasePattern = Pattern.compile(
-            timestamp_re + "\\[" + cms_concurrent_phase_name_re + ": " +
+            TIMESTAMP_RE + "\\[" + cms_concurrent_phase_name_re + ": " +
                     gc_time_re + "/" + gc_time_secs_re + "\\]");
     private static final int _cms_concurrent_phase_timestamp_grp =
-            timestamp_re_time_group;
+            TIMESTAMP_RE_TIME_GROUP;
     private static final int _cms_concurrent_phase_name_grp =
-            timestamp_re_groups + cms_concurrent_phase_name_group;
+            TIMESTAMP_RE_GROUPS + cms_concurrent_phase_name_group;
     private static final int _cms_concurrent_phase_active_time_grp =
-            timestamp_re_groups + cms_concurrent_phase_name_re_groups + 1;
+            TIMESTAMP_RE_GROUPS + cms_concurrent_phase_name_re_groups + 1;
     private static final int _cms_concurrent_phase_elapsed_time_grp =
-            timestamp_re_groups + cms_concurrent_phase_name_re_groups +
+            TIMESTAMP_RE_GROUPS + cms_concurrent_phase_name_re_groups +
                     gc_time_re_groups + gc_time_secs_re_time_group;
 }
