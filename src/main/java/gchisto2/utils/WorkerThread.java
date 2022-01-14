@@ -32,9 +32,9 @@ import java.util.Queue;
  */
 public class WorkerThread extends Thread {
     
-    private Queue<WorkerTask> queue = new LinkedList<WorkerTask>();
-    
-    static final private WorkerThread instance;
+    private final Queue<WorkerTask> queue = new LinkedList<>();
+
+    private static final WorkerThread instance;
     
     static {
         instance = new WorkerThread();

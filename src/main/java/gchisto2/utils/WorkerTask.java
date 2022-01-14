@@ -24,11 +24,11 @@
 package gchisto2.utils;
 
 /**
- *
+ * 工作线程接口
  * @author tony
  */
 public interface WorkerTask {
     
-    public void doIt();
+    void doIt();
     
 }
