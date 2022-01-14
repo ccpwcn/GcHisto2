@@ -47,7 +47,7 @@ public class GcHisto2Main {
     public static void main(String[] args) {
         ErrorReporting.setShowWarnings(true);
         MainFrame frame = new MainFrame();
-        frame.setSize(1024, 640);
+        frame.setSize(900, 560);
         // 设置窗口位于屏幕中央
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
