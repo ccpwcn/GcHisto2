@@ -88,12 +88,12 @@ public class GcTraceCheckpoint {
     public void extend(int id) {
         assert id == gcTraceSize;
         int newGcTraceSize = gcTraceSize + 1;
-        assert prevCheckpointedSizes.size() == newGcTraceSize - 1;
-        assert checkpointedSizes.size() == newGcTraceSize - 1;
+        assert prevCheckpointedSizes.size() == newGcTraceSize - 1 : "prevCheckpointedSizes.size";
+        assert checkpointedSizes.size() == newGcTraceSize - 1 : "checkpointedSizes.size";
         prevCheckpointedSizes.add(id, 0);
         checkpointedSizes.add(id, 0);
-        assert prevCheckpointedSizes.size() == newGcTraceSize;
-        assert checkpointedSizes.size() == newGcTraceSize;
+        assert prevCheckpointedSizes.size() == newGcTraceSize : "prevCheckpointedSizes.size";
+        assert checkpointedSizes.size() == newGcTraceSize : "checkpointedSizes.size";
         gcTraceSize = newGcTraceSize;
     }
 
